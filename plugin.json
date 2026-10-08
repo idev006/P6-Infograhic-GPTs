@@ -1,17 +1,17 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "visual-prompt-architect",
-  "version": "0.1.0",
-  "description": "Designs production-ready prompts for posters and infographics from requirements, parameters, and reference images.",
+  "version": "0.2.0",
+  "description": "Creates structured templates for infographics, posters, and one-page reports with configurable header, hero, child-content, footer, and background regions.",
   "author": {
     "name": "idev006"
   },
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Visual Prompt Architect",
-        "shortDescription": "Poster & infographic prompts",
-        "longDescription": "Transforms user requirements, design parameters, and up to 12 reference images into structured, production-ready poster and infographic prompts using a multi-layer design workflow and quality review.",
+        "displayName": "Visual Template Architect",
+        "shortDescription": "Visual layout template builder",
+        "longDescription": "Builds reusable infographic, poster, and one-page report templates with configurable canvas, background, header, content box, hero slots, child-content slots, and footer slots while preserving user-supplied assets.",
         "developerName": "idev006",
         "category": "Creativity",
         "capabilities": ["Interactive"],
