@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "visual-prompt-architect",
-  "version": "0.4.1",
-  "description": "Creates reusable infographic, poster, and one-page report templates with 30 presets, empty slots, and mixed text/asset header and footer regions.",
+  "version": "0.5.0",
+  "description": "Creates reusable infographic, poster, and one-page report templates with 30 presets, system-designed background/header/footer, and configurable hero/child slots.",
   "author": {
     "name": "idev006"
   },
@@ -14,9 +14,7 @@
         "longDescription": "Builds reusable infographic, poster, and one-page report templates with configurable canvas, background, header, content box, hero slots, child-content slots, and footer slots while preserving user-supplied assets.",
         "developerName": "idev006",
         "category": "Creativity",
-        "capabilities": [
-          "Interactive"
-        ],
+        "capabilities": ["Interactive"],
         "defaultPrompt": [
           "Create a professional poster prompt from my requirements and reference images.",
           "Design an infographic prompt using A4 portrait unless I specify otherwise.",
