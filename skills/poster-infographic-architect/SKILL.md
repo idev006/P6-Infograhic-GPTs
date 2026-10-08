@@ -147,9 +147,13 @@ When useful, also include a concise design interpretation or assumptions, but ke
 
 ## Supporting references
 
-Consult repository documentation for:
-- parameter groups
-- blackbox architecture
-- design foundations
-- asset preservation policy
-- implementation roadmap
+Use these skill-local references as the operational specification:
+- references/parameter-specification.md
+- references/image-asset-taxonomy.md
+- references/section-layout-engine.md
+- references/design-foundations.md
+- references/asset-preservation-policy.md
+- references/prompt-compiler-spec.md
+- references/qa-scoring.md
+
+Read only the references needed for the current request, but always apply preservation and QA rules before final output.
