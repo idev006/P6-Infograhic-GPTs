@@ -10,6 +10,12 @@ This file is the SSOT for template input behavior.
 - Preservation rules are never relaxed by omission.
 - Do not ask for values that can be safely inferred.
 
+## G00 — Preset Selection
+- preset_id: AUTO | CUSTOM | P01..P20
+- preset_name: derived or user label
+
+Preset values are defaults only. Explicit user values override preset values.
+
 ## G01 — Project & Communication
 - template_type: AUTO | infographic | poster | one_page_report
 - objective: string/enum
