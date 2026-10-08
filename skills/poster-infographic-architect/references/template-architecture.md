@@ -1,97 +1,75 @@
-# Canonical Template Architecture v0.2
+# Canonical Template Architecture v0.5
 
 ## Structural invariant
 
-Every generated template follows this semantic tree unless the user explicitly disables a region:
-
 ```text
 CANVAS
-├── BACKGROUND_LAYER
-├── HEADER_REGION
-│   └── HEADER_SLOT[0..N]
+├── BACKGROUND_LAYER           [SYSTEM_DESIGNED]
+├── HEADER_REGION              [SYSTEM_DESIGNED]
 ├── CONTENT_BOX
-│   ├── HERO_SECTION
+│   ├── HERO_SECTION           [SLOT_BASED]
 │   │   └── HERO_SLOT[0..N]
-│   └── CHILD_CONTENT_SECTION
+│   └── CHILD_CONTENT_SECTION  [SLOT_BASED]
 │       └── CHILD_SLOT[0..N]
-└── FOOTER_REGION
-    └── FOOTER_SLOT[0..N]
+└── FOOTER_REGION              [SYSTEM_DESIGNED]
 ```
 
-## Slot semantics
+## Key distinction
 
-A slot is a bounded placeholder with an ID, role, accepted content type, relative size, and editability state.
+Region design is not slot content.
 
-Stable IDs:
-- H01..HNN Header
-- R01..RNN Hero
-- C01..CNN Child
-- F01..FNN Footer
-
-## User control
-
-The user can set each slot count independently.
-
-Example:
-```text
-header_slot_count = 2
-hero_slot_count = 1
-child_slot_count = 6
-footer_slot_count = 2
-```
-
-The engine must create exactly those counts unless the user changes them.
-
-## Header and Footer content
-
-Header and Footer are mixed-content regions. Their slots may hold text or visual assets.
-
-Header examples:
-- logo
-- organization name
-- report/poster title
-- subtitle
-- date/category/metadata
-
-Footer examples:
-- source
-- note/disclaimer
-- CTA
-- contact information
-- website/social handle
-- QR
-- secondary branding
-
-Header/Footer slots remain EMPTY by default unless exact text or fixed assets are supplied or explicitly bound.
+Background, Header, and Footer must have intentional visual design even when the user has not supplied final copy. Empty-slot policy applies primarily to Hero and Child Content payloads.
 
 ## Background
 
-Background is global and uncounted. It may contain visual treatment or a GUIDED reference image but must support foreground readability.
+Background is global and uncounted. It must be designed as part of the visual system, not merely as an outer border.
+
+It may include tonal fields, gradients, abstract geometry, subtle patterns, textures, atmospheric imagery, or other restrained decorative systems.
+
+## Header
+
+Header is a system-designed region. The engine determines composition and may reserve appropriate places for logo, title, subtitle, organization, category, or metadata.
+
+If exact text/assets are absent, do not invent them. Use structural placeholder treatment where needed.
+
+## Footer
+
+Footer is a system-designed region. The engine determines composition and may reserve appropriate places for source, note, CTA, contact, QR, website, or secondary branding.
+
+If exact text/assets are absent, do not invent them.
 
 ## Content Box
 
-Content Box is the main interior workspace. It always owns Hero and Child sections.
+Content Box owns the reusable slot-based areas:
+- Hero Section
+- Child Content Section
 
-Hero should normally receive greater visual weight. Child Content provides modular repeatable units.
+Stable IDs:
+- R01..RNN for Hero
+- C01..CNN for Child
 
-## Template versus content
+## User control
 
-The template defines places and roles. It should not invent final business facts, names, statistics, or copy.
+Primary controls:
+```text
+hero_slot_count = integer >= 0 | AUTO
+child_slot_count = integer >= 0 | AUTO
+```
 
-Placeholder labels may be used for clarity, for example:
-- [LOGO]
-- [MAIN HEADLINE]
-- [HERO IMAGE]
-- [KEY STATISTIC]
-- [CHILD CONTENT 01]
-- [QR]
-- [SOURCE]
+Header/Footer are AUTO-DESIGNED by default. Advanced explicit user instructions may override their internal structure without making header/footer slot counts required inputs.
+
+## Reference images
+
+Default image behavior:
+- REFERENCE_ONLY or PLACEHOLDER_GUIDE
+- may influence layout, aspect ratio, visual style, and region treatment
+- do not populate Hero/Child slots automatically
+- fixed/locked assets are inserted only when explicitly bound
 
 ## Reusability
 
-A good template:
-- preserves consistent grid and rhythm
-- has clear slot boundaries
-- supports content replacement
-- separates locked brand assets from editable content
-- can be reused without redesigning the page architecture
+A strong template:
+- has a designed Background, Header, and Footer
+- reserves flexible Hero/Child content capacity
+- does not resemble a plain form made from repeated empty rectangles
+- supports replacement of content without redesigning the whole page
