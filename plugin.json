@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "visual-prompt-architect",
+  "version": "0.1.0",
+  "description": "Designs production-ready prompts for posters and infographics from requirements, parameters, and reference images.",
+  "author": {
+    "name": "idev006"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Visual Prompt Architect",
+        "shortDescription": "Poster & infographic prompts",
+        "longDescription": "Transforms user requirements, design parameters, and up to 12 reference images into structured, production-ready poster and infographic prompts using a multi-layer design workflow and quality review.",
+        "developerName": "idev006",
+        "category": "Creativity",
+        "capabilities": ["Interactive"],
+        "defaultPrompt": [
+          "Create a professional poster prompt from my requirements and reference images.",
+          "Design an infographic prompt using A4 portrait unless I specify otherwise.",
+          "Review my poster requirements and build the strongest visual direction before writing the final prompt."
+        ]
+      }
+    }
+  }
+}
