@@ -42,6 +42,28 @@ footer_slot_count = 2
 
 The engine must create exactly those counts unless the user changes them.
 
+## Header and Footer content
+
+Header and Footer are mixed-content regions. Their slots may hold text or visual assets.
+
+Header examples:
+- logo
+- organization name
+- report/poster title
+- subtitle
+- date/category/metadata
+
+Footer examples:
+- source
+- note/disclaimer
+- CTA
+- contact information
+- website/social handle
+- QR
+- secondary branding
+
+Header/Footer slots remain EMPTY by default unless exact text or fixed assets are supplied or explicitly bound.
+
 ## Background
 
 Background is global and uncounted. It may contain visual treatment or a GUIDED reference image but must support foreground readability.
