@@ -1,97 +1,72 @@
 # P6-Infograhic-GPTs
 
-> Working title: **Visual Prompt Architect**
+> Product name: **Visual Template Architect**
 
-A ChatGPT Plugin project for converting user requirements, optional reference images (0–12), and design parameters into production-ready prompts for professional posters and infographics.
+A ChatGPT Plugin for creating reusable layout templates for:
+- Infographics
+- Posters
+- One-page reports
 
-## Project goal
+The plugin designs the template structure before content is populated.
 
-Build a reusable ChatGPT Plugin that behaves like a multidisciplinary design team:
-- Senior Software Engineer
-- Senior Process Engineer
-- Senior Prompt / Loop Engineer
-- Senior Graphic Designer
-- Senior Infographic / One-page Report Designer
-- Information Designer
-- Art Director
-- QA / Design Critic
+## Canonical template architecture
 
-The plugin does **not** merely rewrite user text into a prompt. It performs a structured design process through a multi-layer blackbox, maps content and images to poster/infographic sections, protects user-supplied identity and brand assets, and compiles a final master prompt.
+```text
+CANVAS
+├── BACKGROUND LAYER
+├── HEADER
+│   └── Header Slots [0..N]
+├── CONTENT BOX
+│   ├── HERO SECTION
+│   │   └── Hero Slots [0..N]
+│   └── CHILD CONTENT SECTION
+│       └── Child Slots [0..N]
+└── FOOTER
+    └── Footer Slots [0..N]
+```
 
-## Core principles
+The user may explicitly define the number of slots in:
+- Header
+- Hero
+- Child Content
+- Footer
 
-1. Design before prompt compilation.
-2. Preserve before transform.
-3. Explicit user instructions override inference and defaults.
-4. Section semantics and physical layout are separate.
-5. Each reference image receives an explicit role.
-6. QA blocks unauthorized changes to protected assets.
+Background is a page-level layer and is not counted as a slot.
 
-## Core flow
-
-User Input
-→ Input Normalization
-→ Communication Strategy
-→ Information Architecture
-→ Section Architecture
-→ Asset / Image Intelligence
-→ Preservation Gate
-→ Art Direction
-→ Composition & Layout
-→ Visual System
-→ Prompt Compiler
-→ QA / Critic
-→ Final Master Prompt
-
-## Default document
+## Default
 
 - Canvas: A4
 - Orientation: Portrait
 - Size: 210 × 297 mm
-- All defaults are overrideable by explicit user parameters.
+- Slot counts: AUTO unless explicitly set
 
-## Primary structural model
+## Core principles
 
-Foreground sections:
-- Header
-- Hero
-- Content
-- Footer
+1. Template-first, not final-content-first.
+2. Header / Content Box / Footer form the main foreground structure.
+3. Hero and Child are children of Content Box.
+4. Explicit slot counts are authoritative.
+5. Preserve before transform for supplied assets.
+6. Layout adapts to slot count, canvas, and information density.
+7. QA must verify exact requested slot counts.
 
-Layered systems:
-- Background Layer
-- Overlay / Decorative Layer
+## Plugin workflow
 
-Content may contain multiple modules inside the Content Section.
-
-## Asset preservation defaults
-
-- Person / face: identity LOCKED
-- Logo / emblem / QR / signature: LOCKED
-- Product / uniform / identifiable object: STRICT
-- Background / environment: GUIDED
-- Style / mood reference: INSPIRATION_ONLY
-
-Silence is not permission to alter protected identity, brand, or functional features.
-
-## Repository structure
-
-```text
-plugin.json
-skills/
-  poster-infographic-architect/
-    SKILL.md
-docs/
-  architecture.md
-  parameter-groups.md
-  design-foundations.md
-  asset-preservation-policy.md
-  roadmap.md
-```
-
-## Status
-
-Architecture and specification phase.
+User requirements
+→ Template type
+→ Canvas
+→ Slot counts
+→ Background
+→ Header
+→ Content Box
+→ Hero
+→ Child modules
+→ Footer
+→ Grid / Visual System
+→ Asset mapping
+→ Template Prompt Compiler
+→ QA
+→ Reusable Template Specification / Prompt
 
 ## Repository
 
