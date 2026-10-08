@@ -45,6 +45,7 @@ A slot is a reusable placeholder. It may later hold text, image, logo, chart, st
 
 When unspecified:
 - Template type: AUTO among infographic, poster, one_page_report
+- Preset: AUTO from 20 built-in presets
 - Canvas: A4
 - Size: 210 × 297 mm
 - Orientation: Portrait
@@ -68,7 +69,7 @@ When unspecified:
 
 ## Workflow
 
-1. Normalize the request and identify template type.
+1. Normalize the request, identify template type, and resolve preset_id (AUTO, P01–P20, or CUSTOM).
 2. Resolve canvas and orientation.
 3. Resolve slot counts for Header, Hero, Child, and Footer.
 4. Build Background Layer.
@@ -142,6 +143,7 @@ Return a production-ready **template prompt/specification** that clearly defines
 Use these operational references:
 - references/parameter-specification.md
 - references/template-architecture.md
+- references/template-presets.md
 - references/image-asset-taxonomy.md
 - references/section-layout-engine.md
 - references/design-foundations.md
