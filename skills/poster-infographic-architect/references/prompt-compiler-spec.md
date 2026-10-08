@@ -1,114 +1,88 @@
-# Prompt Compiler Specification v0.1
+# Template Prompt Compiler Specification v0.2
 
 ## Purpose
 
-Compile design decisions into one production-ready prompt for a downstream image-generation model.
+Compile decisions into a reusable template-generation prompt/specification for infographic, poster, or one-page report layouts.
 
 ## Required output order
 
 1. ROLE
-2. PROJECT OBJECTIVE
-3. OUTPUT CANVAS
-4. COMMUNICATION STRATEGY
-5. CREATIVE CONCEPT
-6. REFERENCE ASSET MAP
-7. PRESERVATION CONSTRAINTS
-8. SECTION ARCHITECTURE
-9. COMPOSITION & VISUAL FLOW
-10. VISUAL HIERARCHY
-11. SUBJECT / SCENE
-12. TYPOGRAPHY SYSTEM
-13. CONTENT TO RENDER
+2. TEMPLATE TYPE
+3. CANVAS & ORIENTATION
+4. BACKGROUND LAYER
+5. PAGE GRID & MARGINS
+6. HEADER REGION
+7. CONTENT BOX
+8. HERO SECTION
+9. CHILD CONTENT SECTION
+10. FOOTER REGION
+11. SLOT TABLE / SLOT MAP
+12. VISUAL HIERARCHY
+13. TYPOGRAPHY SYSTEM
 14. COLOR SYSTEM
-15. GRAPHIC / DATA ELEMENTS
-16. LIGHTING / ATMOSPHERE
-17. BRANDING RULES
-18. TECHNICAL QUALITY
+15. GRAPHIC LANGUAGE
+16. REFERENCE ASSET BINDINGS
+17. PRESERVATION CONSTRAINTS
+18. EDITABILITY RULES
 19. NEGATIVE CONSTRAINTS
-20. FINAL QA INSTRUCTIONS
+20. FINAL TEMPLATE QA
 
-## Compilation rules
+## Mandatory slot declaration
 
-- Use explicit, concrete language.
-- Avoid contradictory adjectives.
-- Do not repeat the same constraint in multiple conflicting ways.
-- Put identity/asset preservation before stylistic transformation language.
-- Separate exact text from descriptive art direction.
-- Do not invent facts, statistics, logos, or institutional details.
-- If text accuracy is critical, instruct exact wording and readable typography.
-- If a downstream model is unreliable for QR/logo/signature fidelity, reserve placement for later compositing.
+Always state:
+- header_slot_count
+- hero_slot_count
+- child_slot_count
+- footer_slot_count
 
-## Reference asset block template
+For every slot include:
+- slot_id
+- parent section
+- slot index
+- semantic role
+- allowed content type
+- relative size
+- alignment
+- priority
+- asset binding if any
+- editable/fixed/locked state
 
-```text
-REFERENCE ASSET [ID]
-Role:
-Target:
-Priority:
-Preservation policy:
-Preserve:
-Allowed transformations:
-Forbidden transformations:
-Fidelity:
-```
+## Slot naming
 
-## Canvas block template
+Use stable IDs:
+- H01, H02 ... for Header
+- R01, R02 ... for Hero
+- C01, C02 ... for Child
+- F01, F02 ... for Footer
 
-```text
-Canvas:
-Orientation:
-Dimensions:
-Aspect ratio:
-Output medium:
-Viewing context:
-```
+## Template language
 
-## Section block template
+Describe placeholders, not invented final content, unless the user supplied exact content.
 
-```text
-HEADER:
-Purpose:
-Content:
-Assets:
+Prefer:
+"Reserve H01 for organization logo"
 
-HERO:
-Purpose:
-Content:
-Assets:
+Do not invent:
+"A police logo reading ..."
 
-CONTENT:
-Modules:
-Assets:
+## Output formats
 
-FOOTER:
-Content:
-Assets:
+template_spec:
+structured specification
 
-BACKGROUND:
-Treatment:
+template_prompt:
+production-ready prompt for generating a blank or lightly labeled visual template
 
-OVERLAY:
-Treatment:
-```
+both:
+return specification first, then compiled template prompt
 
 ## Negative constraints
 
-Include only relevant negatives such as:
-- no clutter
-- no malformed typography
-- no logo distortion
-- no unauthorized face changes
-- no random icons
-- no duplicated elements
-- no unreadable text
-- no inconsistent perspective
-
-## Model adaptation
-
-When target_image_model is known:
-- adapt syntax and level of detail to that model
-- preserve semantic requirements
-- never weaken asset preservation constraints solely for model style
-
-When unknown:
-- use model-neutral professional prompt language.
+Include relevant rules such as:
+- no unintended extra slots
+- no merged slots unless specified
+- no missing requested slots
+- no background competing with content
+- no unreadable placeholder labels
+- no distorted locked assets
+- no accidental final-copy fabrication
