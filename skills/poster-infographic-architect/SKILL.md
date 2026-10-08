@@ -1,45 +1,93 @@
 ---
 name: poster-infographic-architect
-description: Use when a user wants to create a reusable layout template for an infographic, poster, or one-page report, with configurable header, hero, child-content, footer, background, and optional reference assets.
+description: Use when a user wants to create a reusable infographic, poster, or one-page report template with system-designed background, header, and footer plus configurable hero and child-content slots.
 ---
 
 # Infographic / Poster / One-page Template Architect
 
 ## Mission
 
-Create a reusable visual template first. The template defines structure, slot counts, slot roles, hierarchy, layout logic, and asset placement rules before any final content is populated.
+Create a reusable visual template. The system designs the **Background, Header, and Footer automatically**. The reusable slot system is focused primarily on the **Hero Section** and **Child Content Section** inside the Content Box.
 
-The plugin's primary output is a **template specification / template-generation prompt**, not a finished poster narrative.
+The primary output is a template specification and/or production-ready template-generation prompt.
 
 ## Canonical template structure
 
 ```text
 CANVAS
-├── BACKGROUND LAYER
-├── HEADER
-│   └── Header Slots [0..N]
+├── BACKGROUND LAYER        ← SYSTEM-DESIGNED
+├── HEADER REGION           ← SYSTEM-DESIGNED
 ├── CONTENT BOX
-│   ├── HERO SECTION
+│   ├── HERO SECTION        ← SLOT-BASED
 │   │   └── Hero Slots [0..N]
-│   └── CHILD CONTENT SECTION
+│   └── CHILD CONTENT       ← SLOT-BASED
 │       └── Child Slots [0..N]
-└── FOOTER
-    └── Footer Slots [0..N]
+└── FOOTER REGION           ← SYSTEM-DESIGNED
 ```
 
-Optional overlay/decorative layers may support the template but never replace these structural regions.
+## Core policy
 
-## User-configurable slot counts
+**Region design and slot content are different things.**
 
-The user may explicitly set:
-- header_slot_count
+- Background must be visually designed, not left as an empty box.
+- Header must be visually designed as a real header region.
+- Footer must be visually designed as a real footer region.
+- Hero and Child Content use reusable empty slots by default.
+- Reference images may influence layout, proportions, slot geometry, style, mood, tone, and visual language without being inserted into slots.
+- Do not turn every region or slot into identical outlined rectangles. Select an appropriate visual treatment from editorial blocks, cards, masks, open whitespace, bands, panels, asymmetric zones, or other professional layout devices.
+
+## Header behavior
+
+Header is system-managed by default. The engine decides its layout, visual treatment, internal grouping, typography hierarchy, and space allocation.
+
+It may support:
+- logo / organization identity
+- title
+- subtitle
+- category
+- date / metadata
+
+Do not invent factual header text. If exact text is unavailable, design the header structurally with appropriate placeholder treatment.
+
+## Footer behavior
+
+Footer is system-managed by default. The engine decides its layout, visual treatment, internal grouping, and proportion.
+
+It may support:
+- source
+- note / disclaimer
+- CTA
+- contact
+- website / social
+- QR
+- secondary branding
+
+Do not invent factual footer text. If exact text is unavailable, design the footer structurally with appropriate placeholder treatment.
+
+## Background behavior
+
+Background is always a page-level visual system unless explicitly disabled.
+
+It may use:
+- solid / tonal field
+- gradient
+- abstract geometry
+- restrained pattern
+- texture
+- atmospheric illustration
+- reference-derived color/mood
+
+Background must visually connect Header, Content Box, and Footer and maintain figure-ground readability.
+
+## User-configurable primary slot counts
+
+The primary user-facing slot controls are:
 - hero_slot_count
 - child_slot_count
-- footer_slot_count
 
-If a count is omitted, infer an appropriate value from project type and information density.
+If omitted, infer from preset, template type, content pattern, reference images, and information density.
 
-A slot is a reusable placeholder. It may later hold text, image, logo, chart, statistic, QR, icon, or another supported element. Slots remain EMPTY by default; reference images may guide slot shape and layout without being inserted.
+Header/Footer internal groups are system-managed by default. Advanced explicit instructions may override them, but the user should not need to specify their counts.
 
 ## Defaults
 
@@ -49,73 +97,65 @@ When unspecified:
 - Canvas: A4
 - Size: 210 × 297 mm
 - Orientation: Portrait
-- Background: AUTO
-- Header slots: AUTO
+- Background: AUTO-DESIGNED
+- Header: AUTO-DESIGNED
+- Footer: AUTO-DESIGNED
 - Hero slots: AUTO
 - Child slots: AUTO
-- Footer slots: AUTO
-- Style / mood / tone: AUTO
+- Reference image binding: REFERENCE_ONLY / PLACEHOLDER_GUIDE
 - Asset policy: Preserve-first
 
 ## Priority
 
 1. Explicit user instructions
-2. Explicit slot counts and slot roles
-3. User-supplied assets and preservation constraints
-4. Project requirements
-5. Skill references
-6. Intelligent inference
-7. Defaults
+2. Explicit Hero/Child slot counts and roles
+3. Explicit asset binding
+4. User-supplied preservation constraints
+5. Project requirements
+6. Preset
+7. Skill references
+8. Intelligent inference
+9. Defaults
 
 ## Workflow
 
-1. Normalize the request, identify template type, and resolve preset_id (AUTO, P01–P30, or CUSTOM).
-2. Resolve canvas and orientation.
-3. Resolve slot counts for Header, Hero, Child, and Footer.
-4. Build Background Layer.
-5. Build Header grid and slot geometry.
-6. Build Content Box.
-7. Inside Content Box, build Hero Section first, then Child Content Section.
-8. Build Footer grid and slot geometry.
-9. Assign semantic roles to slots.
-10. Map user-supplied assets to eligible slots.
-11. Define art direction, grid, spacing, typography hierarchy, color roles, and visual flow.
-12. Apply preservation rules.
-13. Compile the template-generation prompt/specification.
-14. Run template QA and revise before output.
+1. Normalize request and identify template type.
+2. Resolve preset_id (AUTO, P01–P30, or CUSTOM).
+3. Resolve canvas and orientation.
+4. Analyze reference images and classify roles.
+5. Design the full-page Background.
+6. Design the Header region.
+7. Build Content Box.
+8. Resolve Hero slot count and geometry.
+9. Resolve Child slot count and geometry.
+10. Design the Footer region.
+11. Map reference influence to layout without inserting assets unless explicitly bound.
+12. Define typography, colors, spacing, hierarchy, and visual language.
+13. Apply preservation rules.
+14. Compile template specification/prompt.
+15. Run QA and revise before output.
 
 ## Slot rules
 
-Each slot should define:
+Hero/Child slots remain EMPTY by default.
+
+Each slot defines:
 - slot_id
 - parent_section
 - slot_index
 - semantic_role
 - content_type
-- relative_size
+- relative_size / aspect behavior
 - alignment
 - priority
-- asset_binding or AUTO
-- editable/fixed state
+- asset_binding or NONE
+- editable state
 
-Explicit slot count must be honored unless physically impossible for the requested canvas. If impossible, preserve the count and simplify slot size/content density before proposing a count change.
-
-## Structural rules
-
-- Header, Content Box, Footer are foreground structural regions.
-- Background is a page-level layer behind all foreground regions.
-- Hero and Child are children of Content Box.
-- Hero slots receive stronger visual hierarchy than Child slots by default.
-- Child slots should be visually modular and repeatable.
-- Header and Footer slots may contain text, visual assets, or mixed content.
-- Header/Footer text examples include title, subtitle, organization, metadata, source, note, CTA, contact, and disclaimer.
-- Footer slots should remain compact and secondary unless explicitly promoted.
-- Slot geometry may vary by orientation and information density.
-- Template structure is semantic; exact coordinates are decided by the layout engine.
+Stable IDs:
+- R01..RNN = Hero
+- C01..CNN = Child Content
 
 ## Preserve-first asset policy
-
-User-provided assets are not permission to redesign identity or brand features.
 
 Defaults:
 - Person / face → LOCKED identity
@@ -124,25 +164,31 @@ Defaults:
 - Background reference → GUIDED
 - Style reference → INSPIRATION_ONLY
 
+A supplied logo should guide Header planning but is not inserted unless the user requests binding. If bound, preserve its geometry, colors, text, and aspect ratio.
+
 ## Output
 
-Return a production-ready **template prompt/specification** that clearly defines:
+Return a production-ready template specification/prompt defining:
 - canvas
-- background treatment
-- region proportions
-- slot counts
-- slot IDs and roles
-- section hierarchy
-- grid / spacing rules
-- visual system
-- asset bindings
+- selected preset
+- full Background treatment
+- Header design
+- Content Box proportions
+- Hero slot count and geometry
+- Child slot count and geometry
+- Footer design
+- grid / margins / spacing
+- typography system
+- color system
+- reference influence map
+- asset bindings, if any
 - preservation constraints
 - negative constraints
 - final QA instructions
 
 ## Supporting references
 
-Use these operational references:
+Use:
 - references/parameter-specification.md
 - references/template-architecture.md
 - references/template-presets.md
