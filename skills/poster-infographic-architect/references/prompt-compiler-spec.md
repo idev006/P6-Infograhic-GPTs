@@ -1,88 +1,78 @@
-# Template Prompt Compiler Specification v0.2
-
-## Purpose
-
-Compile decisions into a reusable template-generation prompt/specification for infographic, poster, or one-page report layouts.
+# Template Prompt Compiler Specification v0.5
 
 ## Required output order
 
 1. ROLE
-2. TEMPLATE TYPE
+2. TEMPLATE TYPE + PRESET
 3. CANVAS & ORIENTATION
-4. BACKGROUND LAYER
-5. PAGE GRID & MARGINS
-6. HEADER REGION
-7. CONTENT BOX
-8. HERO SECTION
-9. CHILD CONTENT SECTION
-10. FOOTER REGION
-11. SLOT TABLE / SLOT MAP
+4. REFERENCE IMAGE INFLUENCE MAP
+5. BACKGROUND DESIGN
+6. HEADER DESIGN
+7. PAGE GRID & MARGINS
+8. CONTENT BOX
+9. HERO SECTION + SLOT MAP
+10. CHILD CONTENT SECTION + SLOT MAP
+11. FOOTER DESIGN
 12. VISUAL HIERARCHY
 13. TYPOGRAPHY SYSTEM
 14. COLOR SYSTEM
 15. GRAPHIC LANGUAGE
-16. REFERENCE ASSET BINDINGS
+16. ASSET BINDINGS
 17. PRESERVATION CONSTRAINTS
 18. EDITABILITY RULES
 19. NEGATIVE CONSTRAINTS
 20. FINAL TEMPLATE QA
 
-## Mandatory slot declaration
+## Mandatory declarations
 
 Always state:
-- header_slot_count
 - hero_slot_count
 - child_slot_count
-- footer_slot_count
+- Header = AUTO-DESIGNED or explicit override
+- Footer = AUTO-DESIGNED or explicit override
+- Background = AUTO-DESIGNED or explicit override
 
-For every slot include:
+For every Hero/Child slot:
 - slot_id
 - parent section
-- slot index
 - semantic role
 - allowed content type
-- relative size
+- relative size/aspect behavior
 - alignment
 - priority
 - asset binding if any
-- editable/fixed/locked state
+- editable state
 
-## Slot naming
+## Region design requirement
 
-Use stable IDs:
-- H01, H02 ... for Header
-- R01, R02 ... for Hero
-- C01, C02 ... for Child
-- F01, F02 ... for Footer
+The prompt must explicitly instruct the downstream model to render Header, Footer, and Background as finished visual regions—not empty placeholder boxes.
+
+Header/Footer may reserve typographic or asset locations, but their containers, hierarchy, decoration, spacing, and visual treatment must be designed.
 
 ## Template language
 
-Describe placeholders, not invented final content, unless the user supplied exact content.
+Do not invent factual copy.
 
-Prefer:
-"Reserve H01 for organization logo"
+Use structural descriptions such as:
+- "design a refined header with reserved title and logo positions"
+- "design a compact footer system for source/contact/QR if later supplied"
 
-Do not invent:
-"A police logo reading ..."
+## Reference handling
 
-## Output formats
+Default:
+- analyze references
+- use them to inform layout, colors, atmosphere, aspect ratios, and visual language
+- do not place them into slots
 
-template_spec:
-structured specification
-
-template_prompt:
-production-ready prompt for generating a blank or lightly labeled visual template
-
-both:
-return specification first, then compiled template prompt
+Only BIND_TO_SLOT or FIXED_REGION_ASSET permits insertion.
 
 ## Negative constraints
 
-Include relevant rules such as:
-- no unintended extra slots
-- no merged slots unless specified
-- no missing requested slots
-- no background competing with content
-- no unreadable placeholder labels
+Include as relevant:
+- no generic blank header/footer boxes
+- no background reduced to an unrelated border treatment
+- no form-like repeated rectangles unless intentionally chosen
+- no unintended image insertion
+- no missing requested Hero/Child slots
 - no distorted locked assets
-- no accidental final-copy fabrication
+- no fabricated final copy
