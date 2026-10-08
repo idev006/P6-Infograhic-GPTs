@@ -1,135 +1,91 @@
-# Section & Layout Engine v0.2
+# Section & Layout Engine v0.5
 
-## Canonical page model
+## Page model
 
 ```text
 PAGE
-├── BACKGROUND LAYER
-├── HEADER REGION
-│   └── header_slot[1..N]
+├── BACKGROUND LAYER     ← AUTO-DESIGNED
+├── HEADER REGION        ← AUTO-DESIGNED
 ├── CONTENT BOX
-│   ├── HERO SECTION
-│   │   └── hero_slot[1..N]
-│   └── CHILD CONTENT SECTION
-│       └── child_slot[1..N]
-└── FOOTER REGION
-    └── footer_slot[1..N]
+│   ├── HERO SECTION     ← reusable slots
+│   └── CHILD SECTION    ← reusable slots
+└── FOOTER REGION        ← AUTO-DESIGNED
 ```
 
-Background is a layer, not a counted content slot.
+## System-managed regions
 
-## Slot-count behavior
+### Background
+Must be intentionally designed across the canvas. Avoid reducing it to decorative edges only unless the chosen art direction explicitly calls for that.
 
-The user may set:
-- header_slot_count
-- hero_slot_count
-- child_slot_count
-- footer_slot_count
+### Header
+System chooses:
+- height/proportion
+- visual treatment
+- alignment
+- internal grouping
+- typography hierarchy
+- optional logo/title/subtitle/metadata placement
 
-Counts may be zero.
+### Footer
+System chooses:
+- height/proportion
+- visual treatment
+- alignment
+- internal grouping
+- source/CTA/contact/QR/brand support areas as appropriate
 
-Explicit counts are authoritative. The engine may change geometry, grid density, typography scale, and whitespace to accommodate them before suggesting any count change.
+Header/Footer may contain text or assets, but factual content is never invented.
 
-## Header Region
-
-Purpose:
-- identity
-- title family
-- headline or report title
-- subtitle
-- campaign label
-- organization
-- date/category/metadata
-
-Typical slot patterns:
-- 1 slot: unified text/title or brand block
-- 2 slots: logo + title, or title + subtitle
-- 3 slots: logo + title + metadata/subtitle
-- 4+ slots: mixed text/asset grid; only when requested
-
-## Content Box
-
-The main bounded working area between Header and Footer.
-
-It contains exactly two semantic child regions:
-1. Hero Section
-2. Child Content Section
+## Slot-based Content Box
 
 ### Hero Section
+User-facing parameter:
+- hero_slot_count
 
-Purpose:
-- strongest visual
-- main headline/message
-- key statistic
-- central subject
-
-Hero slot patterns:
-- 1: single dominant hero
-- 2: visual + message/stat
-- 3+: multi-hero/comparison layout when explicitly needed
-
-Hero has higher visual weight than Child by default.
+Hero patterns:
+- 1 → single dominant visual/message placeholder
+- 2 → split/paired hero
+- 3+ → comparison, KPI row, or multi-hero system when appropriate
 
 ### Child Content Section
-
-Purpose:
-- modular facts
-- steps
-- features
-- comparisons
-- charts
-- recommendations
-- supporting visuals
-
-Child slots should be repeatable modules.
+User-facing parameter:
+- child_slot_count
 
 Suggested geometry:
-- 1: full-width module
-- 2: 2-column or stacked
-- 3: 3-column or 1+2
-- 4: 2×2
-- 5–6: modular grid
-- 7+: dense infographic/report grid with reduced decoration
+- 1 → full-width/open module
+- 2 → split or stacked
+- 3 → 3-column / 1+2
+- 4 → 2×2 or asymmetric editorial
+- 5–6 → adaptive modular grid
+- 7+ → dense report/infographic grid
 
-## Footer Region
+## Visual treatment rule
 
-Purpose:
-- source
-- note/disclaimer
-- CTA
-- contact information
-- website/social handle
-- QR
-- secondary branding
+Do not automatically draw a border around every slot.
 
-Footer remains visually secondary unless explicitly promoted.
-
-## Background Layer
-
-May be:
-- solid color
-- gradient
-- image
-- environment
-- texture
-- subtle illustration
-
-It must support figure-ground separation and not compete with the foreground.
+Select among:
+- open whitespace
+- soft cards
+- editorial blocks
+- image masks
+- tinted panels
+- asymmetric zones
+- dividers
+- bands
+- restrained outlined cards only when stylistically appropriate
 
 ## Region ratios
 
-AUTO chooses ratios from template type, orientation, and slot counts.
-
-Typical A4 portrait starting ranges:
+Typical A4 portrait starting range:
 - Header: 8–15%
 - Content Box: 72–84%
 - Footer: 6–12%
 
 Within Content Box:
-- Hero: 30–55%
-- Child: remaining 45–70%
+- Hero: 25–55%
+- Child: remaining area
 
-These are starting ranges, not fixed rules.
+These ranges adapt to reference images, preset, density, and user constraints.
 
 ## Grid logic
 
@@ -139,17 +95,16 @@ A4 portrait:
 Landscape:
 - 6, 8, or 12-column grid
 
-High child-slot counts:
-- favor modular grid
-- reduce decorative overlays
-- increase grouping clarity
+High Child counts:
+- favor modular grids
+- reduce ornament
+- strengthen grouping
 
-## Layout quality rules
+## Quality rules
 
-- Header, Hero, Child, Footer must remain visually distinguishable.
-- Hero must have stronger hierarchy than Child unless explicitly overridden.
-- Child modules must align consistently.
-- Footer must not consume disproportionate space.
-- Background must not reduce readability.
-- Protected assets may only be cropped/repositioned within preservation rules.
-- Explicit slot counts must match the final template specification.
+- Background, Header, Content Box, and Footer must feel like one designed system.
+- Header/Footer must look designed even if final text is absent.
+- Hero should normally dominate Child.
+- Empty content placeholders must not make the result look like a data-entry form.
+- Reference images may influence geometry without being inserted.
+- Protected assets obey preservation policy.
