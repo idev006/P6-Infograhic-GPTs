@@ -1,66 +1,64 @@
-# Template QA Scoring v0.2
+# Template QA Scoring v0.5
 
 ## Blocking failures
 
-Any of these require revision:
-- header slot count differs from explicit request
-- hero slot count differs from explicit request
-- child slot count differs from explicit request
-- footer slot count differs from explicit request
-- Hero or Child placed outside Content Box
-- Background treated as a normal content slot
-- user-bound asset mapped to the wrong slot
+Revise before output if:
+- Background is missing when not explicitly disabled
+- Header is missing when not explicitly disabled
+- Footer is missing when not explicitly disabled
+- Background/Header/Footer are represented only as generic empty boxes instead of designed regions
+- Hero slot count differs from explicit request
+- Child slot count differs from explicit request
+- Hero or Child lies outside Content Box
+- reference images are inserted without explicit binding
+- user-bound asset is mapped incorrectly
 - unauthorized identity or brand alteration
-- missing must_include item
-- violation of must_preserve
-- invented factual content represented as user content
-- mutually contradictory slot or preservation rules
+- must_include or must_preserve is violated
+- factual content is fabricated
+- preservation or structural rules contradict one another
 
 ## Scored dimensions 0–10
 
 1. Template Type Fit
 2. Canvas Fit
-3. Region Hierarchy
-4. Slot Count Accuracy
-5. Slot Role Clarity
-6. Grid Coherence
-7. Hero Dominance
-8. Child Modularity
-9. Footer Proportion
-10. Background Support
-11. Typography Scalability
-12. Asset Mapping Accuracy
-13. Preservation Compliance
-14. Editability / Reusability
-15. Template Prompt Clarity
-16. Overall Professional Quality
+3. Background Design Quality
+4. Header Design Quality
+5. Footer Design Quality
+6. Region Hierarchy
+7. Hero Slot Accuracy
+8. Child Slot Accuracy
+9. Grid Coherence
+10. Hero Dominance
+11. Child Modularity
+12. Typography Scalability
+13. Reference Use Quality
+14. Preservation Compliance
+15. Reusability
+16. Template Prompt Clarity
+17. Overall Professional Quality
 
 ## Acceptance
 
 - any blocking failure → FAIL
-- Slot Count Accuracy < 10 when user gave counts → FAIL
+- explicit Hero/Child count accuracy must be 10/10
+- Background/Header/Footer Design Quality each < 8 → REVISE
 - Preservation Compliance < 9 → FAIL
-- Template Prompt Clarity < 8 → REVISE
-- Editability / Reusability < 8 → REVISE
+- Reusability < 8 → REVISE
 - Overall Professional Quality < 8 → REVISE
 - otherwise PASS
 
-## Feedback routing
+## Visual-form warning
 
-Structure/count failure → Template Architecture / Layout Engine
-Asset failure → Asset Intelligence / Preservation
-Visual hierarchy failure → Design Foundations / Layout
-Prompt failure → Template Prompt Compiler
+If the result resembles a blank form because every region/slot uses identical outlined rectangles, REVISE the visual treatment before output.
 
 ## Final checklist
 
 Confirm:
-- exact slot counts
-- correct parent-child hierarchy
-- Header / Content Box / Footer visible as intended
-- Hero and Child both inside Content Box
-- Background is page-level
-- every slot has an ID and role
-- user assets are either bound or intentionally unassigned
-- template remains reusable and editable
+- Background visually spans/supports the page
+- Header is visibly designed
+- Footer is visibly designed
+- Content Box contains Hero + Child
+- Hero/Child slots match requested counts
+- empty slots remain reusable
+- reference images are influence-only unless explicitly bound
 - prompt/spec is self-contained
