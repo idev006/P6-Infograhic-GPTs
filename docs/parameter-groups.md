@@ -148,28 +148,75 @@ Supports 0–12 reference images plus structured assets.
 - images[0..12]
 - logo
 - QR
+- signature
 - chart
 - diagram
+- product_assets
 - brand_assets
 
-Each image may contain:
+Each image or asset may contain:
 - image_id
 - semantic_role
 - visual_role
 - target_section
 - priority
+- preservation_policy
+- identity_preservation
 - reference_fidelity
+- protected_features
+- allowed_transformations
 - crop_permission
 - modification_permission
+- recolor_permission
+- redraw_permission
 - background_removal
 - usage_instruction
 
-Suggested priority:
+### Preservation policy
+
+Allowed values:
+- LOCKED
+- STRICT
+- GUIDED
+- FLEXIBLE
+- INSPIRATION_ONLY
+
+Default by role:
+- person / face → LOCKED identity
+- logo / emblem / QR / signature → LOCKED
+- product / uniform / identifiable object → STRICT
+- background / environment → GUIDED
+- style / mood reference → INSPIRATION_ONLY
+
+### Priority
+
+Suggested values:
 - LOCKED
 - CRITICAL
 - HIGH
 - MEDIUM
 - LOW
+
+Priority and preservation policy are different concepts.
+
+Example:
+- a background can be HIGH priority but GUIDED
+- a QR code can be visually LOW priority but LOCKED
+
+### Protected features
+
+Examples:
+- face identity
+- facial geometry
+- skin tone
+- hairstyle
+- uniform insignia
+- product geometry
+- logo geometry
+- logo color
+- QR data pattern
+- signature strokes
+- packaging markings
 
 ## G09 — Constraints & Output Control
 
@@ -182,6 +229,8 @@ Defines hard requirements and final prompt behavior.
 - brand_constraints
 - text_constraints
 - image_constraints
+- identity_constraints
+- asset_integrity_constraints
 - prompt_language
 - prompt_detail_level
 - target_image_model
@@ -199,3 +248,5 @@ Expose approximately 20–30 parameters.
 Expose the full schema.
 
 The blackbox should fill omitted parameters intelligently rather than forcing the user to complete a long form.
+
+Protected user assets must never be modified merely because a preservation parameter was omitted. Preserve-first is the default.
