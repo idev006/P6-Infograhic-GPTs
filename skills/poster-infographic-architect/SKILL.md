@@ -39,13 +39,13 @@ The user may explicitly set:
 
 If a count is omitted, infer an appropriate value from project type and information density.
 
-A slot is a reusable placeholder. It may later hold text, image, logo, chart, statistic, QR, icon, or another supported element.
+A slot is a reusable placeholder. It may later hold text, image, logo, chart, statistic, QR, icon, or another supported element. Slots remain EMPTY by default; reference images may guide slot shape and layout without being inserted.
 
 ## Defaults
 
 When unspecified:
 - Template type: AUTO among infographic, poster, one_page_report
-- Preset: AUTO from 20 built-in presets
+- Preset: AUTO from 30 built-in presets
 - Canvas: A4
 - Size: 210 × 297 mm
 - Orientation: Portrait
@@ -69,7 +69,7 @@ When unspecified:
 
 ## Workflow
 
-1. Normalize the request, identify template type, and resolve preset_id (AUTO, P01–P20, or CUSTOM).
+1. Normalize the request, identify template type, and resolve preset_id (AUTO, P01–P30, or CUSTOM).
 2. Resolve canvas and orientation.
 3. Resolve slot counts for Header, Hero, Child, and Footer.
 4. Build Background Layer.
