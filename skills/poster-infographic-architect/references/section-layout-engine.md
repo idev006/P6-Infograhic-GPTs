@@ -1,172 +1,152 @@
-# Section & Layout Engine v0.1
+# Section & Layout Engine v0.2
 
-## Goal
+## Canonical page model
 
-Translate information architecture into a spatial design without treating sections as fixed coordinates.
+```text
+PAGE
+├── BACKGROUND LAYER
+├── HEADER REGION
+│   └── header_slot[1..N]
+├── CONTENT BOX
+│   ├── HERO SECTION
+│   │   └── hero_slot[1..N]
+│   └── CHILD CONTENT SECTION
+│       └── child_slot[1..N]
+└── FOOTER REGION
+    └── footer_slot[1..N]
+```
 
-## Semantic sections
+Background is a layer, not a counted content slot.
 
-### Header
-Typical content:
-- brand
-- category
+## Slot-count behavior
+
+The user may set:
+- header_slot_count
+- hero_slot_count
+- child_slot_count
+- footer_slot_count
+
+Counts may be zero.
+
+Explicit counts are authoritative. The engine may change geometry, grid density, typography scale, and whitespace to accommodate them before suggesting any count change.
+
+## Header Region
+
+Purpose:
+- identity
+- title family
 - campaign label
-- institutional identifier
+- organization
+- navigation-like metadata
 
-### Hero
-Typical content:
-- headline
-- primary visual
-- primary message
+Typical slot patterns:
+- 1 slot: unified title/brand block
+- 2 slots: logo + title
+- 3 slots: logo + title + metadata
+- 4+ slots: compact grid; only when requested
+
+## Content Box
+
+The main bounded working area between Header and Footer.
+
+It contains exactly two semantic child regions:
+1. Hero Section
+2. Child Content Section
+
+### Hero Section
+
+Purpose:
+- strongest visual
+- main headline/message
 - key statistic
+- central subject
 
-### Content
-Typical content:
-- facts
+Hero slot patterns:
+- 1: single dominant hero
+- 2: visual + message/stat
+- 3+: multi-hero/comparison layout when explicitly needed
+
+Hero has higher visual weight than Child by default.
+
+### Child Content Section
+
+Purpose:
+- modular facts
 - steps
+- features
 - comparisons
 - charts
 - recommendations
 - supporting visuals
 
-### Footer
-Typical content:
+Child slots should be repeatable modules.
+
+Suggested geometry:
+- 1: full-width module
+- 2: 2-column or stacked
+- 3: 3-column or 1+2
+- 4: 2×2
+- 5–6: modular grid
+- 7+: dense infographic/report grid with reduced decoration
+
+## Footer Region
+
+Purpose:
 - CTA
-- QR
-- contact
 - source
+- contact
+- QR
 - disclaimer
-- secondary brand mark
+- secondary branding
 
-### Background Layer
-Provides:
-- context
-- depth
-- atmosphere
-- continuity
+Footer remains visually secondary unless explicitly promoted.
 
-### Overlay Layer
-Provides:
-- gradients
-- translucent panels
-- lines
-- textures
-- HUD elements
-- decorative accents
+## Background Layer
 
-## Section enablement logic
+May be:
+- solid color
+- gradient
+- image
+- environment
+- texture
+- subtle illustration
 
-Header:
-- ENABLE when brand/institution/category needs clear identification.
-- DISABLE or MERGE into Hero for minimal campaign graphics.
+It must support figure-ground separation and not compete with the foreground.
 
-Hero:
-- ENABLE for almost all posters and many infographics.
-- MERGE with Header for compact formats.
+## Region ratios
 
-Content:
-- ENABLE when more than one supporting point is needed.
-- May contain 1..N modules.
+AUTO chooses ratios from template type, orientation, and slot counts.
 
-Footer:
-- ENABLE when CTA, source, contact, QR, legal text, or attribution exists.
+Typical A4 portrait starting ranges:
+- Header: 8–15%
+- Content Box: 72–84%
+- Footer: 6–12%
 
-Background:
-- AUTO by default.
-- May be plain color, image, gradient, texture, or environmental scene.
+Within Content Box:
+- Hero: 30–55%
+- Child: remaining 45–70%
 
-Overlay:
-- AUTO.
-- Use only when it improves hierarchy or visual cohesion.
+These are starting ranges, not fixed rules.
 
-## Layout selection heuristics
+## Grid logic
 
-### Central Hero
-Use when:
-- one dominant subject
-- low/medium information density
-- strong campaign message
-
-### Split Layout
-Use when:
-- subject and content need equal presence
-- before/after, comparison, or portrait + facts
-
-### Editorial Grid
-Use when:
-- medium/high information density
-- one-page report
-- multiple content modules
-
-### Modular Grid
-Use when:
-- 3+ peer-level facts, steps, or categories
-
-### Z Pattern
-Use when:
-- strong headline + visual + CTA
-- campaign/social poster
-
-### F Pattern
-Use when:
-- text-heavy informational layout
-
-### Data-led
-Use when:
-- chart/statistic is the main communication object
-
-### Full Bleed
-Use when:
-- atmosphere and image impact dominate
-- limited text
-
-## Grid heuristics
-
-Portrait A4:
-- prefer 4, 6, or 8-column underlying grid
-- maintain outer margins and consistent gutters
-- use larger top/bottom breathing room for premium editorial layouts
+A4 portrait:
+- 4, 6, or 8-column grid
 
 Landscape:
-- prefer 6, 8, or 12-column logic
-- allow side-by-side hero/content regions
+- 6, 8, or 12-column grid
 
-Square/social:
-- prioritize central hierarchy and mobile legibility
+High child-slot counts:
+- favor modular grid
+- reduce decorative overlays
+- increase grouping clarity
 
-## Visual flow
+## Layout quality rules
 
-Choose based on content:
-- top_down for formal documents
-- z_pattern for campaign graphics
-- f_pattern for reading-heavy layouts
-- diagonal for dynamic campaign work
-- central for hero-first visuals
-
-## Whitespace
-
-LOW density:
-- generous whitespace
-- few modules
-- strong focal point
-
-MEDIUM:
-- balanced spacing
-
-HIGH:
-- tighter modular system
-- strong grouping
-- reduced decorative complexity
-
-VERY_HIGH:
-- one-page report logic
-- grid discipline
-- minimal nonfunctional decoration
-
-## Composition constraints
-
-- Never place protected assets where required cropping violates preservation policy.
-- Do not use decorative overlays that reduce logo/QR readability.
-- Headline and hero must not compete at identical visual weight.
-- Maintain figure-ground separation.
-- Maintain readable contrast and text-safe areas.
+- Header, Hero, Child, Footer must remain visually distinguishable.
+- Hero must have stronger hierarchy than Child unless explicitly overridden.
+- Child modules must align consistently.
+- Footer must not consume disproportionate space.
+- Background must not reduce readability.
+- Protected assets may only be cropped/repositioned within preservation rules.
+- Explicit slot counts must match the final template specification.
