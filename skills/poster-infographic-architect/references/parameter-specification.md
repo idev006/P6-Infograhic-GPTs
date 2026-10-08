@@ -1,235 +1,201 @@
-# Parameter Specification v0.1
+# Parameter Specification v0.2
 
-This file is the SSOT for input parameter behavior.
+This file is the SSOT for template input behavior.
 
 ## Global rules
-
-- Every parameter is OPTIONAL unless marked otherwise.
+- Every parameter is OPTIONAL unless required by meaning.
 - Missing values resolve to AUTO unless an explicit default is defined.
-- Explicit user values always override AUTO and defaults.
-- Invalid values should be normalized when intent is clear; otherwise fall back to AUTO.
+- Explicit user values override inference and defaults.
+- Explicit slot counts must be honored whenever physically feasible.
 - Preservation rules are never relaxed by omission.
-- The engine should not ask for a value that can be safely inferred.
+- Do not ask for values that can be safely inferred.
 
 ## G01 — Project & Communication
-
-| Parameter | Type | Default | Notes |
-|---|---|---|---|
-| project_type | enum | AUTO | poster, infographic, one_page, campaign_graphic, social_graphic |
-| objective | string/enum | AUTO | educate, inform, persuade, warn, sell, report, recruit, inspire |
-| topic | string | required-by-meaning | Core subject |
-| target_audience | string | AUTO | May include age, role, domain |
-| communication_goal | string | AUTO | Desired communication effect |
-| primary_message | string | AUTO | Single strongest message |
-| language | enum/string | AUTO | Thai, English, bilingual, other |
-| brand | string/object | AUTO | Organization or brand |
-| platform | enum/string | AUTO | print, Facebook, LINE, web, presentation, other |
-| viewing_context | enum | AUTO | distance, handheld, mobile, desktop, screen, social_feed |
+- template_type: AUTO | infographic | poster | one_page_report
+- objective: string/enum
+- topic: string
+- target_audience: string
+- communication_goal: string
+- primary_message: string
+- language: string/enum
+- brand: string/object
+- platform: string/enum
+- viewing_context: string/enum
 
 ## G02 — Canvas & Output
+- canvas_size: default A4
+- width: default 210
+- height: default 297
+- unit: default mm
+- aspect_ratio: derived
+- orientation: default portrait
+- output_medium: AUTO
+- resolution: AUTO
+- print_or_digital: AUTO
 
-| Parameter | Type | Default |
-|---|---|---|
-| canvas_size | enum/string | A4 |
-| width | number | 210 |
-| height | number | 297 |
-| unit | enum | mm |
-| aspect_ratio | string | derived |
-| orientation | enum | portrait |
-| output_medium | enum | AUTO |
-| resolution | string/number | AUTO |
-| print_or_digital | enum | AUTO |
+Supported presets:
+A3, A4, A5, Letter, Legal, 1:1, 4:5, 3:4, 9:16, 16:9, custom.
 
-Supported presets include A3, A4, A5, Letter, Legal, 1:1, 4:5, 3:4, 9:16, 16:9, custom.
+## G03 — Template Structure & Slot Counts
 
-Dependency rules:
-- preset canvas_size may derive width/height/aspect_ratio.
-- explicit width/height overrides preset dimensions.
-- explicit orientation overrides preset orientation while preserving size family.
+### Page regions
+- background_layer: AUTO
+- header_region: ENABLED
+- content_box: ENABLED
+- footer_region: ENABLED
 
-## G03 — Content & Information
+### Content Box children
+- hero_section: ENABLED
+- child_content_section: ENABLED
 
-| Parameter | Type | Default |
-|---|---|---|
-| headline | string | AUTO |
-| subheadline | string | AUTO |
-| body_content | string/array | AUTO |
-| key_message | string | AUTO |
-| key_statistics | array | AUTO |
-| content_blocks | array | AUTO |
-| CTA | string | AUTO |
-| source | string/array | AUTO |
-| information_density | enum | AUTO |
-| content_priority | object/array | AUTO |
+### User-configurable counts
+- header_slot_count: integer >= 0 | AUTO
+- hero_slot_count: integer >= 0 | AUTO
+- child_slot_count: integer >= 0 | AUTO
+- footer_slot_count: integer >= 0 | AUTO
 
-information_density enum:
-LOW, MEDIUM, HIGH, VERY_HIGH
+### Optional slot definitions
+- header_slots: array | AUTO
+- hero_slots: array | AUTO
+- child_slots: array | AUTO
+- footer_slots: array | AUTO
 
-content_priority:
-PRIMARY, SECONDARY, SUPPORTING, OPTIONAL
+Per-slot object:
+- slot_id
+- slot_index
+- semantic_role
+- content_type
+- relative_size
+- alignment
+- priority
+- asset_binding
+- editable_state
+- notes
 
-## G04 — Section Architecture
+content_type examples:
+TEXT, IMAGE, LOGO, STATISTIC, CHART, ICON, QR, SOURCE, CTA, MIXED, AUTO
 
-| Parameter | Type | Default |
-|---|---|---|
-| header_section | section_state | AUTO |
-| hero_section | section_state | AUTO |
-| content_section | section_state | AUTO |
-| footer_section | section_state | AUTO |
-| background_layer | section_state | AUTO |
-| overlay_layer | section_state | AUTO |
-| content_modules | array | AUTO |
+editable_state:
+EDITABLE, FIXED, LOCKED
 
-section_state:
-AUTO, ENABLED, DISABLED, MERGED
+## G04 — Content Planning
+- headline
+- subheadline
+- body_content
+- key_message
+- key_statistics
+- content_blocks
+- CTA
+- source
+- information_density: LOW | MEDIUM | HIGH | VERY_HIGH
+- content_priority: PRIMARY | SECONDARY | SUPPORTING | OPTIONAL
 
-Rules:
-- sections describe semantic function, not fixed coordinates.
-- content_modules may be reordered during information architecture.
-- locked user placement cannot be moved automatically.
+Content values inform slot roles but do not change explicit slot counts.
 
 ## G05 — Art Direction
-
-| Parameter | Type | Default |
-|---|---|---|
-| style | string/enum | AUTO |
-| mood | string/array | AUTO |
-| tone | string/array | AUTO |
-| visual_language | string | AUTO |
-| realism | number/enum | AUTO |
-| creative_intensity | number/enum | AUTO |
-| visual_complexity | number/enum | AUTO |
-| brand_personality | string/array | AUTO |
-
-Suggested qualitative levels:
-LOW, MEDIUM, HIGH or 0–100 when explicitly provided.
+- style
+- mood
+- tone
+- visual_language
+- realism
+- creative_intensity
+- visual_complexity
+- brand_personality
 
 ## G06 — Composition & Layout
-
-| Parameter | Type | Default |
-|---|---|---|
-| layout_type | enum/string | AUTO |
-| grid_system | string/object | AUTO |
-| visual_flow | enum/string | AUTO |
-| focal_point | string | AUTO |
-| balance | enum | AUTO |
-| alignment | string | AUTO |
-| whitespace | enum/number | AUTO |
-| spatial_density | enum | AUTO |
-| section_ratio | object | AUTO |
-| reading_direction | enum/string | AUTO |
-
-Suggested layout_type:
-editorial_grid, central_hero, split, z_pattern, f_pattern, diagonal, modular, data_led, full_bleed
-
-balance:
-symmetrical, asymmetrical, radial, dynamic
+- layout_type
+- grid_system
+- visual_flow
+- focal_point
+- balance
+- alignment
+- whitespace
+- spatial_density
+- section_ratio
+- header_ratio
+- content_box_ratio
+- hero_ratio
+- child_ratio
+- footer_ratio
+- reading_direction
+- gutter
+- outer_margin
 
 ## G07 — Visual System
-
-| Parameter | Type | Default |
-|---|---|---|
-| color_palette | array/string | AUTO |
-| primary_color | string | AUTO |
-| secondary_color | string | AUTO |
-| accent_color | string | AUTO |
-| typography_style | string | AUTO |
-| headline_style | string | AUTO |
-| body_style | string | AUTO |
-| icon_style | string | AUTO |
-| illustration_style | string | AUTO |
-| chart_style | string | AUTO |
-| graphic_elements | array | AUTO |
-
-Rules:
-- color choices must maintain readable contrast.
-- typography must support the requested language.
-- Thai typography must preserve marks, spacing, and legibility.
+- color_palette
+- primary_color
+- secondary_color
+- accent_color
+- typography_style
+- headline_style
+- body_style
+- icon_style
+- illustration_style
+- chart_style
+- graphic_elements
 
 ## G08 — Images & Assets
+- images: array[0..12]
+- logo
+- QR
+- signature
+- chart
+- diagram
+- product_assets
+- brand_assets
 
-| Parameter | Type | Default |
-|---|---|---|
-| images | array[0..12] | [] |
-| logo | asset | AUTO |
-| QR | asset | AUTO |
-| signature | asset | AUTO |
-| chart | asset/array | AUTO |
-| diagram | asset/array | AUTO |
-| product_assets | array | AUTO |
-| brand_assets | array | AUTO |
+Per-asset:
+- asset_id
+- semantic_role
+- visual_role
+- target_section
+- target_slot_id
+- priority
+- preservation_policy
+- identity_preservation
+- reference_fidelity
+- protected_features
+- allowed_transformations
+- crop_permission
+- modification_permission
+- recolor_permission
+- redraw_permission
+- background_removal
+- usage_instruction
 
-Per-asset object:
-- asset_id: string
-- semantic_role: enum/string
-- visual_role: enum/string
-- target_section: enum/string/AUTO
-- priority: enum
-- preservation_policy: enum
-- identity_preservation: boolean/AUTO
-- reference_fidelity: enum/0-100
-- protected_features: array
-- allowed_transformations: array
-- crop_permission: enum/boolean
-- modification_permission: enum/boolean
-- recolor_permission: enum/boolean
-- redraw_permission: enum/boolean
-- background_removal: enum/boolean
-- usage_instruction: string
-
-preservation_policy:
+Preservation:
 LOCKED, STRICT, GUIDED, FLEXIBLE, INSPIRATION_ONLY
 
-priority:
-LOCKED, CRITICAL, HIGH, MEDIUM, LOW
-
-Default policy by role:
-- person/face → LOCKED identity
-- logo/emblem/QR/signature → LOCKED
-- product/uniform/identifiable_object → STRICT
-- background/environment → GUIDED
-- style/mood_reference → INSPIRATION_ONLY
-
 ## G09 — Constraints & Output Control
+- must_include
+- must_preserve
+- must_avoid
+- forbidden_elements
+- brand_constraints
+- text_constraints
+- image_constraints
+- identity_constraints
+- asset_integrity_constraints
+- prompt_language
+- prompt_detail_level
+- target_image_model
+- output_format: template_prompt | template_spec | both
 
-| Parameter | Type | Default |
-|---|---|---|
-| must_include | array | [] |
-| must_preserve | array | [] |
-| must_avoid | array | [] |
-| forbidden_elements | array | [] |
-| brand_constraints | array/object | AUTO |
-| text_constraints | array/object | AUTO |
-| image_constraints | array/object | AUTO |
-| identity_constraints | array/object | AUTO |
-| asset_integrity_constraints | array/object | AUTO |
-| prompt_language | enum/string | AUTO |
-| prompt_detail_level | enum | detailed |
-| target_image_model | string | AUTO |
-| output_format | enum/string | master_prompt |
+## AUTO slot inference
 
-prompt_detail_level:
-concise, detailed, production
+When counts are AUTO:
+- Poster: Header 1–2, Hero 1, Child 1–4, Footer 1–2
+- Infographic: Header 1–2, Hero 1–2, Child 3–8, Footer 1–2
+- One-page report: Header 1–3, Hero 1–2, Child 4–10, Footer 1–3
+
+These are heuristics, not hard limits.
 
 ## Override precedence
-
 1. Explicit user instruction
-2. Explicit per-asset instruction
-3. User-supplied project constraint
-4. Preservation policy
-5. Plugin specification
-6. Intelligent inference
-7. Defaults
-
-## Interaction modes
-
-Basic:
-Expose only the essential 8–12 inputs.
-
-Guided:
-Expose approximately 20–30 inputs.
-
-Pro:
-Expose all parameters.
-
-The internal schema is always the same regardless of interaction mode.
+2. Explicit slot counts
+3. Explicit slot definitions
+4. Explicit asset binding
+5. Preservation policy
+6. Plugin specification
+7. Intelligent inference
+8. Defaults
