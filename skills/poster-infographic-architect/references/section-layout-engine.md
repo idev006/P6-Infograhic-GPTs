@@ -35,15 +35,17 @@ Explicit counts are authoritative. The engine may change geometry, grid density,
 Purpose:
 - identity
 - title family
+- headline or report title
+- subtitle
 - campaign label
 - organization
-- navigation-like metadata
+- date/category/metadata
 
 Typical slot patterns:
-- 1 slot: unified title/brand block
-- 2 slots: logo + title
-- 3 slots: logo + title + metadata
-- 4+ slots: compact grid; only when requested
+- 1 slot: unified text/title or brand block
+- 2 slots: logo + title, or title + subtitle
+- 3 slots: logo + title + metadata/subtitle
+- 4+ slots: mixed text/asset grid; only when requested
 
 ## Content Box
 
@@ -92,11 +94,12 @@ Suggested geometry:
 ## Footer Region
 
 Purpose:
-- CTA
 - source
-- contact
+- note/disclaimer
+- CTA
+- contact information
+- website/social handle
 - QR
-- disclaimer
 - secondary branding
 
 Footer remains visually secondary unless explicitly promoted.
