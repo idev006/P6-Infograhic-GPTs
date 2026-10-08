@@ -6,6 +6,8 @@ The system must design before it writes the final image-generation prompt.
 
 A linear prompt rewrite is insufficient for professional visual communication.
 
+A second core principle is **preserve before transform**. User-supplied identity, brand, functional, and product assets must be classified before any creative modification is considered.
+
 ## Main pipeline
 
 ```text
@@ -22,6 +24,8 @@ L3 Information Architecture
 L4 Section Architecture
   ↓
 L5 Reference / Asset Intelligence
+  ↓
+L5.5 Preservation Gate
   ↓
 L6 Creative Strategy
   ↓
@@ -91,11 +95,50 @@ Analyze 0–12 images.
 
 Do not blend all images indiscriminately. Assign a distinct purpose to each asset.
 
+For each asset identify:
+- semantic role
+- visual role
+- target section
+- priority
+- likely protected characteristics
+- required fidelity
+- transformation permissions
+
+## L5.5 — Preservation Gate
+
+The Preservation Gate executes before Creative Strategy and Art Direction.
+
+Its purpose is to prevent creative decisions from unintentionally altering protected user assets.
+
+Classify each asset using:
+- LOCKED
+- STRICT
+- GUIDED
+- FLEXIBLE
+- INSPIRATION_ONLY
+
+Default classifications:
+- Person / face → LOCKED identity
+- Logo / emblem / QR / signature → LOCKED
+- Product / uniform / identifiable object → STRICT
+- Background / environment → GUIDED
+- Style / mood reference → INSPIRATION_ONLY
+
+The gate produces:
+- protected_features
+- allowed_transformations
+- forbidden_transformations
+- required prompt constraints
+
+Explicit user permission may relax a default policy. Silence must not be interpreted as permission to transform protected characteristics.
+
 ## L6 — Creative Strategy
 
 Develop a concept, visual metaphor, or communication device appropriate to the goal.
 
 Avoid obvious or generic visual clichés when stronger concepts are available.
+
+Creative concepts must work around protected assets, not rewrite them.
 
 ## L7 — Art Direction
 
@@ -106,6 +149,8 @@ Define:
 - visual language
 - realism
 - creative intensity
+
+Art direction may change environment, lighting, graphics, or composition when permitted, but may not override Preservation Gate constraints.
 
 ## L8 — Composition & Spatial Layout
 
@@ -118,6 +163,8 @@ Define:
 - negative space
 - section proportions
 
+Composition may crop or reposition assets only within allowed transformation rules.
+
 ## L9 — Visual System
 
 Define:
@@ -128,11 +175,15 @@ Define:
 - illustration / photography treatment
 - recurring shapes and graphic elements
 
+The visual system must not recolor, redraw, distort, or reinterpret LOCKED assets.
+
 ## L10 — Asset-to-Section Mapping
 
 Map each asset to its intended section and usage rule.
 
 Explicit user mapping always wins over AUTO.
+
+Mapping must preserve the asset's assigned preservation policy.
 
 ## L11 — Prompt Compiler
 
@@ -144,19 +195,22 @@ Suggested prompt order:
 3. Canvas & output
 4. Creative concept
 5. Reference image instructions
-6. Subject / scene
-7. Section architecture
-8. Composition
-9. Visual hierarchy
-10. Typography
-11. Content
-12. Color system
-13. Lighting / atmosphere
-14. Graphic elements
-15. Branding
-16. Technical quality
-17. Negative constraints
-18. Final QA rules
+6. Asset preservation constraints
+7. Subject / scene
+8. Section architecture
+9. Composition
+10. Visual hierarchy
+11. Typography
+12. Content
+13. Color system
+14. Lighting / atmosphere
+15. Graphic elements
+16. Branding
+17. Technical quality
+18. Negative constraints
+19. Final QA rules
+
+For protected assets, the compiled prompt must state what must remain unchanged and what transformations are allowed.
 
 ## L12 — QA / Design Critic
 
@@ -164,6 +218,9 @@ Check:
 - objective alignment
 - content completeness
 - reference compliance
+- preservation compliance
+- identity integrity
+- functional asset integrity
 - section logic
 - visual hierarchy
 - composition balance
@@ -171,6 +228,8 @@ Check:
 - brand integrity
 - prompt ambiguity
 - generation feasibility
+
+Any unauthorized identity or asset alteration is a blocking QA failure.
 
 If QA fails, return to the responsible layer and revise before output.
 
@@ -182,4 +241,5 @@ Examples:
 - Typography may force a composition revision.
 - Long content may force information architecture changes.
 - Asset conflicts may force layout or art-direction changes.
+- A preservation conflict may force the concept to change instead of changing the asset.
 - QA may send the workflow back to any prior layer.
