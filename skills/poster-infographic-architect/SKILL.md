@@ -107,6 +107,8 @@ Explicit slot count must be honored unless physically impossible for the request
 - Hero and Child are children of Content Box.
 - Hero slots receive stronger visual hierarchy than Child slots by default.
 - Child slots should be visually modular and repeatable.
+- Header and Footer slots may contain text, visual assets, or mixed content.
+- Header/Footer text examples include title, subtitle, organization, metadata, source, note, CTA, contact, and disclaimer.
 - Footer slots should remain compact and secondary unless explicitly promoted.
 - Slot geometry may vary by orientation and information density.
 - Template structure is semantic; exact coordinates are decided by the layout engine.
