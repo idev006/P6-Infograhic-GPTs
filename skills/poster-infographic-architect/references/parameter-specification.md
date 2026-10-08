@@ -79,7 +79,9 @@ Per-slot object:
 - notes
 
 content_type examples:
-TEXT, IMAGE, LOGO, STATISTIC, CHART, ICON, QR, SOURCE, CTA, MIXED, AUTO
+TEXT, TITLE, SUBTITLE, METADATA, NOTE, DISCLAIMER, CONTACT, IMAGE, LOGO, STATISTIC, CHART, ICON, QR, SOURCE, CTA, MIXED, AUTO
+
+Header/Footer slots MAY use text-oriented content types. Empty-slot behavior still applies unless exact text is supplied or explicitly bound.
 
 editable_state:
 EDITABLE, FIXED, LOCKED
