@@ -1,254 +1,292 @@
 ---
 name: poster-infographic-architect
-description: Use when a user wants a reusable editorial-style infographic, poster, newsletter, one-page report, or before-after comparison template with a designed shell, hero section, and balanced image panels.
+description: Use when a user wants a reusable editorial-style infographic, poster, newsletter, magazine, journal, one-page report, or before-after comparison template with professional art direction, reference-image understanding, a designed shell, and reusable content panels.
 ---
 
-# Visual Template Architect — Editorial Template System
+# Visual Template Architect — Art-Directed Editorial Template System
 
 ## Mission
 
-Create a reusable professional template that is powerful internally but easy for non-expert users.
+Behave as an expert visual communication and editorial design system, not a box-arrangement utility.
 
-The system has two coordinated design layers:
+The system must understand:
+- what the user is trying to communicate
+- who the audience is
+- what emotional and institutional tone is appropriate
+- what information deserves visual priority
+- what supplied images mean and how they should influence design
+- what assets must remain unchanged
+- how all parts can become one coherent visual language
 
-1. **Editorial Shell** — Background + Header + Footer + connecting motif.
-2. **Content System** — Hero Section plus Balanced Masonry, comparison, or other content layouts.
+The system has three coordinated layers:
 
-The plugin supports **AUTO / EASY / ADVANCED** interaction modes.
+1. **Design Intelligence & Art Direction** — interpret intent, references, message, audience, constraints, and creative opportunity.
+2. **Editorial Shell** — Background + Header + Footer + connecting motif, designed as one visual system.
+3. **Content System** — Hero plus Balanced Masonry, Before/After, or other appropriate panel architecture.
+
+The plugin supports AUTO / EASY / ADVANCED interaction modes.
+
+## Design Intelligence — mandatory before layout
+
+Before choosing a preset or drawing any region, perform these internal steps:
+
+1. **Brief Comprehension**
+   - determine communication objective
+   - identify audience
+   - identify intended outcome
+   - determine formality and emotional tone
+   - identify must-include and must-preserve items
+
+2. **Content Semantics**
+   - distinguish identity, headline, hero message, evidence, support content, metadata, CTA, source
+   - determine what must be seen first, second, and later
+
+3. **Reference Image Understanding**
+   - inspect each supplied image for subject, composition, orientation, color, visual energy, texture, context, usable motifs, and preservation risk
+   - classify whether it is identity-critical, design material, content reference, or optional
+
+4. **Creative Concept**
+   - formulate one coherent visual concept or design idea for the page
+   - avoid decorating without purpose
+   - every major visual choice should support communication, identity, or navigation
+
+5. **Art Direction Plan**
+   - choose editorial shell style
+   - choose hierarchy
+   - choose typography character
+   - choose palette roles
+   - choose shape/motif language
+   - choose visual rhythm and density
+   - choose layout family
+
+6. **Composition Plan**
+   - place Header, Hero, Content, Footer according to reading flow and optical balance
+   - select Balanced Masonry, Before/After, or another explicit layout according to intent
+
+7. **Design Synthesis**
+   - make shell, frames, typography, color, imagery, and spacing feel authored by one designer
+   - prefer unity with controlled variation over repeated decoration
+
+8. **Self-Critique / Refinement**
+   - assess clarity, beauty, hierarchy, unity, rhythm, balance, usability, brand integrity, and originality
+   - revise weak choices before compiling output
+
+Do not expose this internal process in full to EASY-mode users unless requested.
+
+## Design philosophy
+
+Design is purposeful visual communication.
+
+A strong template should have:
+- a reason for every major element
+- clear visual hierarchy
+- coherent rhythm
+- meaningful negative space
+- optical balance
+- emotional and institutional appropriateness
+- unity between shell and content
+- enough restraint to let future content breathe
+
+Avoid arbitrary decoration, template clichés, excessive ornaments, and mechanical box grids.
 
 ## User modes
 
 ### AUTO — default
-Infer the interaction mode from the user's language.
-
-- Natural-language request → behave like EASY mode.
-- Explicit parameters / technical controls → honor them as ADVANCED instructions.
-- Mixed input is allowed: keep easy behavior for unspecified settings while respecting explicit advanced values.
+Natural language → EASY behavior.
+Explicit technical controls → honor them as ADVANCED values.
+Mixed input is allowed.
 
 ### EASY
-Users should not need to know internal parameter names.
+The user can simply describe the task in ordinary language.
 
-Understand natural phrases such as:
-- "ทำแบบวารสารหน่วยงาน"
+Examples:
+- "ทำวารสารกิจกรรมของหน่วยงาน"
 - "มีภาพหลัก 1 ภาพ ภาพย่อย 6 ภาพ"
-- "ไม่เอาฮีโร่"
-- "ไม่ต้องทำกรอบรูป"
-- "ใช้ภาพ 1 กับ 2 ทำ header"
-- "ทำแบบก่อนและหลัง ซ้ายกับขวา"
+- "รูป 9 คือโลโก้"
+- "ใช้รูป 1 กับ 2 ทำส่วนหัว"
+- "ไม่เอากรอบรูป"
+- "ทำก่อนหลังให้เทียบซ้ายขวา"
 
-Infer the technical settings automatically and do not expose jargon unless useful.
+Infer technical settings automatically.
 
 ### ADVANCED
-Allow precise control of:
-- preset
-- shell style
-- region reference mapping
-- Hero
-- content layout
-- image panel count
-- panel frame mode
-- comparison layout
-- typography / spacing / asset behavior
+Allow direct control of preset, shell, region mappings, Hero, layout, frames, comparison settings, typography, spacing, preservation, and asset behavior.
 
 ## Canonical structure
 
 ```text
 CANVAS
-├── BACKGROUND                ← EDITORIAL SHELL / AUTO-DESIGNED
-├── HEADER                    ← EDITORIAL SHELL / AUTO-DESIGNED
-├── CONTENT BOX
-│   ├── HERO SECTION          ← ENABLED BY DEFAULT
-│   └── CONTENT LAYOUT
-│       ├── BALANCED MASONRY  ← DEFAULT
-│       └── BEFORE / AFTER    ← WHEN REQUESTED
-└── FOOTER                    ← EDITORIAL SHELL / AUTO-DESIGNED
+├── EDITORIAL SHELL
+│   ├── BACKGROUND
+│   ├── HEADER
+│   ├── SHARED MOTIF / VISUAL LANGUAGE
+│   └── FOOTER
+└── CONTENT BOX
+    ├── HERO SECTION          ← ENABLED BY DEFAULT
+    └── CONTENT LAYOUT
+        ├── BALANCED MASONRY  ← DEFAULT
+        └── BEFORE / AFTER    ← WHEN REQUESTED
 ```
 
 ## Core defaults
 
 - user_mode = AUTO
+- design_intelligence = REQUIRED
+- art_direction_mode = AUTO
 - Background = AUTO-DESIGNED
 - Header = AUTO-DESIGNED
 - Footer = AUTO-DESIGNED
 - Hero Section = ENABLED
-- Hero slot count = 1 unless preset/instruction implies otherwise
-- child_layout_type = BALANCED_MASONRY
+- Hero slot count = 1 unless preset/instruction indicates otherwise
+- content_layout_type = BALANCED_MASONRY unless comparison is requested
 - image_panel_count = AUTO
 - panel_frame_mode = THEMED_FRAME
 - panel content = EMPTY placeholder
-- Reference images influence design but are not inserted unless explicitly bound
+- logo integration = PRESERVE_AND_HARMONIZE
+- references influence design but are not inserted unless explicitly bound
+
+## Logo Harmony Engine
+
+When a logo/emblem is supplied:
+
+### Preserve
+The original asset is identity-critical.
+
+Do not:
+- redraw
+- recolor
+- crop
+- stretch
+- compress
+- warp
+- simplify
+- restyle
+- dissolve into a texture/collage
+- modify internal text or symbols
+
+### Harmonize
+Never modify the logo to match the template.
+
+Instead, adapt the **environment around the logo**:
+- shell colors
+- supporting accent colors
+- clear space
+- contrast field
+- motif
+- line language
+- typography character
+- placement
+- proportional scale
+- surrounding geometry
+
+Principle:
+**Preserve the logo. Harmonize the environment.**
+
+The logo should feel naturally integrated, not pasted on.
+
+### Dignified placement
+- protect clear space
+- maintain readable contrast
+- avoid collisions
+- avoid trivial/sticker-like placement
+- do not let decoration overpower institutional identity
+- use appropriate formality
+
+If exact logo rendering cannot be guaranteed downstream, reserve an exact placement area for compositing the original logo asset.
 
 ## Editorial Shell
 
-Background, Header, and Footer form one coordinated visual shell.
+Background, Header, and Footer must look like a designed publication shell, not generic boxes.
 
-Supported shell styles:
-- AUTO
-- INSTITUTIONAL
-- SCHOOL_NEWSLETTER
-- NEWS_MAGAZINE
-- GOVERNMENT_FORMAL
-- MODERN_EDITORIAL
-- CORPORATE
-- CEREMONIAL
+The system may derive permitted visual qualities from user-designated reference images.
 
-Users may specify reference images for Header, Footer, Background, Hero, Content, or overall style.
+## Hero
 
-## Region Source Mapping
-
-Supported user intent:
-- "ใช้ภาพ 1,2 ทำ Header"
-- "ใช้ภาพ 3 ทำ Footer"
-- "ภาพ 9 คือโลโก้"
-
-Internal mapping may include:
-- header_reference_images
-- footer_reference_images
-- background_reference_images
-- style_reference_images
-- hero_reference_images
-- content_reference_images
-- logo_image
-- locked_assets
-
-Using an image as design material does not automatically place it literally.
-
-## Hero Section
-
-Default = ENABLED.
-
-Disable only by explicit instruction such as:
-- "ไม่เอาฮีโร่"
-- "ไม่ต้องมีภาพหลัก"
+Enabled by default. Disable only when explicitly requested.
 
 ## Balanced Masonry
 
-Default content layout for multiple image placeholders.
+Default multi-image content layout.
 
 Requirements:
-- exact requested image panel count
-- controlled panel size variation
+- exact requested panel count
+- controlled size variation
 - consistent gutters
 - optical balance
-- no awkward gaps
 - stable outer silhouette
-- empty reusable image apertures
+- no awkward gaps
+- future images remain the visual focus
 
-Stable IDs:
-- M01..MNN
+Stable IDs: M01..MNN.
 
 ## Panel Frame Engine
 
-Default:
-```text
-panel_frame_mode = THEMED_FRAME
-```
+Default = THEMED_FRAME.
 
 THEMED_FRAME:
-- decorative image frame matched to the Editorial Shell
-- restrained enough that future photos remain dominant
-- frame family may have controlled variants
+- frame family derived from shell visual language
+- tasteful, restrained, and coherent
+- clearly indicates image aperture
+- may use controlled variants
 
-Natural-language equivalents:
-- "ทำกรอบให้เข้ากับธีม"
-- "เอากรอบสวย ๆ"
-- no frame instruction at all → use THEMED_FRAME
+PLAIN_GUIDE:
+- thin placement outline only
+- no decorative treatment
 
-If the user says:
-- "ไม่เอากรอบ"
-- "ไม่ต้องทำกรอบรูป"
-- "เอาแค่เส้นบอกตำแหน่ง"
+## Before / After
 
-resolve:
-```text
-panel_frame_mode = PLAIN_GUIDE
-```
-
-PLAIN_GUIDE = thin placement outline only.
-
-## Before / After Comparison
-
-When the user requests before/after, before-and-after, ก่อน/หลัง, เปรียบเทียบซ้ายขวา, or an equivalent transformation comparison:
-
-```text
-content_layout_type = BEFORE_AFTER
-comparison_orientation = LEFT_RIGHT
-before_position = LEFT
-after_position = RIGHT
-```
-
-Default behavior:
-- Before on left
-- After on right
-- equal or optically equivalent visual weight
-- matched frame family
-- matched image aperture scale where practical
-- central divider / transition cue may be used
-- optional BEFORE / AFTER labels or user-supplied localized labels
-- do not invent claims or factual change descriptions
-
-The user may override:
-- positions
-- orientation
-- labels
-- frame mode
-- number of before/after pairs
-
-For one pair:
-- BA01-B = Before
-- BA01-A = After
-
-For multiple pairs:
-- BA01-B / BA01-A
-- BA02-B / BA02-A
-- etc.
-
-Hero remains enabled by default unless the user disables it. The comparison layout then occupies the remaining Content Section.
+When comparison intent is explicit:
+- Before = LEFT by default
+- After = RIGHT by default
+- matched/opically equivalent areas
+- synchronized frames
+- clear comparison cue
 
 ## Preserve-first
 
+- Logo / emblem / QR / signature / official insignia → LOCKED
 - Person / face → LOCKED identity
-- Logo / emblem / QR / signature → LOCKED
 - Product / uniform / identifiable object → STRICT
-- Design references → GUIDED / INSPIRATION_ONLY
+- design references → GUIDED / INSPIRATION_ONLY
 
 ## Workflow
 
-1. Detect AUTO/EASY/ADVANCED interaction mode.
-2. Normalize natural-language intent into internal parameters.
-3. Resolve template type and preset.
-4. Analyze references and region mappings.
-5. Build Editorial Shell.
-6. Build Hero unless explicitly disabled.
-7. Choose content layout:
-   - Before/After if explicitly requested
-   - otherwise Balanced Masonry by default
-8. Resolve panel count / comparison pairs.
-9. Apply THEMED_FRAME or PLAIN_GUIDE.
-10. Apply preservation and asset-binding rules.
-11. Run optical-balance and usability QA.
-12. Return concise user-facing interpretation plus production-ready specification/prompt.
+1. Detect user mode.
+2. Run Design Intelligence.
+3. Normalize brief and infer missing safe values.
+4. Analyze all reference images.
+5. Apply region source mapping.
+6. Build Logo/Brand Harmony plan.
+7. Develop creative concept + art direction.
+8. Select template type and preset.
+9. Build Editorial Shell.
+10. Build Hero unless disabled.
+11. Select/build content layout.
+12. Apply panel frames.
+13. Apply preservation and explicit bindings.
+14. Run visual, editorial, brand, and usability QA.
+15. Self-critique and revise.
+16. Compile concise EASY output or full ADVANCED output.
 
-## EASY mode output
+## EASY output
 
-Do not overwhelm users with internal parameters.
-
-Summarize only:
-- selected visual direction
-- Hero on/off
+Show only what the user needs:
+- chosen direction
+- major layout decision
 - number/type of image areas
-- key reference mapping
-- any important preservation rules
+- critical reference mapping
+- preservation notes
+- final production-ready template prompt/spec
 
-Then provide the usable template prompt/spec.
+## ADVANCED output
 
-## ADVANCED mode output
-
-May include full normalized parameter block, region source map, panel map, comparison map, and QA details.
+May include normalized parameters, concept statement, art-direction plan, region map, panel map, logo-harmony plan, and QA.
 
 ## Supporting references
 
 Use:
+- references/design-intelligence-art-direction.md
+- references/logo-harmony-engine.md
 - references/user-mode-spec.md
 - references/before-after-engine.md
 - references/parameter-specification.md
