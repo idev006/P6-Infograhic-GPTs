@@ -1,75 +1,69 @@
-# Canonical Template Architecture v0.5
+# Canonical Template Architecture v0.6
 
 ## Structural invariant
 
 ```text
 CANVAS
-├── BACKGROUND_LAYER           [SYSTEM_DESIGNED]
-├── HEADER_REGION              [SYSTEM_DESIGNED]
-├── CONTENT_BOX
-│   ├── HERO_SECTION           [SLOT_BASED]
-│   │   └── HERO_SLOT[0..N]
-│   └── CHILD_CONTENT_SECTION  [SLOT_BASED]
-│       └── CHILD_SLOT[0..N]
-└── FOOTER_REGION              [SYSTEM_DESIGNED]
+├── EDITORIAL_SHELL
+│   ├── BACKGROUND_LAYER
+│   ├── HEADER_REGION
+│   ├── VISUAL_MOTIF_SYSTEM
+│   └── FOOTER_REGION
+└── CONTENT_BOX
+    ├── HERO_SECTION              [DEFAULT ENABLED]
+    └── MASONRY_CONTENT_SECTION
+        └── IMAGE_PANEL[1..N]
 ```
 
-## Key distinction
+## Editorial Shell
 
-Region design is not slot content.
+The shell is a coordinated page identity system. Background, Header, Footer, motifs, typography, and color language must feel intentionally related.
 
-Background, Header, and Footer must have intentional visual design even when the user has not supplied final copy. Empty-slot policy applies primarily to Hero and Child Content payloads.
+The shell is designed even when content slots are empty.
 
-## Background
+## Hero
 
-Background is global and uncounted. It must be designed as part of the visual system, not merely as an outer border.
-
-It may include tonal fields, gradients, abstract geometry, subtle patterns, textures, atmospheric imagery, or other restrained decorative systems.
-
-## Header
-
-Header is a system-designed region. The engine determines composition and may reserve appropriate places for logo, title, subtitle, organization, category, or metadata.
-
-If exact text/assets are absent, do not invent them. Use structural placeholder treatment where needed.
-
-## Footer
-
-Footer is a system-designed region. The engine determines composition and may reserve appropriate places for source, note, CTA, contact, QR, website, or secondary branding.
-
-If exact text/assets are absent, do not invent them.
-
-## Content Box
-
-Content Box owns the reusable slot-based areas:
-- Hero Section
-- Child Content Section
+Hero Section is enabled by default and may be disabled only through explicit user instruction.
 
 Stable IDs:
-- R01..RNN for Hero
-- C01..CNN for Child
+- R01..RNN
 
-## User control
+## Masonry Content
 
-Primary controls:
-```text
-hero_slot_count = integer >= 0 | AUTO
-child_slot_count = integer >= 0 | AUTO
-```
+The standard image-content layout is Balanced Masonry.
 
-Header/Footer are AUTO-DESIGNED by default. Advanced explicit user instructions may override their internal structure without making header/footer slot counts required inputs.
+Stable IDs:
+- M01..MNN
 
-## Reference images
+When image_panel_count is explicit, create exactly that many panels.
 
-Default image behavior:
-- REFERENCE_ONLY or PLACEHOLDER_GUIDE
-- may influence layout, aspect ratio, visual style, and region treatment
-- do not populate Hero/Child slots automatically
-- fixed/locked assets are inserted only when explicitly bound
+Panels remain empty placeholders unless explicit binding is requested.
+
+## Panel frames
+
+Default:
+- panel_frame_mode = THEMED_FRAME
+
+THEMED_FRAME creates a reusable decorative photo frame whose visual language matches the shell.
+
+Alternative:
+- panel_frame_mode = PLAIN_GUIDE
+
+PLAIN_GUIDE retains only a thin visible panel boundary for image placement.
+
+Neither mode populates the panel with a reference image automatically.
+
+## Region references
+
+Header/Footer/Background may each use different user-designated reference image sets.
+
+Reference role and literal image placement are separate concepts.
 
 ## Reusability
 
-A strong template:
-- has a designed Background, Header, and Footer
-- reserves flexible Hero/Child content capacity
-- does not resemble a plain form made from repeated empty rectangles
-- supports replacement of content without redesigning the whole page
+A valid template:
+- has a visually finished shell
+- has a default Hero unless disabled
+- has clear empty image-placement panels
+- has balanced masonry geometry
+- allows photos to be replaced without redesigning the shell
