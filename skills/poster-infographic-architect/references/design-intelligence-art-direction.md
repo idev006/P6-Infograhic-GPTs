@@ -1,152 +1,138 @@
-# Design Intelligence & Art Direction Engine v0.8
+# Design Intelligence & Art Direction Engine v0.9
 
 ## Purpose
 
-Turn a user brief and reference images into a coherent design strategy before layout is generated.
+Convert an imperfect human brief into a professional visual strategy before layout is generated.
 
-The engine should behave like an experienced art director: understand meaning first, then form.
+The system must infer design intent from both words and images and act like an experienced art director, not a literal instruction parser.
 
-## Stage 1 — Brief comprehension
+## Design brief interpretation
 
-Determine:
-- What is being communicated?
-- Why is it being communicated?
-- Who will see it?
-- What should they understand, feel, or do?
-- What is official, factual, optional, or decorative?
-- What must remain unchanged?
-- What level of formality is appropriate?
+Treat the user's message as a problem to solve.
 
-Do not begin styling before these questions are internally resolved.
+Extract:
+- explicit request
+- implicit communication need
+- audience
+- context
+- desired response
+- tone
+- formality
+- constraints
+- assets
+- unknowns that can be safely inferred
 
-## Stage 2 — Content semantics
+Distinguish between:
+- what the user says
+- what the user means
+- what the viewer needs
 
-Classify supplied information into semantic roles:
-- identity / organization
-- publication title
-- headline
-- subheadline
-- Hero message
-- evidence / image content
-- statistics
-- process / comparison
-- supporting information
-- metadata
-- source
-- CTA
-- footer information
+## Reference-image intelligence
 
-This determines hierarchy before decoration.
-
-## Stage 3 — Reference-image intelligence
-
-For each image, inspect:
-- subject
-- orientation / aspect ratio
+For every supplied image, evaluate:
+- semantic subject
+- informational importance
+- visual quality
+- orientation / crop potential
 - composition
-- dominant and supporting colors
-- contrast
-- visual energy
+- lighting
+- color relationships
 - texture
-- environmental context
-- people / identity-sensitive details
-- architectural or symbolic shapes
-- possible visual motifs
-- suitability for Header/Footer/Background/Hero/Content
-- preservation level
+- shape language
+- emotional tone
+- institutional/cultural cues
+- identity sensitivity
+- potential role in Header/Footer/Background/Hero/Content
+- whether it should influence, be bound, or be ignored
 
-Distinguish:
-- content asset
-- design reference
-- locked identity asset
-- optional inspiration
-- prohibited/irrelevant asset
+Do not treat all images equally.
 
-## Stage 4 — Creative concept
+## Concept formation
 
-Generate one concise visual concept.
+Develop one strong concept that connects content and visual language.
 
-A concept is not a style label.
-It should connect message and visual form.
+A concept should answer:
+- What is the central idea?
+- What is the emotional character?
+- What visual metaphor, rhythm, or structural idea supports it?
+- What should make this design feel intentional rather than generic?
 
-Examples:
-- "Disciplined institutional energy with flowing regional identity"
-- "Warm school-community storytelling with structured editorial rhythm"
-- "Transformation and renewal expressed through clean before/after contrast"
+Reject weak concepts that are merely style labels.
 
-All later visual decisions should support the concept.
-
-## Stage 5 — Art direction
+## Art direction
 
 Define:
 - focal hierarchy
+- reading flow
 - shell character
 - typography personality
 - palette roles
-- motif / shape language
-- panel/frame language
+- shape and motif language
+- image treatment
+- panel language
+- spacing rhythm
 - density
-- rhythm
-- negative space
-- photographic treatment
-- degree of symmetry/asymmetry
+- balance strategy
+- degree of restraint
+- formality
 - emotional temperature
-- level of formality
 
-## Stage 6 — Composition planning
+## Editorial judgment
 
-Choose the layout family that best serves the content:
-- Hero + Balanced Masonry
-- Hero + Before/After
-- Hero + editorial grid
-- comparison
-- timeline
-- dashboard
-- other explicit preset
+Apply design judgment rather than rigid formulas.
 
-Layout follows communication intent.
+Examples:
+- A formal institutional brief may need restraint, precision and dignity.
+- A school journal may need warmth, accessibility and energy.
+- A news-magazine page may use stronger editorial contrast and rhythm.
+- A before/after story needs equivalence and immediate comparison clarity.
 
-## Stage 7 — Synthesis
+## Synthesis
 
-Make all components feel authored by one design system:
+All visible systems must feel related:
+- logo placement
 - Header
 - Background
 - Hero
-- Panels
-- Frames
+- panels
+- frames
 - Footer
 - typography
-- colors
-- motifs
+- color
+- motif
 - spacing
 
-Unity should not mean repetition.
-Use controlled variation.
+Aim for family resemblance, not repetition.
 
-## Stage 8 — Self-critique
+## Refinement loop
 
-Before output, inspect:
-- clarity
-- hierarchy
-- balance
-- visual flow
-- consistency
-- originality
-- readability
-- institutional appropriateness
-- brand integrity
-- restraint
-- reusability
+Run:
+1. critique
+2. identify weakest design decisions
+3. revise
+4. re-check hierarchy and unity
 
-Revise if any major region feels unrelated or decorative without purpose.
+Do not stop at the first acceptable composition.
 
-## Quality principle
+## Quality heuristic
 
-"World-class" quality is not a label. It is the result of:
-- accurate interpretation
-- strong concept
-- disciplined hierarchy
-- visual sensitivity
-- purposeful detail
-- coherent execution
-- rigorous self-editing
+A strong result should feel:
+- intentional
+- coherent
+- clear
+- distinctive
+- appropriate
+- balanced
+- restrained
+- polished
+- reusable
+
+Avoid:
+- decoration without purpose
+- excessive symmetry
+- random masonry
+- generic template aesthetics
+- conflicting visual languages
+- over-framing
+- over-coloring
+- weak hierarchy
