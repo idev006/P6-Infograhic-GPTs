@@ -1,83 +1,88 @@
-# Section & Layout Engine v0.7
+# Section & Layout Engine v0.10
 
-## Page hierarchy
+## Layout selection
 
-```text
-PAGE
-├── BACKGROUND
-├── HEADER
-├── CONTENT BOX
-│   ├── HERO              ← enabled by default
-│   └── CONTENT LAYOUT
-│       ├── BALANCED MASONRY
-│       └── BEFORE / AFTER
-└── FOOTER
-```
+Default hierarchy:
+- general photo story → BALANCED_MASONRY
+- Before/After with multiple pairs → PAIRED_BALANCED_MASONRY
+- magazine/journal storytelling → EDITORIAL_COLLAGE
+- GRID only when explicitly requested or clearly superior
 
-## Hero
+## Presentation viability first
 
-Default:
-- enabled
-- one dominant slot
+Before sizing panels, estimate available content height/width after shell and Hero.
 
-Disable only by explicit request.
+Reject layouts where ordinary activity photos would become:
+- excessively short
+- excessively narrow
+- over-cropped
+- too small to understand
+- visually trivial
 
-Typical A4 portrait Hero share:
-- 20–42% of Content Box depending on layout and density
+## Hero adaptation
+
+Hero default = enabled.
+
+Viability may:
+- reduce Hero to COMPACT
+- integrate title/Hero more efficiently
+- recommend landscape
+- recommend multi-page
+
+Do not let Hero consume space needed for meaningful comparison.
 
 ## Balanced Masonry
 
-Default content layout unless the user requests comparison.
-
-Rules:
+Required:
+- controlled varied dimensions
+- 2–4 column logic depending canvas
+- stable outer silhouette
 - consistent gutters
-- controlled size variation
-- optical balance
-- stable silhouette
-- no accidental dead space
-- no tiny orphan panel
-- exact requested panel count
+- no random holes
+- no repeated identical rows
+- visually useful apertures
 
-## Before / After Layout
+## Paired Balanced Masonry
 
-Triggered by explicit transformation/comparison intent.
+For Before/After multi-pair layouts:
+- preserve pair correspondence
+- vary module scale or grouping to avoid form-like repetition
+- use mirrored or coordinated pair geometry where useful
+- keep Before/After labels/structure clear
+- preserve comparable crop opportunity
+- do not force every pair into identical thin horizontal strips
 
-Default:
-```text
-orientation = LEFT_RIGHT
-BEFORE = LEFT
-AFTER = RIGHT
-```
+## Editorial Collage
 
-Design rules:
-- two comparison zones should have equal or optically equivalent visual weight
-- image apertures should be matched in scale/aspect where feasible
-- use the same frame family on both sides
-- central divider, arrow, transition line, or directional cue may be used when it improves clarity
-- labels should be visually parallel
-- preserve enough separation that users immediately perceive comparison
-- do not let one side dominate unless explicitly requested
-- do not fabricate explanatory copy
+Use larger and smaller image zones with intentional overlap-free editorial rhythm.
 
-When multiple pairs are requested, use repeated paired modules while preserving a clear reading sequence.
+Allowed:
+- asymmetric image hierarchy
+- dominant image plus supporting cluster
+- varied aspect ratios
+- negative-space pockets
+- caption anchors
 
-A4 portrait options:
-- one large left/right pair
-- two stacked left/right pairs
-- compact paired masonry for 3+ pairs only when readability remains high
+Not allowed:
+- random scrapbook chaos
+- overlapping image apertures that impede replacement
+- illegible tiny panels
 
-## Panel Frame Engine
+## Panel-frame behavior
 
-THEMED_FRAME is default for Masonry and Before/After.
+THEMED_FRAME should feel like a designed image container.
 
-PLAIN_GUIDE provides thin placement outlines only.
+Avoid default double-border rectangles on every panel.
 
-Before/After panels should use synchronized framing unless explicitly overridden.
+Prefer:
+- partial border accents
+- clipped corners
+- subtle mats
+- shape masks
+- restrained shadows
+- selective accent strokes
+- frameless crops with theme anchors
 
-## Editorial shell relationship
+## Quality invariant
 
-Header, Footer, Background, Masonry frames, and comparison frames should belong to one visual family.
-
-## Quality rule
-
-The empty template must already look intentionally designed before any user photos are inserted.
+The page must remain attractive and usable after real photos are inserted.
