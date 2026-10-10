@@ -1,4 +1,4 @@
-# Template QA Scoring v0.6
+# Template QA Scoring v0.7
 
 ## Blocking failures
 
@@ -6,16 +6,19 @@ Revise if:
 - Background/Header/Footer missing unless explicitly disabled
 - Header/Footer are generic empty boxes
 - Hero omitted without explicit user request
-- explicit image_panel_count does not match
-- Masonry has obvious dead gaps or severe visual imbalance
+- explicit image panel or comparison pair count does not match
+- Masonry has severe imbalance/dead gaps
+- Before/After positions are reversed from explicit/default intent
+- Before/After sides are materially unequal without design reason
+- comparison relationship is visually unclear
 - panel bounds are unclear
-- THEMED_FRAME does not match shell theme
+- THEMED_FRAME clashes with shell
 - PLAIN_GUIDE contains decorative framing
-- a reference image is inserted without explicit binding
-- locked logo/asset is distorted, recolored, redrawn, blended, or altered
+- reference image inserted without explicit binding
+- locked logo/asset is altered
 - factual content is fabricated
-- Hero/Masonry escape Content Box
-- required region source mapping is ignored
+- requested region source mapping is ignored
+- EASY mode output unnecessarily exposes technical complexity
 
 ## Scored dimensions 0–10
 
@@ -25,41 +28,41 @@ Revise if:
 4. Background Integration
 5. Shell Unity
 6. Hero Hierarchy
-7. Masonry Optical Balance
-8. Panel Count Accuracy
-9. Panel Frame Quality
-10. Gutter / Rhythm Consistency
-11. Typography Hierarchy
-12. Color / Motif Unity
-13. Region Source Mapping Accuracy
-14. Reference Use Discipline
-15. Asset Preservation
-16. Reusability
-17. Overall Professional Quality
+7. Content Layout Fit
+8. Masonry Optical Balance
+9. Before/After Comparison Clarity
+10. Panel / Pair Count Accuracy
+11. Panel Frame Quality
+12. Gutter / Rhythm Consistency
+13. Typography Hierarchy
+14. Color / Motif Unity
+15. Region Source Mapping Accuracy
+16. Asset Preservation
+17. Easy-mode Usability
+18. Reusability
+19. Overall Professional Quality
 
 ## Acceptance
 
 - any blocking failure → FAIL
-- explicit panel count accuracy < 10 → FAIL
-- Masonry Optical Balance < 8 → REVISE
+- explicit counts must be 10/10 accurate
+- Before/After Comparison Clarity < 9 when used → REVISE
+- Masonry Optical Balance < 8 when used → REVISE
 - Editorial Shell Quality < 8 → REVISE
-- Panel Frame Quality < 8 in THEMED_FRAME mode → REVISE
+- Easy-mode Usability < 8 in EASY/AUTO-natural-language mode → REVISE
 - Asset Preservation < 9 → FAIL
 - Overall Professional Quality < 8 → REVISE
 
-## Optical balance checklist
+## Before/After checklist
 
 Confirm:
-- left/right visual weight feels balanced
-- top/bottom page weight feels intentional
-- Hero remains dominant
-- Masonry sizes have rhythm
-- no tiny orphan panel
-- gutters are consistent
-- outer masonry silhouette feels stable
+- Before appears left by default
+- After appears right by default
+- paired apertures are visually comparable
+- divider/labels clarify comparison
+- matched framing
+- neither side overwhelms the other
 
 ## Empty-template checklist
 
-The template must still look intentionally designed with no photos inserted.
-
-Panels must clearly invite photo placement without looking like form fields.
+The template should already look complete and intentional before photos are inserted.
