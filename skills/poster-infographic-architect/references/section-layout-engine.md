@@ -1,110 +1,93 @@
-# Section & Layout Engine v0.5
+# Section & Layout Engine v0.6
 
-## Page model
+## Page hierarchy
 
 ```text
 PAGE
-├── BACKGROUND LAYER     ← AUTO-DESIGNED
-├── HEADER REGION        ← AUTO-DESIGNED
+├── BACKGROUND      ← auto-designed shell
+├── HEADER          ← auto-designed shell
 ├── CONTENT BOX
-│   ├── HERO SECTION     ← reusable slots
-│   └── CHILD SECTION    ← reusable slots
-└── FOOTER REGION        ← AUTO-DESIGNED
+│   ├── HERO        ← enabled by default
+│   └── MASONRY     ← balanced image panels
+└── FOOTER          ← auto-designed shell
 ```
 
-## System-managed regions
+## Hero
 
-### Background
-Must be intentionally designed across the canvas. Avoid reducing it to decorative edges only unless the chosen art direction explicitly calls for that.
+Default:
+- enabled
+- one dominant slot
 
-### Header
-System chooses:
-- height/proportion
-- visual treatment
-- alignment
-- internal grouping
-- typography hierarchy
-- optional logo/title/subtitle/metadata placement
+Disable only if the user explicitly requests no Hero.
 
-### Footer
-System chooses:
-- height/proportion
-- visual treatment
-- alignment
-- internal grouping
-- source/CTA/contact/QR/brand support areas as appropriate
+Typical A4 portrait Hero share:
+- 22–45% of Content Box depending on density and panel count
 
-Header/Footer may contain text or assets, but factual content is never invented.
+## Balanced Masonry
 
-## Slot-based Content Box
+Default child layout:
+- balanced_masonry
 
-### Hero Section
-User-facing parameter:
-- hero_slot_count
+Principles:
+- consistent gutters
+- controlled size variation
+- mixed but compatible aspect ratios
+- optical left/right weight balance
+- stable outer silhouette
+- no accidental dead space
+- visual rhythm
+- no excessively tiny orphan panel
+- preserve readable margins
+- adapt to exact requested panel count
 
-Hero patterns:
-- 1 → single dominant visual/message placeholder
-- 2 → split/paired hero
-- 3+ → comparison, KPI row, or multi-hero system when appropriate
+The system may use portrait, landscape, square, tall, or wide panels as long as the overall composition remains harmonious.
 
-### Child Content Section
-User-facing parameter:
-- child_slot_count
+## Panel Frame Engine
 
-Suggested geometry:
-- 1 → full-width/open module
-- 2 → split or stacked
-- 3 → 3-column / 1+2
-- 4 → 2×2 or asymmetric editorial
-- 5–6 → adaptive modular grid
-- 7+ → dense report/infographic grid
+Default:
+- THEMED_FRAME
 
-## Visual treatment rule
+THEMED_FRAME:
+- derive border/mask/frame language from shell theme
+- use restrained decorative treatment
+- maintain a clearly visible image aperture
+- keep visual priority below the photographs that will later be inserted
+- use one frame family, with limited controlled variants if needed for masonry rhythm
 
-Do not automatically draw a border around every slot.
+PLAIN_GUIDE:
+- thin boundary only
+- no ornament
+- no heavy card
+- no shadow unless necessary for visibility
+- maintain exact placement cue
 
-Select among:
-- open whitespace
-- soft cards
-- editorial blocks
-- image masks
-- tinted panels
-- asymmetric zones
-- dividers
-- bands
-- restrained outlined cards only when stylistically appropriate
+## Editorial shell relationship
+
+Header, Footer, Background and Panel Frame Engine should share:
+- corner language
+- line weight vocabulary
+- motif
+- accent shape
+- color roles
+- level of formality
+
+Do not copy the same decoration everywhere; create family resemblance, not repetition.
 
 ## Region ratios
 
-Typical A4 portrait starting range:
-- Header: 8–15%
-- Content Box: 72–84%
-- Footer: 6–12%
+A4 portrait starting ranges:
+- Header: 8–16%
+- Content Box: 72–86%
+- Footer: 5–11%
 
-Within Content Box:
-- Hero: 25–55%
-- Child: remaining area
+Within Content:
+- Hero: 22–45%
+- Masonry: remaining area
 
-These ranges adapt to reference images, preset, density, and user constraints.
+Ratios are adaptive.
 
-## Grid logic
+## Quality rule
 
-A4 portrait:
-- 4, 6, or 8-column grid
+The final template must look attractive even before any photos are inserted.
 
-Landscape:
-- 6, 8, or 12-column grid
-
-High Child counts:
-- favor modular grids
-- reduce ornament
-- strengthen grouping
-
-## Quality rules
-
-- Background, Header, Content Box, and Footer must feel like one designed system.
-- Header/Footer must look designed even if final text is absent.
-- Hero should normally dominate Child.
-- Empty content placeholders must not make the result look like a data-entry form.
-- Reference images may influence geometry without being inserted.
-- Protected assets obey preservation policy.
+Empty Masonry panels should read as deliberate photo frames/placeholders—not generic form fields.
