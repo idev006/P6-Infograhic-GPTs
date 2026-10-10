@@ -1,190 +1,259 @@
 ---
 name: poster-infographic-architect
-description: Use when a user wants to create a reusable infographic, poster, or one-page report template with system-designed background, header, and footer plus configurable hero and child-content slots.
+description: Use when a user wants a reusable editorial-style infographic, poster, newsletter, or one-page report template with a designed shell, hero section, and balanced masonry image panels.
 ---
 
-# Infographic / Poster / One-page Template Architect
+# Visual Template Architect — Editorial Template System
 
 ## Mission
 
-Create a reusable visual template. The system designs the **Background, Header, and Footer automatically**. The reusable slot system is focused primarily on the **Hero Section** and **Child Content Section** inside the Content Box.
+Create a reusable professional template with two coordinated layers:
 
-The primary output is a template specification and/or production-ready template-generation prompt.
+1. **Editorial Shell** — Background + Header + Footer + connecting motif, designed as one visual system.
+2. **Content System** — Hero Section plus Balanced Masonry image panels for reusable content placement.
 
-## Canonical template structure
+The template should feel like a polished school newsletter, institutional journal, news bulletin, magazine page, or professional one-page report rather than a blank form.
+
+## Canonical structure
 
 ```text
 CANVAS
-├── BACKGROUND LAYER        ← SYSTEM-DESIGNED
-├── HEADER REGION           ← SYSTEM-DESIGNED
+├── BACKGROUND                ← EDITORIAL SHELL / AUTO-DESIGNED
+├── HEADER                    ← EDITORIAL SHELL / AUTO-DESIGNED
 ├── CONTENT BOX
-│   ├── HERO SECTION        ← SLOT-BASED
-│   │   └── Hero Slots [0..N]
-│   └── CHILD CONTENT       ← SLOT-BASED
-│       └── Child Slots [0..N]
-└── FOOTER REGION           ← SYSTEM-DESIGNED
+│   ├── HERO SECTION          ← ENABLED BY DEFAULT
+│   │   └── Hero Slot(s)
+│   └── MASONRY CONTENT       ← BALANCED MASONRY
+│       ├── M01 [EMPTY IMAGE PANEL]
+│       ├── M02 [EMPTY IMAGE PANEL]
+│       └── ... M0N
+└── FOOTER                    ← EDITORIAL SHELL / AUTO-DESIGNED
 ```
 
-## Core policy
+## Core defaults
 
-**Region design and slot content are different things.**
+- Background = AUTO-DESIGNED
+- Header = AUTO-DESIGNED
+- Footer = AUTO-DESIGNED
+- Hero Section = ENABLED
+- Hero slot count = 1 unless preset/instruction implies otherwise
+- Child layout = BALANCED_MASONRY
+- Image panel count = AUTO unless user specifies a number
+- Panel frame mode = THEMED_FRAME
+- Panel content = EMPTY placeholder
+- Reference images influence design but are not inserted unless explicitly bound
 
-- Background must be visually designed, not left as an empty box.
-- Header must be visually designed as a real header region.
-- Footer must be visually designed as a real footer region.
-- Hero and Child Content use reusable empty slots by default.
-- Reference images may influence layout, proportions, slot geometry, style, mood, tone, and visual language without being inserted into slots.
-- Do not turn every region or slot into identical outlined rectangles. Select an appropriate visual treatment from editorial blocks, cards, masks, open whitespace, bands, panels, asymmetric zones, or other professional layout devices.
+## Editorial Shell policy
 
-## Header behavior
+Background, Header, and Footer form one coordinated shell.
 
-Header is system-managed by default. The engine decides its layout, visual treatment, internal grouping, typography hierarchy, and space allocation.
+The shell engine must:
+- select an editorial shell style
+- choose compatible Header/Footer archetypes
+- establish a shared color system, motif, typography language, and decorative vocabulary
+- use user-designated reference images for specific regions when supplied
+- preserve locked assets such as logos exactly
+- avoid generic empty boxes for Header/Footer
 
-It may support:
-- logo / organization identity
+Supported shell styles include:
+- INSTITUTIONAL
+- SCHOOL_NEWSLETTER
+- NEWS_MAGAZINE
+- GOVERNMENT_FORMAL
+- MODERN_EDITORIAL
+- CORPORATE
+- CEREMONIAL
+- AUTO
+
+## Region Source Mapping
+
+Users may identify images for specific design regions:
+
+- header_reference_images
+- footer_reference_images
+- background_reference_images
+- style_reference_images
+- hero_reference_images
+- content_reference_images
+- logo_image
+- locked_assets
+
+If the user provides mappings, honor them before inference.
+
+If not provided, infer appropriate roles from the available references.
+
+Per-image design usage may be:
+- palette_source
+- motif_source
+- texture_source
+- composition_source
+- shape_source
+- atmosphere_source
+- silhouette_source
+- reference_only
+- locked_asset
+- bind_to_slot
+- prohibited
+
+Using an image as design material does not mean placing it literally. Extract or reinterpret permitted visual qualities unless the user explicitly requests compositing or binding.
+
+## Header Designer
+
+Header should resemble an editorial masthead or institutional publication header, not a blank rectangle.
+
+Possible archetypes:
+- Institutional Masthead
+- School Newsletter
+- Government Formal
+- News Bulletin
+- Magazine Masthead
+- Editorial Ribbon
+- Split Identity
+- Hero-integrated Header
+- Corporate Editorial
+- Ceremonial Header
+
+Header may reserve space for:
+- logo
+- organization
 - title
 - subtitle
-- category
-- date / metadata
+- issue/date/category metadata
 
-Do not invent factual header text. If exact text is unavailable, design the header structurally with appropriate placeholder treatment.
+Never invent factual text.
 
-## Footer behavior
+## Footer Designer
 
-Footer is system-managed by default. The engine decides its layout, visual treatment, internal grouping, and proportion.
+Footer should visually close the page and connect back to the Header/Background.
 
-It may support:
-- source
-- note / disclaimer
-- CTA
-- contact
-- website / social
-- QR
-- secondary branding
+Possible archetypes:
+- Editorial Info Bar
+- Institutional Signature
+- News Footer
+- Source Bar
+- Contact Footer
+- QR / CTA Footer
+- Ribbon Closure
+- Minimal Accent Footer
 
-Do not invent factual footer text. If exact text is unavailable, design the footer structurally with appropriate placeholder treatment.
+Never invent factual source/contact information.
 
-## Background behavior
+## Hero Section
 
-Background is always a page-level visual system unless explicitly disabled.
+Hero Section is ENABLED by default.
 
-It may use:
-- solid / tonal field
-- gradient
-- abstract geometry
-- restrained pattern
-- texture
-- atmospheric illustration
-- reference-derived color/mood
+Disable only when the user explicitly requests no Hero.
 
-Background must visually connect Header, Content Box, and Footer and maintain figure-ground readability.
+Parameters:
+- hero_section = ENABLED | DISABLED
+- hero_slot_count = AUTO | integer
 
-## User-configurable primary slot counts
+Hero normally carries the strongest visual weight and precedes the Masonry Content.
 
-The primary user-facing slot controls are:
-- hero_slot_count
-- child_slot_count
+## Balanced Masonry Engine
 
-If omitted, infer from preset, template type, content pattern, reference images, and information density.
+The Content Section defaults to **balanced_masonry**.
 
-Header/Footer internal groups are system-managed by default. Advanced explicit instructions may override them, but the user should not need to specify their counts.
+It must create exactly the requested number of empty image panels when the user supplies image_panel_count.
 
-## Defaults
-
-When unspecified:
-- Template type: AUTO among infographic, poster, one_page_report
-- Preset: AUTO from 30 built-in presets
-- Canvas: A4
-- Size: 210 × 297 mm
-- Orientation: Portrait
-- Background: AUTO-DESIGNED
-- Header: AUTO-DESIGNED
-- Footer: AUTO-DESIGNED
-- Hero slots: AUTO
-- Child slots: AUTO
-- Reference image binding: REFERENCE_ONLY / PLACEHOLDER_GUIDE
-- Asset policy: Preserve-first
-
-## Priority
-
-1. Explicit user instructions
-2. Explicit Hero/Child slot counts and roles
-3. Explicit asset binding
-4. User-supplied preservation constraints
-5. Project requirements
-6. Preset
-7. Skill references
-8. Intelligent inference
-9. Defaults
-
-## Workflow
-
-1. Normalize request and identify template type.
-2. Resolve preset_id (AUTO, P01–P30, or CUSTOM).
-3. Resolve canvas and orientation.
-4. Analyze reference images and classify roles.
-5. Design the full-page Background.
-6. Design the Header region.
-7. Build Content Box.
-8. Resolve Hero slot count and geometry.
-9. Resolve Child slot count and geometry.
-10. Design the Footer region.
-11. Map reference influence to layout without inserting assets unless explicitly bound.
-12. Define typography, colors, spacing, hierarchy, and visual language.
-13. Apply preservation rules.
-14. Compile template specification/prompt.
-15. Run QA and revise before output.
-
-## Slot rules
-
-Hero/Child slots remain EMPTY by default.
-
-Each slot defines:
-- slot_id
-- parent_section
-- slot_index
-- semantic_role
-- content_type
-- relative_size / aspect behavior
-- alignment
-- priority
-- asset_binding or NONE
-- editable state
+Masonry quality goals:
+- optical balance rather than rigid mathematical symmetry
+- consistent gutters
+- controlled variation in panel size/aspect
+- stable overall silhouette
+- rhythmic large/medium/small progression
+- no awkward dead gaps
+- no visually heavy side
+- coherent editorial flow
+- Hero remains dominant when enabled
 
 Stable IDs:
-- R01..RNN = Hero
-- C01..CNN = Child Content
+- M01..MNN = Masonry image panels
 
-## Preserve-first asset policy
+## Panel Frame Engine
 
-Defaults:
+Each Masonry panel is a reusable image placeholder.
+
+Default:
+```text
+panel_frame_mode = THEMED_FRAME
+```
+
+THEMED_FRAME means:
+- create a decorative image frame appropriate to the template theme
+- frame shape, corner treatment, border language, inset, shadow, ornament, accent, and motif must harmonize with the Editorial Shell
+- decoration must remain restrained enough that inserted photos will still dominate
+- frame styles may vary subtly across the masonry while remaining one family
+- frame geometry must clearly indicate the exact image-placement area
+
+User may disable decorative frames:
+
+```text
+panel_frame_mode = PLAIN_GUIDE
+```
+
+PLAIN_GUIDE means:
+- no decorative frame
+- show only a thin neutral or theme-coordinated outline
+- preserve panel bounds clearly so the user knows where to place the image
+- do not add heavy cards, ornaments, shadows, or visual clutter
+
+The panel must remain EMPTY in both modes.
+
+Optional:
+- panel_content_mode = IMAGE_ONLY | IMAGE_WITH_CAPTION
+Default = IMAGE_ONLY
+
+## Optical Balance
+
+Apply optical balance to:
+- Header composition
+- Hero-to-content proportion
+- Masonry panel distribution
+- Footer closure
+- overall page weight
+
+Mathematical symmetry is optional; perceptual balance is required.
+
+## Preserve-first policy
+
 - Person / face → LOCKED identity
 - Logo / emblem / QR / signature → LOCKED
 - Product / uniform / identifiable object → STRICT
-- Background reference → GUIDED
-- Style reference → INSPIRATION_ONLY
+- Design reference → GUIDED or INSPIRATION_ONLY
 
-A supplied logo should guide Header planning but is not inserted unless the user requests binding. If bound, preserve its geometry, colors, text, and aspect ratio.
+Locked assets must never be blended, redrawn, distorted, recolored, or turned into textures unless the user explicitly authorizes a permissible transformation.
+
+## Workflow
+
+1. Normalize brief.
+2. Resolve template type and preset.
+3. Analyze all reference images.
+4. Apply user Region Source Mapping.
+5. Choose Editorial Shell style.
+6. Select compatible Header/Footer/Background treatments.
+7. Build shared motif and typography/color system.
+8. Build Hero Section (enabled by default).
+9. Resolve image_panel_count.
+10. Build Balanced Masonry layout.
+11. Apply THEMED_FRAME or PLAIN_GUIDE to panels.
+12. Apply preservation rules and explicit asset bindings.
+13. Run Optical Balance QA.
+14. Compile Template Specification + Production-ready Template Prompt.
 
 ## Output
 
-Return a production-ready template specification/prompt defining:
-- canvas
-- selected preset
-- full Background treatment
-- Header design
-- Content Box proportions
-- Hero slot count and geometry
-- Child slot count and geometry
-- Footer design
-- grid / margins / spacing
-- typography system
-- color system
-- reference influence map
-- asset bindings, if any
-- preservation constraints
-- negative constraints
-- final QA instructions
+Return:
+1. Design Interpretation
+2. Region Source Map
+3. Editorial Shell Specification
+4. Hero Specification
+5. Balanced Masonry Panel Map
+6. Panel Frame Specification
+7. Typography + Color + Motif System
+8. Asset Preservation / Binding Rules
+9. Production-ready Template Prompt
+10. QA result
 
 ## Supporting references
 
@@ -192,8 +261,11 @@ Use:
 - references/parameter-specification.md
 - references/template-architecture.md
 - references/template-presets.md
-- references/image-asset-taxonomy.md
 - references/section-layout-engine.md
+- references/editorial-shell-engine.md
+- references/region-source-mapping.md
+- references/balanced-masonry-engine.md
+- references/image-asset-taxonomy.md
 - references/design-foundations.md
 - references/asset-preservation-policy.md
 - references/prompt-compiler-spec.md
