@@ -1,30 +1,20 @@
-# Template QA Scoring v0.9
+# Template QA Scoring v0.10
 
 ## Blocking failures
 
-FAIL or REVISE if:
-- communication objective is misunderstood
-- design is literal but does not solve the brief
-- no coherent concept/art direction exists
+FAIL if:
+- logo/emblem/QR/signature/official insignia is regenerated instead of using original asset
+- identity-critical asset differs from supplied original
+- requested exact panel/pair count is wrong
+- real-photo placement would make ordinary photos unusable
+- panels become excessively thin or tiny solely to fit count
+- BALANCED_MASONRY becomes an equal-size repetitive grid without explicit request
+- PAIRED_BALANCED_MASONRY becomes repeated identical stacked rows without design justification
+- Before/After pairing becomes unclear
 - shell/content feel unrelated
-- hierarchy is weak or ambiguous
-- Background/Header/Footer are generic or mechanically boxed
-- Hero is omitted without explicit request
-- explicit panel/pair counts are wrong
-- Masonry has severe imbalance/dead gaps
-- Before/After pairing is unclear or reversed
-- panel bounds are unclear
-- reference images are misinterpreted or inserted without permission
-- region source mapping is ignored
-- factual content is fabricated
-- EASY output exposes unnecessary technical complexity
-
-Logo blocking failures:
-- any redraw/recolor/crop/warp/stretch/compression
-- internal text/symbol change
-- texture/pattern use
-- insufficient clear space/contrast
-- shell conflicts with identity
+- hierarchy is weak
+- reference mapping is ignored
+- factual content is invented
 
 ## Scored dimensions 0–10
 
@@ -32,65 +22,55 @@ Logo blocking failures:
 2. Communication Effectiveness
 3. Concept Strength
 4. Art Direction Coherence
-5. Originality / Non-generic Quality
-6. Editorial Shell Quality
-7. Header Quality
-8. Footer Quality
-9. Background Integration
-10. Logo Integrity
-11. Logo-Shell Harmony
-12. Visual Hierarchy
-13. Reading Flow
-14. Optical Balance
-15. Proportion
-16. Rhythm
-17. Negative Space
-18. Typography
-19. Color System
-20. Reference-image Understanding
-21. Content Layout Fit
-22. Masonry Quality
-23. Before/After Clarity
-24. Panel Frame Quality
-25. Asset Preservation
+5. Presentation Viability
+6. Real-photo Usability
+7. Originality / Non-generic Quality
+8. Editorial Shell Quality
+9. Logo Exactness
+10. Logo-Shell Harmony
+11. Visual Hierarchy
+12. Reading Flow
+13. Optical Balance
+14. Proportion
+15. Rhythm
+16. Negative Space
+17. Typography
+18. Color System
+19. Reference Understanding
+20. Content Layout Fit
+21. Balanced Masonry Quality
+22. Paired Masonry Quality
+23. Editorial Collage Quality
+24. Before/After Clarity
+25. Panel Frame Quality
 26. Reusability
-27. Easy-mode Usability
-28. Overall Professional Quality
+27. Overall Professional Quality
 
 ## Acceptance gates
 
-- any identity/preservation blocking failure → FAIL
-- Logo Integrity must be 10/10 when logo exists
-- Brief Understanding < 8 → REVISE
-- Communication Effectiveness < 8 → REVISE
-- Concept Strength < 8 → REVISE
+- Logo Exactness must be 10/10 when used
+- Presentation Viability < 9 → REVISE
+- Real-photo Usability < 9 → REVISE
 - Art Direction Coherence < 8 → REVISE
-- Visual Hierarchy < 8 → REVISE
+- Balanced/Paired Masonry quality < 8 when used → REVISE
 - Overall Professional Quality < 8 → REVISE
-- exact requested counts must be 10/10
-- Before/After Clarity < 9 when used → REVISE
-- Masonry Quality < 8 when used → REVISE
 
-## Required refinement loop
+## Mandatory real-photo simulation
 
-Before final output:
-1. score the design internally
-2. identify the three weakest dimensions
-3. revise them
-4. re-score
-5. output only after no blocking issue remains
+Before PASS:
+- mentally place representative real images into each aperture
+- check crop feasibility
+- check subject visibility
+- check comparison readability
+- check whether captions still fit if enabled
 
-## Designer-sense checklist
+If realistic content would fail, layout fails.
 
-Ask internally:
-- Does this feel designed or merely arranged?
-- Is there a clear idea behind the page?
-- Does the eye know where to start?
-- Does each region have a role?
-- Is anything present only because templates usually have it?
+## Designer-sense checks
+
+- Does this look like a publication or a form?
+- Is panel variation intentional?
+- Are there meaningful dominant/supporting relationships?
 - Is there enough breathing room?
-- Are visual accents earned?
-- Does the composition feel calm where it should and energetic where it should?
-- Is the logo respected and naturally integrated?
-- Would an experienced designer remove anything?
-- Would the empty template itself still feel premium?
+- Would a senior executive be able to understand the photos at normal print/view size?
+- Is every decorative frame helping rather than cluttering?
