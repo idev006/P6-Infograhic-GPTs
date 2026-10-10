@@ -1,35 +1,42 @@
-# Editorial Shell Engine v0.6
+# Editorial Shell Engine v0.8
 
 ## Purpose
 
-Design the visual "outer shell" of the template so the page feels like a real school journal, institutional newsletter, news bulletin, magazine page, or professional one-page report.
+Design the visual outer shell so the page feels authored as a real publication: school journal, institutional newsletter, news bulletin, magazine page, poster, infographic, or professional one-page report.
 
-The shell includes:
+The shell is an expression of the creative concept, not decoration added afterward.
+
+It includes:
 - Background
 - Header
 - Footer
-- Shared motif / connector system
-- Editorial typography relationship
-- Color roles
-- Decorative vocabulary
+- shared motif
+- typography relationship
+- color roles
+- line/corner/shape vocabulary
+- brand/logo integration zone
+
+## Inputs
+
+The shell engine receives:
+- communication objective
+- audience
+- art direction
+- creative concept
+- reference image analysis
+- region source mapping
+- logo harmony plan
+- content density
+- formality/tone
 
 ## Shell styles
 
-Supported:
-- AUTO
-- INSTITUTIONAL
-- SCHOOL_NEWSLETTER
-- NEWS_MAGAZINE
-- GOVERNMENT_FORMAL
-- MODERN_EDITORIAL
-- CORPORATE
-- CEREMONIAL
+AUTO, INSTITUTIONAL, SCHOOL_NEWSLETTER, NEWS_MAGAZINE, GOVERNMENT_FORMAL, MODERN_EDITORIAL, CORPORATE, CEREMONIAL.
 
-AUTO selects from project type, reference images, brand context, formality, audience, and information density.
+AUTO selects for communication fit, not fashion alone.
 
 ## Header archetypes
 
-At least these archetypes are available:
 1. Institutional Masthead
 2. School Newsletter
 3. Government Formal
@@ -41,11 +48,10 @@ At least these archetypes are available:
 9. Corporate Editorial
 10. Ceremonial Header
 
-The engine may adapt or hybridize compatible archetypes.
+Archetypes are compositional starting points, not rigid skins.
 
 ## Footer archetypes
 
-At least:
 1. Editorial Info Bar
 2. Institutional Signature
 3. News Footer
@@ -57,7 +63,6 @@ At least:
 
 ## Background systems
 
-At least:
 1. Gradient Field
 2. Ribbon Wave
 3. Geometric Editorial
@@ -65,61 +70,49 @@ At least:
 5. Layered Abstract
 6. Formal Institutional Field
 
-## Compatibility
+## Unity principle
 
-Header, Footer, and Background must share visual DNA:
+Header, Footer, Background, Hero frame, and Content frames must share visual DNA:
 - compatible geometry
-- line weight
 - corner language
-- color roles
-- formality
+- line-weight logic
 - motif family
-- typographic hierarchy
+- color roles
+- typographic character
+- degree of formality
 
-Do not mechanically repeat identical decoration in all regions. Use coordinated variation.
+Create family resemblance, not literal repetition.
 
-## Editorial hierarchy
+## Logo integration
 
-Typical order:
-1. organization / publication identity
-2. main title
-3. subtitle / issue / date
-4. Hero
-5. Masonry panels
-6. Footer information
+When logo_integration_mode = PRESERVE_AND_HARMONIZE:
 
-## Header quality
+Do not modify the logo.
 
-Header must:
-- read as a publication masthead or editorial region
-- have intentional negative space
-- maintain strong hierarchy
-- support logo placement without distorting logo
-- avoid becoming a second Hero unless explicitly requested
+Instead:
+- select an appropriate header/brand zone
+- protect clear space
+- ensure contrast
+- derive compatible supporting accents from logo colors where appropriate
+- echo compatible geometric/line qualities without copying or deforming the mark
+- choose typography and surrounding shapes that make the identity feel native to the shell
+- keep logo prominence proportional to institutional role
 
-## Footer quality
+The logo is a fixed identity anchor around which the shell adapts.
 
-Footer must:
-- visually close the composition
-- remain secondary to main content
-- support source/contact/QR/CTA if supplied
-- echo the Header/Background motif subtly
+## Purposeful design rule
 
-## Reference integration
+Every shell element should support:
+- identity
+- hierarchy
+- framing/navigation
+- tone
+- cohesion
+- visual flow
 
-User-designated Header/Footer/Background references may guide:
-- palette
-- motif
-- crop/composition concept
-- silhouette
-- texture
-- atmosphere
-- shape language
-
-Literal insertion requires explicit binding or compositing instruction.
+Remove ornament that has no communicative or compositional purpose.
 
 ## Optical balance
 
-The shell should feel balanced to human perception rather than geometrically forced.
-
-Asymmetry is allowed and often preferred when visual weight remains stable.
+Asymmetry is allowed.
+Perceptual stability is required.
