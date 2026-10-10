@@ -1,76 +1,57 @@
-# Canonical Template Architecture v0.7
+# Canonical Template Architecture v0.10
 
-## Structural invariant
+```text
+USER BRIEF + REFERENCES
+        ↓
+DESIGN COGNITION
+        ↓
+EXACT ASSET CLASSIFICATION
+        ↓
+PRESENTATION VIABILITY GATE
+        ↓
+CANVAS / PAGE / HERO STRATEGY
+        ↓
+EDITORIAL SHELL
+        ↓
+CONTENT ARCHITECTURE
+    ├── BALANCED_MASONRY
+    ├── PAIRED_BALANCED_MASONRY
+    ├── EDITORIAL_COLLAGE
+    └── GRID only when justified/requested
+        ↓
+IMAGE APERTURE INTELLIGENCE
+        ↓
+REAL-PHOTO PLACEMENT SIMULATION
+        ↓
+QA / REFINEMENT
+```
+
+## Structural page model
 
 ```text
 CANVAS
 ├── EDITORIAL_SHELL
-│   ├── BACKGROUND_LAYER
-│   ├── HEADER_REGION
-│   ├── VISUAL_MOTIF_SYSTEM
-│   └── FOOTER_REGION
-└── CONTENT_BOX
-    ├── HERO_SECTION                 [DEFAULT ENABLED]
-    └── CONTENT_LAYOUT
-        ├── MASONRY_CONTENT          [DEFAULT]
-        └── BEFORE_AFTER_COMPARISON  [WHEN REQUESTED]
+│   ├── BACKGROUND
+│   ├── HEADER
+│   ├── SHARED VISUAL LANGUAGE
+│   └── FOOTER
+└── CONTENT BOX
+    ├── HERO [default enabled, adaptive size]
+    └── CONTENT LAYOUT
 ```
 
-## Editorial Shell
+## Viability invariant
 
-Background, Header, Footer, typography, color language, and motif form a coordinated publication-style shell.
+A requested panel count is not sufficient by itself.
 
-## Hero
+The resulting apertures must remain practically usable for real photography.
 
-Hero is enabled by default and disabled only through explicit user instruction.
+If not viable, adapt layout/orientation/page count/Hero size rather than producing unusable slots.
 
-Stable IDs:
-- R01..RNN
+## Exact assets
 
-## Masonry Content
+Identity-critical assets are composited originals, not regenerated elements.
 
-Default multi-image content architecture.
+## Anti-form invariant
 
-Stable IDs:
-- M01..MNN
-
-## Before / After Comparison
-
-Alternative content architecture when explicitly requested.
-
-Default spatial contract:
-- Before = left
-- After = right
-- visually equivalent comparison zones
-
-Stable IDs:
-- BA01-B / BA01-A
-- BA02-B / BA02-A
-- etc.
-
-Each comparison panel remains an empty reusable image placeholder unless explicitly bound.
-
-## Panel frames
-
-Default:
-- THEMED_FRAME
-
-Optional:
-- PLAIN_GUIDE
-
-Both Masonry and Before/After panels follow the selected frame mode.
-
-## Region references
-
-Header/Footer/Background/Hero/Content may use separate user-designated reference sets.
-
-Reference influence and literal placement are separate concepts.
-
-## Reusability
-
-A valid template:
-- has a visually finished shell
-- retains Hero by default
-- provides a clear content layout
-- keeps image areas empty and reusable
-- remains visually balanced without inserted photos
+A template must not resemble a data-entry form or a spreadsheet of photo boxes unless the user explicitly requests that style.
