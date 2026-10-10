@@ -1,89 +1,96 @@
-# Template QA Scoring v0.8
+# Template QA Scoring v0.9
 
 ## Blocking failures
 
-Revise if:
-- communication objective is ignored
-- no coherent creative concept/art direction is evident
-- Background/Header/Footer missing unless explicitly disabled
-- Header/Footer are generic empty boxes
-- Hero omitted without explicit user request
-- explicit panel/pair counts do not match
+FAIL or REVISE if:
+- communication objective is misunderstood
+- design is literal but does not solve the brief
+- no coherent concept/art direction exists
+- shell/content feel unrelated
+- hierarchy is weak or ambiguous
+- Background/Header/Footer are generic or mechanically boxed
+- Hero is omitted without explicit request
+- explicit panel/pair counts are wrong
 - Masonry has severe imbalance/dead gaps
-- Before/After ordering or pairing is wrong
+- Before/After pairing is unclear or reversed
 - panel bounds are unclear
-- THEMED_FRAME clashes with shell
-- reference image is inserted without explicit binding
+- reference images are misinterpreted or inserted without permission
 - region source mapping is ignored
 - factual content is fabricated
-- EASY output exposes unnecessary complexity
+- EASY output exposes unnecessary technical complexity
 
-Logo / brand blocking failures:
-- logo redrawn
-- logo recolored
-- logo cropped
-- logo warped, stretched, or compressed
-- logo text/symbols altered
-- logo used as texture/pattern
-- logo dissolved into collage
-- logo placed with inadequate contrast/clear space
-- shell visibly conflicts with logo identity
-- logo appears pasted on due to poor integration when harmony mode is active
+Logo blocking failures:
+- any redraw/recolor/crop/warp/stretch/compression
+- internal text/symbol change
+- texture/pattern use
+- insufficient clear space/contrast
+- shell conflicts with identity
 
 ## Scored dimensions 0–10
 
-1. Brief / Objective Understanding
-2. Creative Concept Quality
-3. Art Direction Coherence
-4. Editorial Shell Quality
-5. Header Editorial Quality
-6. Footer Editorial Quality
-7. Background Integration
-8. Logo Integrity
-9. Logo-Shell Harmony
-10. Visual Hierarchy
-11. Hero Hierarchy
-12. Content Layout Fit
-13. Masonry Optical Balance
-14. Before/After Clarity
-15. Panel Frame Quality
-16. Rhythm / Negative Space
-17. Typography Quality
-18. Color / Motif Unity
-19. Reference Understanding & Mapping
-20. Asset Preservation
-21. Easy-mode Usability
-22. Reusability
-23. Overall Professional Quality
+1. Brief Understanding
+2. Communication Effectiveness
+3. Concept Strength
+4. Art Direction Coherence
+5. Originality / Non-generic Quality
+6. Editorial Shell Quality
+7. Header Quality
+8. Footer Quality
+9. Background Integration
+10. Logo Integrity
+11. Logo-Shell Harmony
+12. Visual Hierarchy
+13. Reading Flow
+14. Optical Balance
+15. Proportion
+16. Rhythm
+17. Negative Space
+18. Typography
+19. Color System
+20. Reference-image Understanding
+21. Content Layout Fit
+22. Masonry Quality
+23. Before/After Clarity
+24. Panel Frame Quality
+25. Asset Preservation
+26. Reusability
+27. Easy-mode Usability
+28. Overall Professional Quality
 
-## Acceptance
+## Acceptance gates
 
-- any blocking failure → FAIL
-- Logo Integrity < 10 when a logo is present → FAIL
-- Logo-Shell Harmony < 8 when harmony mode is active → REVISE
-- Brief / Objective Understanding < 8 → REVISE
+- any identity/preservation blocking failure → FAIL
+- Logo Integrity must be 10/10 when logo exists
+- Brief Understanding < 8 → REVISE
+- Communication Effectiveness < 8 → REVISE
+- Concept Strength < 8 → REVISE
 - Art Direction Coherence < 8 → REVISE
-- explicit counts must be 10/10 accurate
-- Before/After Clarity < 9 when used → REVISE
-- Masonry Optical Balance < 8 when used → REVISE
-- Editorial Shell Quality < 8 → REVISE
-- Asset Preservation < 9 → FAIL
+- Visual Hierarchy < 8 → REVISE
 - Overall Professional Quality < 8 → REVISE
+- exact requested counts must be 10/10
+- Before/After Clarity < 9 when used → REVISE
+- Masonry Quality < 8 when used → REVISE
 
-## Design self-critique checklist
+## Required refinement loop
 
-Before output ask internally:
-- Does the design clearly serve the communication goal?
-- Is there one coherent visual idea?
-- Is the first focal point correct?
-- Does the eye flow naturally?
-- Are shell and content one visual family?
-- Is decoration purposeful?
-- Is negative space intentional?
-- Is the page optically balanced?
-- Does typography fit the institutional/emotional tone?
-- Are references understood rather than merely copied?
-- Are protected assets respected?
-- Would the empty template already look professionally designed?
+Before final output:
+1. score the design internally
+2. identify the three weakest dimensions
+3. revise them
+4. re-score
+5. output only after no blocking issue remains
 
-If not, revise.
+## Designer-sense checklist
+
+Ask internally:
+- Does this feel designed or merely arranged?
+- Is there a clear idea behind the page?
+- Does the eye know where to start?
+- Does each region have a role?
+- Is anything present only because templates usually have it?
+- Is there enough breathing room?
+- Are visual accents earned?
+- Does the composition feel calm where it should and energetic where it should?
+- Is the logo respected and naturally integrated?
+- Would an experienced designer remove anything?
+- Would the empty template itself still feel premium?
