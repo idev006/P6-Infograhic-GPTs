@@ -1,209 +1,161 @@
-# Parameter Specification v0.5
+# Parameter Specification v0.6
 
-## Global rules
-
-- Missing values resolve to AUTO unless explicit defaults exist.
-- Explicit user instructions override presets and inference.
-- Header, Footer, and Background are system-designed by default.
-- Hero and Child are the primary slot-based regions.
-- Reference images do not populate slots automatically.
-- Preservation rules are never relaxed by omission.
-
-## G00 — Preset Selection
+## G00 — Preset
 
 - preset_id: AUTO | CUSTOM | P01..P30
-- preset_name: derived or user label
+- template_type: AUTO | infographic | poster | one_page_report | newsletter | institutional_journal
 
-Preset values are starting points only.
+## G01 — Canvas
 
-## G01 — Project & Communication
+- canvas_size: A4 default
+- orientation: portrait default
+- width/height/unit
+- output_medium
+- resolution
 
-- template_type: AUTO | infographic | poster | one_page_report
-- objective
-- topic
-- target_audience
-- communication_goal
-- primary_message
-- language
-- brand
-- platform
-- viewing_context
+## G02 — Editorial Shell
 
-## G02 — Canvas & Output
-
-- canvas_size: default A4
-- width: default 210
-- height: default 297
-- unit: default mm
-- aspect_ratio: derived
-- orientation: default portrait
-- output_medium: AUTO
-- resolution: AUTO
-- print_or_digital: AUTO
-
-## G03 — Region & Slot Architecture
-
-System-managed defaults:
+Defaults:
 - background_mode: AUTO_DESIGNED
 - header_mode: AUTO_DESIGNED
 - footer_mode: AUTO_DESIGNED
-- content_box: ENABLED
+- editorial_shell_style: AUTO
 
-Primary user-facing slot controls:
-- hero_slot_count: integer >= 0 | AUTO
-- child_slot_count: integer >= 0 | AUTO
+editorial_shell_style:
+- AUTO
+- INSTITUTIONAL
+- SCHOOL_NEWSLETTER
+- NEWS_MAGAZINE
+- GOVERNMENT_FORMAL
+- MODERN_EDITORIAL
+- CORPORATE
+- CEREMONIAL
 
-Advanced optional overrides:
-- header_instruction: string/object | AUTO
-- footer_instruction: string/object | AUTO
-- background_instruction: string/object | AUTO
+Optional overrides:
+- header_instruction
+- footer_instruction
+- background_instruction
+- visual_motif_instruction
 
-Do not require Header/Footer slot counts.
+## G03 — Region Source Mapping
 
-## G04 — Slot Definition
+- header_reference_images: array
+- footer_reference_images: array
+- background_reference_images: array
+- style_reference_images: array
+- hero_reference_images: array
+- content_reference_images: array
+- logo_image
+- locked_assets: array
 
-Optional:
-- hero_slots: array | AUTO
-- child_slots: array | AUTO
+Per-image usage_mode:
+- palette_source
+- motif_source
+- texture_source
+- composition_source
+- shape_source
+- atmosphere_source
+- silhouette_source
+- reference_only
+- locked_asset
+- bind_to_slot
+- prohibited
 
-Per slot:
-- slot_id
-- slot_index
-- semantic_role
-- content_type
-- relative_size
-- aspect_behavior
-- alignment
-- priority
-- asset_binding
-- editable_state
-- notes
+Explicit mapping overrides inference.
 
-Content types:
-TEXT, TITLE, IMAGE, STATISTIC, CHART, ICON, QR, MIXED, AUTO
+## G04 — Hero
 
-Stable IDs:
-- Hero: R01..RNN
-- Child: C01..CNN
+- hero_section: ENABLED | DISABLED
+- default: ENABLED
+- hero_slot_count: AUTO | integer >= 0
+- default: 1 unless preset/instruction indicates otherwise
 
-## G05 — Content Planning
+## G05 — Masonry Content
 
-- headline
-- subheadline
-- body_content
-- key_message
-- key_statistics
-- content_blocks
-- CTA
-- source
-- information_density: LOW | MEDIUM | HIGH | VERY_HIGH
+- child_layout_type: balanced_masonry | grid | editorial_grid | custom
+- default: balanced_masonry
+- image_panel_count: AUTO | integer >= 0
+- panel_content_mode: IMAGE_ONLY | IMAGE_WITH_CAPTION
+- default: IMAGE_ONLY
+- masonry_balance: OPTICAL
+- gutter: AUTO
+- size_variation: CONTROLLED
 
-Exact supplied Header/Footer text may be used. Missing factual text must not be invented.
+Stable panel IDs:
+- M01..MNN
 
-## G06 — Art Direction
+When image_panel_count is explicit, panel count must match exactly.
+
+## G06 — Panel Frame
+
+- panel_frame_mode: THEMED_FRAME | PLAIN_GUIDE
+- default: THEMED_FRAME
+- panel_frame_style: AUTO
+- panel_corner_style: AUTO
+- panel_border_weight: AUTO
+- panel_inset: AUTO
+- panel_shadow: AUTO
+- panel_motif: AUTO
+
+THEMED_FRAME:
+Design a decorative photo frame aligned with the template theme.
+
+PLAIN_GUIDE:
+Remove decorative framing and retain only a thin placement outline.
+
+In all modes:
+- panel remains empty
+- no reference photo is inserted automatically
+
+## G07 — Art Direction
 
 - style
 - mood
 - tone
 - visual_language
-- realism
 - creative_intensity
 - visual_complexity
 - brand_personality
+- typography_style
+- color_palette
 
-## G07 — Composition & Layout
+## G08 — Assets
 
-- layout_type
-- grid_system
-- visual_flow
-- focal_point
-- balance
-- alignment
-- whitespace
-- spatial_density
-- header_ratio
-- content_box_ratio
-- hero_ratio
-- child_ratio
-- footer_ratio
-- reading_direction
-- gutter
-- outer_margin
-
-## G08 — Images & Assets
-
-- images: array[0..12]
+- images: array[0..20]
 - logo
 - QR
 - signature
-- chart
-- diagram
-- product_assets
+- charts
+- diagrams
 - brand_assets
 
-Per asset:
-- asset_id
-- semantic_role
-- reference_mode
-- target_section
-- target_slot_id
-- priority
-- preservation_policy
-- protected_features
-- allowed_transformations
-- usage_instruction
+Preservation:
+- LOCKED
+- STRICT
+- GUIDED
+- FLEXIBLE
+- INSPIRATION_ONLY
 
-reference_mode:
-- REFERENCE_ONLY
-- PLACEHOLDER_GUIDE
-- BIND_TO_SLOT
-- FIXED_REGION_ASSET
+Default:
+- logo/emblem/QR/signature = LOCKED
 
-Default for ordinary reference images:
-PLACEHOLDER_GUIDE
+## G09 — Output
 
-Default for logo:
-REFERENCE_ONLY + LOCKED, unless user explicitly requests binding.
-
-## G09 — Constraints & Output
-
+- output_format: template_prompt | template_spec | both
 - must_include
 - must_preserve
 - must_avoid
 - forbidden_elements
-- brand_constraints
-- text_constraints
-- image_constraints
-- identity_constraints
-- prompt_language
-- prompt_detail_level
-- target_image_model
-- output_format: template_prompt | template_spec | both
-
-## AUTO inference
-
-Poster:
-- Hero 1
-- Child 1–4
-
-Infographic:
-- Hero 1–2
-- Child 3–8
-
-One-page report:
-- Hero 1–3
-- Child 4–10
-
-Header/Footer/Background remain system-managed regardless of these counts.
 
 ## Override precedence
 
 1. Explicit user instruction
-2. Explicit Hero/Child slot counts
-3. Explicit slot definitions
-4. Explicit asset binding
-5. Preservation policy
-6. Preset
-7. Plugin specification
-8. Intelligent inference
-9. Defaults
+2. Explicit region-image mapping
+3. Hero enable/disable instruction
+4. Explicit image_panel_count
+5. Explicit panel_frame_mode
+6. Explicit asset binding
+7. Preservation policy
+8. Preset
+9. Plugin inference
+10. Defaults
