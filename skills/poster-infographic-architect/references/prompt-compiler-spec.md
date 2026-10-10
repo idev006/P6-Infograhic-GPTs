@@ -1,85 +1,84 @@
-# Template Prompt Compiler Specification v0.6
+# Template Prompt Compiler Specification v0.7
 
 ## Required output order
 
-1. ROLE
-2. TEMPLATE TYPE + PRESET
-3. CANVAS
-4. REFERENCE IMAGE ROLE MAP
-5. REGION SOURCE MAP
-6. EDITORIAL SHELL STYLE
-7. BACKGROUND DESIGN
-8. HEADER DESIGN
-9. HERO SECTION
-10. BALANCED MASONRY CONTENT
-11. PANEL FRAME SYSTEM
-12. FOOTER DESIGN
-13. GRID / SPACING / GUTTER
-14. OPTICAL BALANCE
-15. TYPOGRAPHY
-16. COLOR
-17. MOTIF / GRAPHIC LANGUAGE
-18. ASSET BINDINGS
-19. PRESERVATION
-20. NEGATIVE CONSTRAINTS
-21. FINAL QA
+1. USER MODE RESOLUTION
+2. ROLE
+3. TEMPLATE TYPE + PRESET
+4. CANVAS
+5. REFERENCE IMAGE ROLE MAP
+6. REGION SOURCE MAP
+7. EDITORIAL SHELL STYLE
+8. BACKGROUND DESIGN
+9. HEADER DESIGN
+10. HERO SECTION
+11. CONTENT LAYOUT
+12. PANEL / COMPARISON FRAME SYSTEM
+13. FOOTER DESIGN
+14. GRID / SPACING / GUTTER
+15. OPTICAL BALANCE
+16. TYPOGRAPHY
+17. COLOR
+18. MOTIF / GRAPHIC LANGUAGE
+19. ASSET BINDINGS
+20. PRESERVATION
+21. NEGATIVE CONSTRAINTS
+22. FINAL QA
+
+## User-mode rule
+
+EASY:
+- avoid unnecessary jargon
+- present only essential decisions
+- internally normalize all inferred settings
+
+ADVANCED:
+- include normalized parameters and maps when useful
+
+AUTO:
+- choose EASY behavior unless explicit technical settings suggest otherwise
 
 ## Mandatory declarations
 
-State:
+State internally:
+- user_mode
 - hero_section
 - hero_slot_count
-- child_layout_type
-- image_panel_count
+- content_layout_type
 - panel_frame_mode
 - editorial_shell_style
-- Header/Background/Footer design modes
-- region reference-image mappings
+- region mappings
 
-## Panel map
+If BALANCED_MASONRY:
+- image_panel_count
+- M01..MNN map
 
-For each Masonry panel:
-- panel_id M01..MNN
-- relative size
-- aspect behavior
-- masonry position/relationship
-- frame style
-- content mode
-- asset binding if any
-- editable state
+If BEFORE_AFTER:
+- comparison_pair_count
+- orientation
+- Before position
+- After position
+- pair IDs and frame synchronization
 
-## Panel-frame language
+## Before / After prompt language
 
-When panel_frame_mode = THEMED_FRAME:
-- explicitly describe how frame design derives from the shell
-- keep panel interior empty
-- use decorative treatment that does not overpower future photographs
-
-When panel_frame_mode = PLAIN_GUIDE:
-- specify a thin placement outline only
-
-## Reference handling
-
-Do not insert a reference image solely because it influenced:
-- palette
-- motif
-- texture
-- composition
-- shape
-- atmosphere
-- silhouette
-
-Only explicit bind_to_slot / fixed-region placement permits literal insertion.
+Explicitly require:
+- Before on left / After on right by default
+- matched or optically equivalent image areas
+- clear central separation or transition cue
+- synchronized frame family
+- empty image apertures
+- no fabricated transformation claims
 
 ## Negative constraints
 
-Include:
+Include as relevant:
 - no generic blank header/footer
-- no arbitrary unrelated background
-- no Pinterest-style chaotic masonry
-- no awkward dead gaps
-- no missing requested panels
-- no automatic insertion of references
+- no unrelated background
+- no chaotic masonry
+- no visually unequal Before/After sides unless requested
+- no reversed Before/After placement unless requested
+- no missing panels/pairs
+- no automatic reference insertion
 - no distorted locked assets
-- no panel decoration overpowering future photos
 - no fabricated factual copy
