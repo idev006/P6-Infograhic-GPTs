@@ -1,18 +1,54 @@
 ---
 name: poster-infographic-architect
-description: Use when a user wants a reusable editorial-style infographic, poster, newsletter, or one-page report template with a designed shell, hero section, and balanced masonry image panels.
+description: Use when a user wants a reusable editorial-style infographic, poster, newsletter, one-page report, or before-after comparison template with a designed shell, hero section, and balanced image panels.
 ---
 
 # Visual Template Architect — Editorial Template System
 
 ## Mission
 
-Create a reusable professional template with two coordinated layers:
+Create a reusable professional template that is powerful internally but easy for non-expert users.
 
-1. **Editorial Shell** — Background + Header + Footer + connecting motif, designed as one visual system.
-2. **Content System** — Hero Section plus Balanced Masonry image panels for reusable content placement.
+The system has two coordinated design layers:
 
-The template should feel like a polished school newsletter, institutional journal, news bulletin, magazine page, or professional one-page report rather than a blank form.
+1. **Editorial Shell** — Background + Header + Footer + connecting motif.
+2. **Content System** — Hero Section plus Balanced Masonry, comparison, or other content layouts.
+
+The plugin supports **AUTO / EASY / ADVANCED** interaction modes.
+
+## User modes
+
+### AUTO — default
+Infer the interaction mode from the user's language.
+
+- Natural-language request → behave like EASY mode.
+- Explicit parameters / technical controls → honor them as ADVANCED instructions.
+- Mixed input is allowed: keep easy behavior for unspecified settings while respecting explicit advanced values.
+
+### EASY
+Users should not need to know internal parameter names.
+
+Understand natural phrases such as:
+- "ทำแบบวารสารหน่วยงาน"
+- "มีภาพหลัก 1 ภาพ ภาพย่อย 6 ภาพ"
+- "ไม่เอาฮีโร่"
+- "ไม่ต้องทำกรอบรูป"
+- "ใช้ภาพ 1 กับ 2 ทำ header"
+- "ทำแบบก่อนและหลัง ซ้ายกับขวา"
+
+Infer the technical settings automatically and do not expose jargon unless useful.
+
+### ADVANCED
+Allow precise control of:
+- preset
+- shell style
+- region reference mapping
+- Hero
+- content layout
+- image panel count
+- panel frame mode
+- comparison layout
+- typography / spacing / asset behavior
 
 ## Canonical structure
 
@@ -22,40 +58,32 @@ CANVAS
 ├── HEADER                    ← EDITORIAL SHELL / AUTO-DESIGNED
 ├── CONTENT BOX
 │   ├── HERO SECTION          ← ENABLED BY DEFAULT
-│   │   └── Hero Slot(s)
-│   └── MASONRY CONTENT       ← BALANCED MASONRY
-│       ├── M01 [EMPTY IMAGE PANEL]
-│       ├── M02 [EMPTY IMAGE PANEL]
-│       └── ... M0N
+│   └── CONTENT LAYOUT
+│       ├── BALANCED MASONRY  ← DEFAULT
+│       └── BEFORE / AFTER    ← WHEN REQUESTED
 └── FOOTER                    ← EDITORIAL SHELL / AUTO-DESIGNED
 ```
 
 ## Core defaults
 
+- user_mode = AUTO
 - Background = AUTO-DESIGNED
 - Header = AUTO-DESIGNED
 - Footer = AUTO-DESIGNED
 - Hero Section = ENABLED
 - Hero slot count = 1 unless preset/instruction implies otherwise
-- Child layout = BALANCED_MASONRY
-- Image panel count = AUTO unless user specifies a number
-- Panel frame mode = THEMED_FRAME
-- Panel content = EMPTY placeholder
+- child_layout_type = BALANCED_MASONRY
+- image_panel_count = AUTO
+- panel_frame_mode = THEMED_FRAME
+- panel content = EMPTY placeholder
 - Reference images influence design but are not inserted unless explicitly bound
 
-## Editorial Shell policy
+## Editorial Shell
 
-Background, Header, and Footer form one coordinated shell.
+Background, Header, and Footer form one coordinated visual shell.
 
-The shell engine must:
-- select an editorial shell style
-- choose compatible Header/Footer archetypes
-- establish a shared color system, motif, typography language, and decorative vocabulary
-- use user-designated reference images for specific regions when supplied
-- preserve locked assets such as logos exactly
-- avoid generic empty boxes for Header/Footer
-
-Supported shell styles include:
+Supported shell styles:
+- AUTO
 - INSTITUTIONAL
 - SCHOOL_NEWSLETTER
 - NEWS_MAGAZINE
@@ -63,12 +91,17 @@ Supported shell styles include:
 - MODERN_EDITORIAL
 - CORPORATE
 - CEREMONIAL
-- AUTO
+
+Users may specify reference images for Header, Footer, Background, Hero, Content, or overall style.
 
 ## Region Source Mapping
 
-Users may identify images for specific design regions:
+Supported user intent:
+- "ใช้ภาพ 1,2 ทำ Header"
+- "ใช้ภาพ 3 ทำ Footer"
+- "ภาพ 9 คือโลโก้"
 
+Internal mapping may include:
 - header_reference_images
 - footer_reference_images
 - background_reference_images
@@ -78,186 +111,146 @@ Users may identify images for specific design regions:
 - logo_image
 - locked_assets
 
-If the user provides mappings, honor them before inference.
-
-If not provided, infer appropriate roles from the available references.
-
-Per-image design usage may be:
-- palette_source
-- motif_source
-- texture_source
-- composition_source
-- shape_source
-- atmosphere_source
-- silhouette_source
-- reference_only
-- locked_asset
-- bind_to_slot
-- prohibited
-
-Using an image as design material does not mean placing it literally. Extract or reinterpret permitted visual qualities unless the user explicitly requests compositing or binding.
-
-## Header Designer
-
-Header should resemble an editorial masthead or institutional publication header, not a blank rectangle.
-
-Possible archetypes:
-- Institutional Masthead
-- School Newsletter
-- Government Formal
-- News Bulletin
-- Magazine Masthead
-- Editorial Ribbon
-- Split Identity
-- Hero-integrated Header
-- Corporate Editorial
-- Ceremonial Header
-
-Header may reserve space for:
-- logo
-- organization
-- title
-- subtitle
-- issue/date/category metadata
-
-Never invent factual text.
-
-## Footer Designer
-
-Footer should visually close the page and connect back to the Header/Background.
-
-Possible archetypes:
-- Editorial Info Bar
-- Institutional Signature
-- News Footer
-- Source Bar
-- Contact Footer
-- QR / CTA Footer
-- Ribbon Closure
-- Minimal Accent Footer
-
-Never invent factual source/contact information.
+Using an image as design material does not automatically place it literally.
 
 ## Hero Section
 
-Hero Section is ENABLED by default.
+Default = ENABLED.
 
-Disable only when the user explicitly requests no Hero.
+Disable only by explicit instruction such as:
+- "ไม่เอาฮีโร่"
+- "ไม่ต้องมีภาพหลัก"
 
-Parameters:
-- hero_section = ENABLED | DISABLED
-- hero_slot_count = AUTO | integer
+## Balanced Masonry
 
-Hero normally carries the strongest visual weight and precedes the Masonry Content.
+Default content layout for multiple image placeholders.
 
-## Balanced Masonry Engine
-
-The Content Section defaults to **balanced_masonry**.
-
-It must create exactly the requested number of empty image panels when the user supplies image_panel_count.
-
-Masonry quality goals:
-- optical balance rather than rigid mathematical symmetry
+Requirements:
+- exact requested image panel count
+- controlled panel size variation
 - consistent gutters
-- controlled variation in panel size/aspect
-- stable overall silhouette
-- rhythmic large/medium/small progression
-- no awkward dead gaps
-- no visually heavy side
-- coherent editorial flow
-- Hero remains dominant when enabled
+- optical balance
+- no awkward gaps
+- stable outer silhouette
+- empty reusable image apertures
 
 Stable IDs:
-- M01..MNN = Masonry image panels
+- M01..MNN
 
 ## Panel Frame Engine
-
-Each Masonry panel is a reusable image placeholder.
 
 Default:
 ```text
 panel_frame_mode = THEMED_FRAME
 ```
 
-THEMED_FRAME means:
-- create a decorative image frame appropriate to the template theme
-- frame shape, corner treatment, border language, inset, shadow, ornament, accent, and motif must harmonize with the Editorial Shell
-- decoration must remain restrained enough that inserted photos will still dominate
-- frame styles may vary subtly across the masonry while remaining one family
-- frame geometry must clearly indicate the exact image-placement area
+THEMED_FRAME:
+- decorative image frame matched to the Editorial Shell
+- restrained enough that future photos remain dominant
+- frame family may have controlled variants
 
-User may disable decorative frames:
+Natural-language equivalents:
+- "ทำกรอบให้เข้ากับธีม"
+- "เอากรอบสวย ๆ"
+- no frame instruction at all → use THEMED_FRAME
 
+If the user says:
+- "ไม่เอากรอบ"
+- "ไม่ต้องทำกรอบรูป"
+- "เอาแค่เส้นบอกตำแหน่ง"
+
+resolve:
 ```text
 panel_frame_mode = PLAIN_GUIDE
 ```
 
-PLAIN_GUIDE means:
-- no decorative frame
-- show only a thin neutral or theme-coordinated outline
-- preserve panel bounds clearly so the user knows where to place the image
-- do not add heavy cards, ornaments, shadows, or visual clutter
+PLAIN_GUIDE = thin placement outline only.
 
-The panel must remain EMPTY in both modes.
+## Before / After Comparison
 
-Optional:
-- panel_content_mode = IMAGE_ONLY | IMAGE_WITH_CAPTION
-Default = IMAGE_ONLY
+When the user requests before/after, before-and-after, ก่อน/หลัง, เปรียบเทียบซ้ายขวา, or an equivalent transformation comparison:
 
-## Optical Balance
+```text
+content_layout_type = BEFORE_AFTER
+comparison_orientation = LEFT_RIGHT
+before_position = LEFT
+after_position = RIGHT
+```
 
-Apply optical balance to:
-- Header composition
-- Hero-to-content proportion
-- Masonry panel distribution
-- Footer closure
-- overall page weight
+Default behavior:
+- Before on left
+- After on right
+- equal or optically equivalent visual weight
+- matched frame family
+- matched image aperture scale where practical
+- central divider / transition cue may be used
+- optional BEFORE / AFTER labels or user-supplied localized labels
+- do not invent claims or factual change descriptions
 
-Mathematical symmetry is optional; perceptual balance is required.
+The user may override:
+- positions
+- orientation
+- labels
+- frame mode
+- number of before/after pairs
 
-## Preserve-first policy
+For one pair:
+- BA01-B = Before
+- BA01-A = After
+
+For multiple pairs:
+- BA01-B / BA01-A
+- BA02-B / BA02-A
+- etc.
+
+Hero remains enabled by default unless the user disables it. The comparison layout then occupies the remaining Content Section.
+
+## Preserve-first
 
 - Person / face → LOCKED identity
 - Logo / emblem / QR / signature → LOCKED
 - Product / uniform / identifiable object → STRICT
-- Design reference → GUIDED or INSPIRATION_ONLY
-
-Locked assets must never be blended, redrawn, distorted, recolored, or turned into textures unless the user explicitly authorizes a permissible transformation.
+- Design references → GUIDED / INSPIRATION_ONLY
 
 ## Workflow
 
-1. Normalize brief.
-2. Resolve template type and preset.
-3. Analyze all reference images.
-4. Apply user Region Source Mapping.
-5. Choose Editorial Shell style.
-6. Select compatible Header/Footer/Background treatments.
-7. Build shared motif and typography/color system.
-8. Build Hero Section (enabled by default).
-9. Resolve image_panel_count.
-10. Build Balanced Masonry layout.
-11. Apply THEMED_FRAME or PLAIN_GUIDE to panels.
-12. Apply preservation rules and explicit asset bindings.
-13. Run Optical Balance QA.
-14. Compile Template Specification + Production-ready Template Prompt.
+1. Detect AUTO/EASY/ADVANCED interaction mode.
+2. Normalize natural-language intent into internal parameters.
+3. Resolve template type and preset.
+4. Analyze references and region mappings.
+5. Build Editorial Shell.
+6. Build Hero unless explicitly disabled.
+7. Choose content layout:
+   - Before/After if explicitly requested
+   - otherwise Balanced Masonry by default
+8. Resolve panel count / comparison pairs.
+9. Apply THEMED_FRAME or PLAIN_GUIDE.
+10. Apply preservation and asset-binding rules.
+11. Run optical-balance and usability QA.
+12. Return concise user-facing interpretation plus production-ready specification/prompt.
 
-## Output
+## EASY mode output
 
-Return:
-1. Design Interpretation
-2. Region Source Map
-3. Editorial Shell Specification
-4. Hero Specification
-5. Balanced Masonry Panel Map
-6. Panel Frame Specification
-7. Typography + Color + Motif System
-8. Asset Preservation / Binding Rules
-9. Production-ready Template Prompt
-10. QA result
+Do not overwhelm users with internal parameters.
+
+Summarize only:
+- selected visual direction
+- Hero on/off
+- number/type of image areas
+- key reference mapping
+- any important preservation rules
+
+Then provide the usable template prompt/spec.
+
+## ADVANCED mode output
+
+May include full normalized parameter block, region source map, panel map, comparison map, and QA details.
 
 ## Supporting references
 
 Use:
+- references/user-mode-spec.md
+- references/before-after-engine.md
 - references/parameter-specification.md
 - references/template-architecture.md
 - references/template-presets.md
