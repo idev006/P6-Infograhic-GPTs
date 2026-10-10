@@ -1,17 +1,15 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "visual-prompt-architect",
-  "version": "0.5.0",
-  "description": "Creates reusable infographic, poster, and one-page report templates with 30 presets, system-designed background/header/footer, and configurable hero/child slots.",
-  "author": {
-    "name": "idev006"
-  },
+  "version": "0.6.0",
+  "description": "Editorial template system with auto-designed shell, default Hero, balanced masonry image panels, themed photo frames, region source mapping, and 30 presets.",
+  "author": {"name": "idev006"},
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Visual Template Architect",
-        "shortDescription": "Visual layout template builder",
-        "longDescription": "Builds reusable infographic, poster, and one-page report templates with configurable canvas, background, header, content box, hero slots, child-content slots, and footer slots while preserving user-supplied assets.",
+        "shortDescription": "Editorial visual template builder",
+        "longDescription": "Builds reusable editorial-style infographic, poster, newsletter, and one-page templates with coordinated background/header/footer shells, default Hero sections, balanced masonry photo panels, theme-matched frames, region-specific reference mapping, and preserve-first asset handling.",
         "developerName": "idev006",
         "category": "Creativity",
         "capabilities": ["Interactive"],
