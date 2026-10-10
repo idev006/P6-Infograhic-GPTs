@@ -1,110 +1,75 @@
-# Before / After Comparison Engine v0.7
+# Before / After Comparison Engine v0.10
 
 ## Purpose
 
-Create a clear, aesthetically balanced transformation comparison that lets the viewer compare the state before and after an activity, improvement, renovation, treatment, cleanup, process, or other change.
+Create clear transformation comparisons without degrading image usability or turning the page into a repetitive form.
 
-## Trigger
+## Default semantics
 
-Activate when the user explicitly requests:
-- Before / After
-- before-and-after
-- ก่อน / หลัง
-- ก่อนและหลัง
-- ก่อน-หลัง
-- เปรียบเทียบก่อนทำกับหลังทำ
-- เปรียบเทียบซ้ายขวา
-- equivalent transformation-comparison intent
+- Before = LEFT
+- After = RIGHT
+- pairing must be immediately obvious
+- matched or optically equivalent crop opportunity
 
-## Default layout
+## Layout selection by pair count
 
-```text
-BEFORE | AFTER
- LEFT  | RIGHT
-```
+### 1 pair
+Large direct comparison.
 
-Internal defaults:
-- content_layout_type = BEFORE_AFTER
-- comparison_orientation = LEFT_RIGHT
-- before_position = LEFT
-- after_position = RIGHT
-- comparison_pair_count = 1 unless otherwise specified
-- comparison_balance = OPTICAL_EQUIVALENCE
-- comparison_frame_sync = MATCHED
-- panel_frame_mode = THEMED_FRAME unless overridden
+### 2 pairs
+Two strong paired modules or a coordinated 2-pair composition.
 
-## Composition
+### 3 pairs
+PAIRED_BALANCED_MASONRY preferred.
 
-For each pair:
-- Before and After image apertures should use equal or perceptually equivalent area.
-- Prefer matched aspect ratios.
-- Use equal margins and synchronized frame treatment.
-- Use a central divider, transition line, arrow, label bridge, or whitespace channel when it improves recognition.
-- Do not add visual decoration that makes one side appear intentionally superior except where the user requests an expressive transformation treatment.
+### 4+ pairs
+Run Presentation Viability first.
+
+Consider:
+- compact Hero
+- landscape
+- multi-page
+- paired collage
+
+Do not default to repetitive thin horizontal rows.
+
+## Paired Balanced Masonry
+
+Requirements:
+- visible pair relationships
+- controlled variation in pair scale
+- consistent Before/After logic
+- compatible but not necessarily identical module heights
+- no decorative asymmetry that harms comparison
 
 ## Labels
 
-Default labels may be:
-- BEFORE / AFTER for English
-- ก่อน / หลัง for Thai
+Thai default:
+- ก่อนดำเนินการ
+- หลังดำเนินการ
 
-If the user supplies exact labels, use them.
+English default:
+- BEFORE
+- AFTER
 
-If the user asks for no labels:
-- before_label = NONE
-- after_label = NONE
-
-Labels are navigational, not factual claims.
-
-## Multiple pairs
-
-Stable IDs:
-- BA01-B = Before pair 1
-- BA01-A = After pair 1
-- BA02-B / BA02-A
-- etc.
-
-Recommended A4 portrait behavior:
-- 1 pair: large left/right pair
-- 2 pairs: two stacked left/right comparison rows
-- 3 pairs: compact paired modules if still legible
-- 4+ pairs: adapt density carefully; prefer repeated paired rows or paired masonry
-
-Do not break visual pairing.
+Labels are navigational only.
 
 ## Hero relationship
 
-Hero remains enabled by default.
+Hero is enabled by default, but may become COMPACT when comparison density is high.
 
-When a Hero is present:
-- Hero stays above or otherwise dominant
-- comparison occupies the remaining content area
-- Hero may introduce the activity, not duplicate the Before/After pair
+If preserving a large Hero makes comparison panels unusable, adapt orientation/page count rather than shrinking panels beyond usability.
 
-If the user wants the comparison itself to be the Hero, this is allowed by explicit instruction.
+## Frames
 
-## Frame relationship
+Use synchronized theme family.
 
-THEMED_FRAME:
-- use the same frame family on both sides
-- may use subtle BEFORE/AFTER accents while preserving equal visual weight
-
-PLAIN_GUIDE:
-- use matched thin outlines only
-
-## Asset behavior
-
-If actual Before/After photos are supplied only as references for template design, do not insert them unless explicit binding is requested.
-
-If the user explicitly requests those images to populate the comparison, bind them to the corresponding Before/After panels.
+Avoid repeated double-border form boxes.
 
 ## QA
 
-Revise if:
-- left/right roles are ambiguous
-- default ordering is reversed
-- panel areas are noticeably unequal without instruction
-- frame treatment differs enough to bias the comparison
-- visual pairing is broken
-- labels collide with image apertures
-- multiple pairs cannot be matched instantly
+FAIL if:
+- pairing is ambiguous
+- Before/After ordering is wrong
+- panels are too small/thin for realistic photos
+- the solution is repetitive grid-like without user request
