@@ -1,145 +1,176 @@
-# Design Foundations v0.8
+# Design Foundations v0.9
 
-## Core philosophy
+## Design as judgment
 
-Design is purposeful visual communication.
+Design is not the sum of rules. Rules support judgment.
 
-A successful template should not merely be attractive. It should:
-- clarify meaning
-- guide attention
-- express appropriate character
-- respect identity
-- create emotional and visual coherence
-- remain reusable
+The system should combine:
+- communication logic
+- perception
+- visual culture
+- editorial practice
+- restraint
+- context
+- hierarchy
+- rhythm
+- proportion
+- emotional appropriateness
+
+## Meaning before form
+
+Understand purpose before styling.
+
+A visually attractive solution that does not communicate the intended message is a design failure.
 
 ## Concept before decoration
 
-Before styling, establish:
-- communication objective
-- audience
-- intended response
-- dominant message
-- supporting evidence
-- emotional/institutional tone
-- one coherent visual concept
+Every major choice should connect to the concept.
 
-Decoration without purpose should be removed.
+Ask:
+- Why is this element here?
+- What does it help the viewer understand or feel?
+- Does it strengthen identity, navigation, hierarchy, or tone?
+
+If not, remove or simplify it.
 
 ## Visual hierarchy
 
-Control what is seen first, second, and later using:
+Create one clear entry point and an intentional path through the page.
+
+Use:
 - scale
-- contrast
-- weight
 - position
-- color
-- spacing
+- contrast
+- density
+- whitespace
+- typography
 - imagery
 - grouping
+- directional cues
 
-Typical order:
-1. identity / main focal message
-2. Hero or core transformation
-3. supporting content
-4. metadata / source / CTA
+## Optical balance
 
-## Gestalt
+Balance is perceptual, not purely geometric.
 
-Use proximity, similarity, continuity, figure-ground, common region, and connectedness intentionally.
+Use visual weight:
+- size
+- darkness
+- saturation
+- complexity
+- position
+- density
+- subject prominence
 
-## Grid and rhythm
+Asymmetry may feel more natural and editorial when balanced well.
 
-Use structural grids responsive to:
-- canvas
-- content density
-- panel count
-- Hero shape
-- reading direction
+## Proportion
 
-Rhythm comes from repeated relationships, not repeated identical boxes.
+Use proportional relationships that feel intentional.
+
+Avoid:
+- oversized headers
+- decorative footers that compete with content
+- tiny orphan panels
+- over-dominant logos
+- uniformly sized content when variation would improve rhythm
+
+## Rhythm
+
+Build rhythm through repeated relationships:
+- spacing
+- panel scale
+- alignment
+- recurring motif
+- typography levels
+- color accents
+
+Rhythm should guide the eye, not become mechanical repetition.
 
 ## Negative space
 
-Whitespace is active structure.
-Use it to:
-- separate
-- emphasize
-- create breathing room
-- improve comprehension
-- increase perceived quality
+Whitespace is a design material.
 
-## Balance
+It creates:
+- hierarchy
+- calm
+- focus
+- separation
+- perceived quality
 
-Prefer optical balance.
-Symmetry is optional.
-Asymmetry may feel more editorial and alive when visual weight remains controlled.
+Do not fill every area simply because space exists.
+
+## Gestalt
+
+Use proximity, similarity, continuity, figure-ground, common region, closure, and connectedness intentionally.
 
 ## Typography
 
-Typography must match purpose and tone.
+Typography carries voice.
 
-Use clear levels:
-- publication/organization identity
-- headline
-- subheadline
-- key number/statistic
-- body
-- caption
-- CTA/source
+Choose character appropriate to:
+- institution
+- audience
+- topic
+- emotional tone
+- publication type
 
 For Thai:
-- protect vowel/tone mark clearance
+- preserve vowel/tone mark clearance
 - use appropriate leading
 - avoid awkward wraps
 - control headline line count
-- preserve readability at intended viewing distance
+- maintain readability at intended scale
 
-## Color architecture
+## Color
 
-Assign roles:
+Use functional color roles:
 - primary
 - secondary
 - accent
 - background
 - surface
-- text-primary
-- text-secondary
-- highlight/alert
+- text
+- highlight
 
-When a locked logo exists, the palette should harmonize around it without altering the logo.
+Color should support hierarchy and identity, not decorate indiscriminately.
 
-## Reference interpretation
+## Image intelligence
 
-Do not merely copy reference images.
+Images are not interchangeable blocks.
 
-Extract permitted design information:
-- palette
+Use differences in:
+- orientation
 - energy
-- composition tendencies
-- motif
-- texture
-- geometry
-- cultural/institutional cues
-- photographic character
+- subject scale
+- color
+- context
+- narrative importance
 
-Then synthesize a coherent new template.
+to determine placement and visual weight.
 
-## Unity
+## Editorial sense
 
-The result should feel authored by one designer:
-- one visual language
-- one hierarchy system
-- one spacing logic
-- one family of shapes/frames
-- coherent typography and color
+Good editorial design balances:
+- structure and spontaneity
+- consistency and variation
+- clarity and character
+- information and breathing room
+- authority and accessibility
 
 ## Restraint
 
-High-quality design often comes from editing.
-Avoid:
-- too many motifs
-- too many font personalities
-- too many unrelated colors
-- decorative noise
-- every panel competing for attention
-- generic template clichés
+Professional quality often comes from what is removed.
+
+Avoid too many:
+- motifs
+- frame styles
+- font personalities
+- colors
+- effects
+- competing focal points
+
+## Unity
+
+The final page should feel as if one strong designer made every decision.
+
+Shell, typography, panels, image treatment, spacing, color, and brand integration must share a coherent design language.
