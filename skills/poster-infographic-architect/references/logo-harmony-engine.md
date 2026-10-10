@@ -1,117 +1,59 @@
-# Logo Harmony Engine v0.8
+# Logo Harmony Engine v0.10
 
 ## Core principle
 
 **Preserve the logo. Harmonize the environment.**
 
-The logo is not a styling surface. It is an identity anchor.
+## Exact asset rule
 
-## Default mode
+Default:
+- logo_render_policy = ORIGINAL_ASSET_ONLY
+- logo_generation = FORBIDDEN
+- logo_redraw = FORBIDDEN
+- logo_style_transfer = FORBIDDEN
+- logo_compositing = REQUIRED_WHEN_USED
 
-- logo_integration_mode = PRESERVE_AND_HARMONIZE
-- logo_policy = LOCKED_100
-- logo_placement_mode = DIGNIFIED_EDITORIAL
-- logo_clear_space = AUTO_PROTECTED
-- shell_harmony_from_logo = ENABLED
+The logo is never recreated by the generative design pass.
 
-## LOCKED_100
+## Workflow
 
-Preserve exactly:
-- geometry
-- aspect ratio
-- colors
-- symbols
-- internal text
-- internal spacing
-- mark-to-word relationship
+1. analyze original logo for visual character
+2. derive safe shell harmony cues
+3. design Header/Background/Footer around the identity
+4. reserve protected logo zone
+5. composite supplied original logo proportionally
+6. QA against original
 
-Forbidden:
-- redraw
-- recolor
-- crop
-- warp
-- stretch
-- compress
-- perspective distortion
-- simplification
-- stylization
-- embossing/filtering that changes identity
-- texture/pattern use
-- collage dissolution
+## Harmonization cues
 
-## Harmonization
-
-Do not force the logo to match the template.
-
-Adapt the shell around it through:
-- compatible surrounding colors
-- accent roles derived from or complementary to logo colors
-- appropriate contrast field
-- protected clear space
-- typography character
-- motif / shape language
+May adapt:
+- surrounding colors
+- accent palette
+- contrast field
+- clear space
+- typography
+- motif
 - line weight
 - geometry
 - placement
-- scale
-- nearby whitespace
 
-The surrounding design may echo compatible qualities of the logo, but never duplicate or distort the logo itself.
+Do not alter:
+- logo pixels/content
+- internal text
+- symbols
+- colors
+- aspect ratio
+- geometry
 
-## Placement dignity
-
-Logo placement should feel intentional and institutional.
+## Dignified placement
 
 Avoid:
-- corner sticker appearance
-- cramped placement
-- decorative overlap
+- sticker-like corner placement
+- cramped clear space
 - low contrast
-- excessive size
-- token tiny size
-- arbitrary rotation
-- collision with title or imagery
+- excessive prominence
+- arbitrary effects
 
-## Integration with Header
+## Failure rule
 
-The Header Designer should treat logo placement as part of masthead composition.
-
-Possible relationships:
-- logo + organization lockup
-- logo anchored beside title block
-- logo within protected identity field
-- logo aligned to editorial grid
-- logo separated by deliberate clear space
-
-## Integration with Shell
-
-Header, Footer, frame system, and motif may adapt to the logo's visual character.
-
-Example:
-- circular emblem → shell may use restrained arcs/rounded accents
-- shield/crest → shell may use formal structured geometry
-- strong institutional colors → use those as accent roles, not necessarily page-wide fills
-
-## Downstream limitation
-
-If a generative image model cannot guarantee exact logo fidelity:
-- do not pretend that it can
-- reserve a clean logo placement zone
-- recommend compositing the original logo asset afterward
-
-## QA
-
-FAIL if:
-- identity changes
-- aspect ratio changes
-- colors change
-- any internal symbol/text changes
-- logo is cropped or warped
-- logo becomes decorative texture
-- clear space is insufficient
-- logo lacks readable contrast
-
-REVISE if:
-- logo looks pasted on
-- shell visually fights the logo
-- logo placement lacks hierarchy or dignity
+If the final logo is not the supplied original asset, the result fails regardless of visual similarity.
