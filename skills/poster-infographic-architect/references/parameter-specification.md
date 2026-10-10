@@ -1,15 +1,11 @@
-# Parameter Specification v0.8
+# Parameter Specification v0.10
 
 ## G00 — Interaction
-
 - user_mode: AUTO | EASY | ADVANCED
-- default: AUTO
-- design_intelligence: REQUIRED
+- design_cognition: REQUIRED
 - art_direction_mode: AUTO | GUIDED | USER_DEFINED
-- default: AUTO
 
 ## G01 — Project Understanding
-
 - objective
 - target_audience
 - desired_outcome
@@ -23,47 +19,44 @@
 - must_preserve
 - must_avoid
 
-Missing values are inferred when safe.
-
-## G02 — Preset & Template
-
+## G02 — Template & Canvas
 - preset_id: AUTO | CUSTOM | P01..P30
 - template_type: AUTO | infographic | poster | one_page_report | newsletter | institutional_journal | magazine
-
-## G03 — Canvas
-
 - canvas_size: A4 default
 - orientation: portrait default
-- width
-- height
-- unit
-- output_medium
-- resolution
+- page_count: AUTO | integer >= 1
+- width / height / unit / resolution
 
-## G04 — Creative Concept & Art Direction
+## G03 — Presentation Viability
+- presentation_viability: REQUIRED
+- minimum_photo_usability: HIGH | MEDIUM | LOW
+- default: HIGH
+- orientation_adaptation: AUTO
+- page_count_adaptation: AUTO
+- hero_compaction: AUTO
+- density_guard: ENABLED
+- real_photo_simulation: REQUIRED
 
-- creative_concept: AUTO | string
-- visual_hierarchy_plan: AUTO | object
-- editorial_shell_style: AUTO | INSTITUTIONAL | SCHOOL_NEWSLETTER | NEWS_MAGAZINE | GOVERNMENT_FORMAL | MODERN_EDITORIAL | CORPORATE | CEREMONIAL
-- typography_character: AUTO
-- color_strategy: AUTO
-- motif_strategy: AUTO
-- visual_density: AUTO | LOW | MEDIUM | HIGH | VERY_HIGH
-- balance_strategy: OPTICAL | SYMMETRIC | ASYMMETRIC | AUTO
-- negative_space_strategy: AUTO
+## G04 — Art Direction
+- creative_concept
+- visual_hierarchy_plan
+- editorial_shell_style
+- typography_character
+- color_strategy
+- motif_strategy
+- visual_density
+- balance_strategy
+- negative_space_strategy
 
 ## G05 — Editorial Shell
-
 - background_mode: AUTO_DESIGNED
 - header_mode: AUTO_DESIGNED
 - footer_mode: AUTO_DESIGNED
 - header_instruction
 - footer_instruction
 - background_instruction
-- visual_motif_instruction
 
 ## G06 — Region Source Mapping
-
 - header_reference_images
 - footer_reference_images
 - background_reference_images
@@ -73,103 +66,83 @@ Missing values are inferred when safe.
 - logo_image
 - locked_assets
 
-usage_mode:
-palette_source, motif_source, texture_source, composition_source, shape_source, atmosphere_source, silhouette_source, reference_only, locked_asset, bind_to_slot, prohibited
+## G07 — Exact Asset Pipeline
+For identity-critical assets:
+- asset_render_policy: ORIGINAL_ASSET_ONLY | GENERATIVE_ALLOWED
+- default for logo/emblem/QR/signature/official insignia: ORIGINAL_ASSET_ONLY
+- asset_generation: FORBIDDEN by default
+- asset_redraw: FORBIDDEN by default
+- asset_style_transfer: FORBIDDEN by default
+- asset_compositing: REQUIRED_WHEN_USED
+- protected_clear_space: AUTO
 
-## G07 — Logo Harmony
-
-- logo_integration_mode: PRESERVE_AND_HARMONIZE | PLACE_ONLY | USER_DEFINED
-- default: PRESERVE_AND_HARMONIZE
+## G08 — Logo Harmony
+- logo_integration_mode: PRESERVE_AND_HARMONIZE
 - logo_policy: LOCKED_100
 - logo_placement_mode: DIGNIFIED_EDITORIAL
-- logo_clear_space: AUTO_PROTECTED
-- logo_contrast_field: AUTO
-- brand_integration_level: HIGH | MEDIUM | LOW
-- default: HIGH
-- shell_harmony_from_logo: ENABLED | DISABLED
-- default: ENABLED
+- shell_harmony_from_logo: ENABLED
 
-LOCKED_100 forbids redraw, recolor, crop, warp, stretch, compression, simplification, internal edits, texture use, or collage dissolution.
-
-Shell harmony adapts environment around the logo, not the logo itself.
-
-## G08 — Hero
-
+## G09 — Hero
 - hero_section: ENABLED | DISABLED
 - default: ENABLED
 - hero_slot_count: AUTO | integer >= 0
-- default: 1
+- hero_size_mode: AUTO | FULL | COMPACT
+- viability may select COMPACT unless explicit user constraint forbids it
 
-## G09 — Content Layout
+## G10 — Content Layout
+- content_layout_type:
+  AUTO | BALANCED_MASONRY | PAIRED_BALANCED_MASONRY | EDITORIAL_COLLAGE | BEFORE_AFTER | GRID | EDITORIAL_GRID | CUSTOM
 
-- content_layout_type: AUTO | BALANCED_MASONRY | BEFORE_AFTER | GRID | EDITORIAL_GRID | CUSTOM
-- default: BALANCED_MASONRY unless comparison is requested
+Defaults:
+- general multi-image → BALANCED_MASONRY
+- multi-pair Before/After → PAIRED_BALANCED_MASONRY
+- magazine/journal narrative → EDITORIAL_COLLAGE when advantageous
 
-### Masonry
+### Panel count
 - image_panel_count: AUTO | integer >= 0
+- comparison_pair_count: AUTO | integer >= 1
 - panel_content_mode: IMAGE_ONLY | IMAGE_WITH_CAPTION
-- masonry_balance: OPTICAL
-- gutter: AUTO
-- size_variation: CONTROLLED
+
+### Collage rules
+- equal_size_grid_fallback: FORBIDDEN unless explicitly requested
+- panel_size_variation: CONTROLLED
+- gutter_consistency: REQUIRED
+- optical_balance: REQUIRED
+- minimum_aperture_viability: REQUIRED
 
 ### Before / After
-- comparison_pair_count: AUTO | integer >= 1
-- comparison_orientation: LEFT_RIGHT | TOP_BOTTOM
-- default: LEFT_RIGHT
-- before_position: LEFT | TOP | RIGHT | BOTTOM
-- default: LEFT
-- after_position: RIGHT | BOTTOM | LEFT | TOP
-- default: RIGHT
-- before_label: AUTO | string | NONE
-- after_label: AUTO | string | NONE
-- comparison_divider: AUTO | ENABLED | DISABLED
-- comparison_balance: OPTICAL_EQUIVALENCE
+- comparison_orientation: LEFT_RIGHT | TOP_BOTTOM | AUTO
+- before_position: LEFT by default
+- after_position: RIGHT by default
+- comparison_pairing: EXPLICIT
 - comparison_frame_sync: MATCHED
 
-## G10 — Panel Frame
-
+## G11 — Panel Frame
 - panel_frame_mode: THEMED_FRAME | PLAIN_GUIDE
 - default: THEMED_FRAME
-- panel_frame_style: AUTO
-- panel_corner_style: AUTO
-- panel_border_weight: AUTO
-- panel_inset: AUTO
-- panel_shadow: AUTO
-- panel_motif: AUTO
+- frame_family: AUTO
+- frame_repetition: CONTROLLED
+- form_field_appearance: FORBIDDEN
+- decorative_overload: FORBIDDEN
 
-## G11 — Assets & Preservation
-
-- images: array[0..20]
-- logo
-- QR
-- signature
-- charts
-- diagrams
-- brand_assets
-
-Preservation:
+## G12 — Assets & Preservation
+Preservation levels:
 LOCKED, STRICT, GUIDED, FLEXIBLE, INSPIRATION_ONLY
 
-Logo/emblem/QR/signature/official insignia default = LOCKED.
-
-## G12 — Output
-
+## G13 — Output
 - output_format: template_prompt | template_spec | both
 - critique_visibility: HIDDEN | SUMMARY | FULL
-- default: SUMMARY in ADVANCED, HIDDEN in EASY
 
 ## Override precedence
-
 1. Explicit user instruction
-2. Explicit advanced parameter
-3. Preservation / identity integrity
-4. Explicit region-image mapping
-5. Logo Harmony policy
-6. Before/After request
-7. Hero instruction
-8. Explicit panel/pair count
-9. Explicit frame mode
-10. Explicit asset binding
-11. Preset
-12. Art Direction inference
-13. Plugin defaults
+2. Identity / exact-asset integrity
+3. Presentation viability
+4. Explicit advanced parameter
+5. Explicit region mapping
+6. Before/After semantics
+7. Hero requirements
+8. Explicit counts
+9. Frame mode
+10. Preset
+11. Art-direction inference
+12. Defaults
