@@ -1,15 +1,17 @@
-# Section & Layout Engine v0.6
+# Section & Layout Engine v0.7
 
 ## Page hierarchy
 
 ```text
 PAGE
-├── BACKGROUND      ← auto-designed shell
-├── HEADER          ← auto-designed shell
+├── BACKGROUND
+├── HEADER
 ├── CONTENT BOX
-│   ├── HERO        ← enabled by default
-│   └── MASONRY     ← balanced image panels
-└── FOOTER          ← auto-designed shell
+│   ├── HERO              ← enabled by default
+│   └── CONTENT LAYOUT
+│       ├── BALANCED MASONRY
+│       └── BEFORE / AFTER
+└── FOOTER
 ```
 
 ## Hero
@@ -18,76 +20,64 @@ Default:
 - enabled
 - one dominant slot
 
-Disable only if the user explicitly requests no Hero.
+Disable only by explicit request.
 
 Typical A4 portrait Hero share:
-- 22–45% of Content Box depending on density and panel count
+- 20–42% of Content Box depending on layout and density
 
 ## Balanced Masonry
 
-Default child layout:
-- balanced_masonry
+Default content layout unless the user requests comparison.
 
-Principles:
+Rules:
 - consistent gutters
 - controlled size variation
-- mixed but compatible aspect ratios
-- optical left/right weight balance
-- stable outer silhouette
+- optical balance
+- stable silhouette
 - no accidental dead space
-- visual rhythm
-- no excessively tiny orphan panel
-- preserve readable margins
-- adapt to exact requested panel count
+- no tiny orphan panel
+- exact requested panel count
 
-The system may use portrait, landscape, square, tall, or wide panels as long as the overall composition remains harmonious.
+## Before / After Layout
+
+Triggered by explicit transformation/comparison intent.
+
+Default:
+```text
+orientation = LEFT_RIGHT
+BEFORE = LEFT
+AFTER = RIGHT
+```
+
+Design rules:
+- two comparison zones should have equal or optically equivalent visual weight
+- image apertures should be matched in scale/aspect where feasible
+- use the same frame family on both sides
+- central divider, arrow, transition line, or directional cue may be used when it improves clarity
+- labels should be visually parallel
+- preserve enough separation that users immediately perceive comparison
+- do not let one side dominate unless explicitly requested
+- do not fabricate explanatory copy
+
+When multiple pairs are requested, use repeated paired modules while preserving a clear reading sequence.
+
+A4 portrait options:
+- one large left/right pair
+- two stacked left/right pairs
+- compact paired masonry for 3+ pairs only when readability remains high
 
 ## Panel Frame Engine
 
-Default:
-- THEMED_FRAME
+THEMED_FRAME is default for Masonry and Before/After.
 
-THEMED_FRAME:
-- derive border/mask/frame language from shell theme
-- use restrained decorative treatment
-- maintain a clearly visible image aperture
-- keep visual priority below the photographs that will later be inserted
-- use one frame family, with limited controlled variants if needed for masonry rhythm
+PLAIN_GUIDE provides thin placement outlines only.
 
-PLAIN_GUIDE:
-- thin boundary only
-- no ornament
-- no heavy card
-- no shadow unless necessary for visibility
-- maintain exact placement cue
+Before/After panels should use synchronized framing unless explicitly overridden.
 
 ## Editorial shell relationship
 
-Header, Footer, Background and Panel Frame Engine should share:
-- corner language
-- line weight vocabulary
-- motif
-- accent shape
-- color roles
-- level of formality
-
-Do not copy the same decoration everywhere; create family resemblance, not repetition.
-
-## Region ratios
-
-A4 portrait starting ranges:
-- Header: 8–16%
-- Content Box: 72–86%
-- Footer: 5–11%
-
-Within Content:
-- Hero: 22–45%
-- Masonry: remaining area
-
-Ratios are adaptive.
+Header, Footer, Background, Masonry frames, and comparison frames should belong to one visual family.
 
 ## Quality rule
 
-The final template must look attractive even before any photos are inserted.
-
-Empty Masonry panels should read as deliberate photo frames/placeholders—not generic form fields.
+The empty template must already look intentionally designed before any user photos are inserted.
