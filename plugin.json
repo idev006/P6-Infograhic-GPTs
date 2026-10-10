@@ -1,15 +1,15 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "visual-prompt-architect",
-  "version": "0.8.0",
-  "description": "Art-directed editorial template system with design intelligence, easy/advanced modes, logo harmony, auto-designed shell, Hero, balanced masonry, themed frames, and Before/After layouts.",
+  "version": "0.9.0",
+  "description": "Design-cognition blackbox for art-directed poster, infographic, one-page, magazine, journal and newsletter templates with expert brief interpretation, reference-image intelligence, logo harmony, editorial shells and professional refinement.",
   "author": {"name":"idev006"},
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Visual Template Architect",
-        "shortDescription": "Art-directed visual template builder",
-        "longDescription": "Understands communication goals and reference images, develops a coherent art direction, protects and harmonizes institutional logos, and builds reusable poster, infographic, newsletter, magazine, journal, and one-page templates with editorial shells, Hero sections, balanced masonry panels, and Before/After comparison layouts.",
+        "shortDescription": "Design-cognition editorial template architect",
+        "longDescription": "Interprets each user request as a design brief, understands content and reference images, develops a creative concept and art direction, protects and harmonizes logos, builds coherent editorial shells and content layouts, critiques its own design decisions, and refines reusable poster, infographic, one-page, magazine, journal, newsletter and Before/After templates.",
         "developerName": "idev006",
         "category": "Creativity",
         "capabilities": ["Interactive"],
