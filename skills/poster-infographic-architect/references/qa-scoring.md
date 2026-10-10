@@ -1,68 +1,89 @@
-# Template QA Scoring v0.7
+# Template QA Scoring v0.8
 
 ## Blocking failures
 
 Revise if:
+- communication objective is ignored
+- no coherent creative concept/art direction is evident
 - Background/Header/Footer missing unless explicitly disabled
 - Header/Footer are generic empty boxes
 - Hero omitted without explicit user request
-- explicit image panel or comparison pair count does not match
+- explicit panel/pair counts do not match
 - Masonry has severe imbalance/dead gaps
-- Before/After positions are reversed from explicit/default intent
-- Before/After sides are materially unequal without design reason
-- comparison relationship is visually unclear
+- Before/After ordering or pairing is wrong
 - panel bounds are unclear
 - THEMED_FRAME clashes with shell
-- PLAIN_GUIDE contains decorative framing
-- reference image inserted without explicit binding
-- locked logo/asset is altered
+- reference image is inserted without explicit binding
+- region source mapping is ignored
 - factual content is fabricated
-- requested region source mapping is ignored
-- EASY mode output unnecessarily exposes technical complexity
+- EASY output exposes unnecessary complexity
+
+Logo / brand blocking failures:
+- logo redrawn
+- logo recolored
+- logo cropped
+- logo warped, stretched, or compressed
+- logo text/symbols altered
+- logo used as texture/pattern
+- logo dissolved into collage
+- logo placed with inadequate contrast/clear space
+- shell visibly conflicts with logo identity
+- logo appears pasted on due to poor integration when harmony mode is active
 
 ## Scored dimensions 0–10
 
-1. Editorial Shell Quality
-2. Header Editorial Quality
-3. Footer Editorial Quality
-4. Background Integration
-5. Shell Unity
-6. Hero Hierarchy
-7. Content Layout Fit
-8. Masonry Optical Balance
-9. Before/After Comparison Clarity
-10. Panel / Pair Count Accuracy
-11. Panel Frame Quality
-12. Gutter / Rhythm Consistency
-13. Typography Hierarchy
-14. Color / Motif Unity
-15. Region Source Mapping Accuracy
-16. Asset Preservation
-17. Easy-mode Usability
-18. Reusability
-19. Overall Professional Quality
+1. Brief / Objective Understanding
+2. Creative Concept Quality
+3. Art Direction Coherence
+4. Editorial Shell Quality
+5. Header Editorial Quality
+6. Footer Editorial Quality
+7. Background Integration
+8. Logo Integrity
+9. Logo-Shell Harmony
+10. Visual Hierarchy
+11. Hero Hierarchy
+12. Content Layout Fit
+13. Masonry Optical Balance
+14. Before/After Clarity
+15. Panel Frame Quality
+16. Rhythm / Negative Space
+17. Typography Quality
+18. Color / Motif Unity
+19. Reference Understanding & Mapping
+20. Asset Preservation
+21. Easy-mode Usability
+22. Reusability
+23. Overall Professional Quality
 
 ## Acceptance
 
 - any blocking failure → FAIL
+- Logo Integrity < 10 when a logo is present → FAIL
+- Logo-Shell Harmony < 8 when harmony mode is active → REVISE
+- Brief / Objective Understanding < 8 → REVISE
+- Art Direction Coherence < 8 → REVISE
 - explicit counts must be 10/10 accurate
-- Before/After Comparison Clarity < 9 when used → REVISE
+- Before/After Clarity < 9 when used → REVISE
 - Masonry Optical Balance < 8 when used → REVISE
 - Editorial Shell Quality < 8 → REVISE
-- Easy-mode Usability < 8 in EASY/AUTO-natural-language mode → REVISE
 - Asset Preservation < 9 → FAIL
 - Overall Professional Quality < 8 → REVISE
 
-## Before/After checklist
+## Design self-critique checklist
 
-Confirm:
-- Before appears left by default
-- After appears right by default
-- paired apertures are visually comparable
-- divider/labels clarify comparison
-- matched framing
-- neither side overwhelms the other
+Before output ask internally:
+- Does the design clearly serve the communication goal?
+- Is there one coherent visual idea?
+- Is the first focal point correct?
+- Does the eye flow naturally?
+- Are shell and content one visual family?
+- Is decoration purposeful?
+- Is negative space intentional?
+- Is the page optically balanced?
+- Does typography fit the institutional/emotional tone?
+- Are references understood rather than merely copied?
+- Are protected assets respected?
+- Would the empty template already look professionally designed?
 
-## Empty-template checklist
-
-The template should already look complete and intentional before photos are inserted.
+If not, revise.
