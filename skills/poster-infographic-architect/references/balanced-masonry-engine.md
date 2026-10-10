@@ -1,114 +1,92 @@
-# Balanced Masonry + Panel Frame Engine v0.6
+# Adaptive Collage & Masonry Engine v0.10
 
 ## Purpose
 
-Create a visually balanced image-placeholder composition in the Content Section.
+Create photo layouts that feel editorially composed and visually balanced while remaining practical for real image placement.
 
-This is not random Pinterest-style masonry. It is controlled editorial masonry optimized for optical harmony.
+## Modes
 
-## Defaults
+### BALANCED_MASONRY
+General-purpose multi-image editorial layout.
 
-- child_layout_type = balanced_masonry
-- image_panel_count = AUTO
-- panel_content_mode = IMAGE_ONLY
-- panel_frame_mode = THEMED_FRAME
-- masonry_balance = OPTICAL
-- gutter = AUTO
-- size_variation = CONTROLLED
+### PAIRED_BALANCED_MASONRY
+Before/After or other paired-image content.
 
-## Panel count
+### EDITORIAL_COLLAGE
+Narrative magazine/journal layout with stronger hierarchy and freer rhythm.
 
-If the user requests N images/panels, create exactly N panels.
+## Anti-grid invariant
 
-Each panel is empty until the user later places an image or explicitly binds one.
+For all three modes:
 
-Stable IDs:
-- M01..MNN
+**Equal-size repetitive grids are forbidden unless explicitly requested.**
+
+Do not satisfy image count by producing rows of identical rectangular boxes.
 
 ## Geometry
 
-Permitted panel aspect families:
-- square
-- portrait
+Use a controlled mixture of:
 - landscape
-- tall portrait
-- wide landscape
+- portrait
+- square
+- wide
+- tall
 
-Avoid extreme ratios unless reference content or user instruction requires them.
+Avoid extreme thin banners for ordinary photos.
 
-## Optical balance rules
+## Panel hierarchy
 
-- distribute large and small panels across the composition
-- avoid concentrating all large panels on one side
-- maintain consistent gutters
-- minimize dead gaps
-- avoid tiny orphan panels
-- maintain a stable outer silhouette
-- create visual rhythm
-- preserve clear Hero dominance
-- keep margins consistent with the shell
+Each composition should have:
+- dominant panel(s)
+- supporting panels
+- rhythm between larger and smaller apertures
 
-## Symmetry
+Not every panel must carry equal visual weight.
 
-Mathematical symmetry is not mandatory.
+## Optical balance
 
-Required:
-- perceptual balance
-- stable visual weight
-- coherent rhythm
+Control:
+- left/right weight
+- top/bottom weight
+- density
+- color-neutral placeholder mass
+- gutter rhythm
+- outer silhouette
 
-## Panel Frame Engine
+## Paired Masonry
 
-### THEMED_FRAME — default
+Before/After pairs must remain discoverable immediately.
 
-Each panel is represented as a designed photo frame/place-holder matching the template theme.
+Possible structures:
+- coordinated mirrored clusters
+- paired modules with varied row heights
+- dominant pair + supporting pairs
+- staggered paired collage with clear alignment cues
 
-Possible attributes:
-- border shape
-- corner treatment
-- clipping mask
-- inset
-- theme accent
-- subtle shadow
-- ornament
-- label notch
-- editorial line treatment
+Forbidden:
+- five identical thin paired rows as a default
+- unrelated Before/After geometry that obscures pairing
 
-Rules:
-- future photo should remain the focal content
-- frame must not be over-decorated
-- all frames must belong to one visual family
-- controlled variants may support different masonry shapes
-- frame aperture must be unambiguous
+## Real-photo viability
 
-### PLAIN_GUIDE
+Every aperture should accept a plausible real-world crop.
 
-Used when the user asks to remove decorative frames.
+Prefer apertures broadly compatible with 4:3, 3:2, 1:1, or portrait ratios.
 
-Rules:
-- retain thin visible outline
-- no ornament
-- no decorative shadow
-- no heavy card background
-- use neutral or theme-compatible guide line
-- preserve exact panel placement
+## Frame system
 
-## Caption mode
+THEMED_FRAME should be a frame family, not identical double-line rectangles.
 
-IMAGE_ONLY:
-- image aperture only
+Use controlled variants such as:
+- accent corner
+- selective edge
+- subtle inset
+- theme mask
+- asymmetric mat
+- minimal depth
 
-IMAGE_WITH_CAPTION:
-- reserve a compact caption zone associated with the panel
-- caption zone must not distort masonry rhythm
+PLAIN_GUIDE = thin boundary only.
 
-## QA
+## Final rule
 
-Reject/revise if:
-- exact requested panel count is wrong
-- panels visually collide
-- gutters are inconsistent without design reason
-- empty panels resemble generic form fields
-- theme frames clash with Header/Footer
-- decoration overwhelms future image content
-- PLAIN_GUIDE still looks decorative
+The composition should look intentional before photos are inserted and still look strong after real photos replace the placeholders.
