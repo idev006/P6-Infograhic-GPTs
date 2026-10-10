@@ -1,84 +1,99 @@
-# Template Prompt Compiler Specification v0.7
+# Template Prompt Compiler Specification v0.8
 
 ## Required output order
 
 1. USER MODE RESOLUTION
-2. ROLE
-3. TEMPLATE TYPE + PRESET
-4. CANVAS
-5. REFERENCE IMAGE ROLE MAP
-6. REGION SOURCE MAP
-7. EDITORIAL SHELL STYLE
-8. BACKGROUND DESIGN
-9. HEADER DESIGN
-10. HERO SECTION
-11. CONTENT LAYOUT
-12. PANEL / COMPARISON FRAME SYSTEM
-13. FOOTER DESIGN
-14. GRID / SPACING / GUTTER
-15. OPTICAL BALANCE
-16. TYPOGRAPHY
-17. COLOR
-18. MOTIF / GRAPHIC LANGUAGE
-19. ASSET BINDINGS
-20. PRESERVATION
-21. NEGATIVE CONSTRAINTS
-22. FINAL QA
+2. COMMUNICATION OBJECTIVE
+3. CREATIVE CONCEPT
+4. ART DIRECTION
+5. TEMPLATE TYPE + PRESET
+6. CANVAS
+7. REFERENCE IMAGE ROLE MAP
+8. REGION SOURCE MAP
+9. LOGO / BRAND HARMONY PLAN
+10. EDITORIAL SHELL STYLE
+11. BACKGROUND DESIGN
+12. HEADER DESIGN
+13. HERO SECTION
+14. CONTENT LAYOUT
+15. PANEL / COMPARISON FRAME SYSTEM
+16. FOOTER DESIGN
+17. GRID / SPACING / NEGATIVE SPACE
+18. VISUAL HIERARCHY / OPTICAL BALANCE / RHYTHM
+19. TYPOGRAPHY
+20. COLOR
+21. MOTIF / GRAPHIC LANGUAGE
+22. ASSET BINDINGS
+23. PRESERVATION
+24. NEGATIVE CONSTRAINTS
+25. FINAL DESIGN QA
 
-## User-mode rule
+## Compiler principle
 
-EASY:
-- avoid unnecessary jargon
-- present only essential decisions
-- internally normalize all inferred settings
+The final prompt must communicate a coherent art direction, not a checklist of unrelated decorations.
 
-ADVANCED:
-- include normalized parameters and maps when useful
+Every major visual instruction should support at least one:
+- communication objective
+- hierarchy
+- identity
+- navigation
+- emotional tone
+- editorial coherence
 
-AUTO:
-- choose EASY behavior unless explicit technical settings suggest otherwise
+## EASY mode
 
-## Mandatory declarations
+Do not expose internal complexity.
+Compile the full intelligence internally, but present only essential user-facing interpretation plus the production prompt/spec.
 
-State internally:
-- user_mode
-- hero_section
-- hero_slot_count
-- content_layout_type
-- panel_frame_mode
-- editorial_shell_style
-- region mappings
+## ADVANCED mode
+
+May expose:
+- concept statement
+- art-direction plan
+- reference role map
+- logo harmony plan
+- content map
+- QA summary
+
+## Logo / Brand Harmony section
+
+When a logo is present, explicitly state:
+
+- use the original logo unchanged
+- preserve original geometry, colors, aspect ratio, internal text/symbols
+- no redraw, recolor, warp, crop, texture treatment, or stylistic reinterpretation
+- maintain protected clear space
+- select placement and surrounding contrast deliberately
+- adapt shell color/motif/typography/geometry around the logo
+- logo should feel integrated, not pasted on
+- if exact rendering is unreliable, reserve placement for compositing the original asset
+
+Principle:
+"Preserve the logo. Harmonize the environment."
+
+## Content layouts
 
 If BALANCED_MASONRY:
-- image_panel_count
-- M01..MNN map
+- declare exact panel count
+- define optical rhythm
+- define frame family
 
 If BEFORE_AFTER:
-- comparison_pair_count
-- orientation
-- Before position
-- After position
-- pair IDs and frame synchronization
-
-## Before / After prompt language
-
-Explicitly require:
-- Before on left / After on right by default
-- matched or optically equivalent image areas
-- clear central separation or transition cue
+- Before left / After right by default
+- matched comparison weight
 - synchronized frame family
-- empty image apertures
-- no fabricated transformation claims
+- clear comparison cue
 
 ## Negative constraints
 
 Include as relevant:
-- no generic blank header/footer
+- no arbitrary decoration
+- no generic empty header/footer
 - no unrelated background
 - no chaotic masonry
-- no visually unequal Before/After sides unless requested
-- no reversed Before/After placement unless requested
-- no missing panels/pairs
+- no weak hierarchy
+- no inconsistent visual languages
+- no pasted-on logo appearance
+- no logo alteration
 - no automatic reference insertion
-- no distorted locked assets
 - no fabricated factual copy
