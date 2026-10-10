@@ -1,4 +1,4 @@
-# Canonical Template Architecture v0.6
+# Canonical Template Architecture v0.7
 
 ## Structural invariant
 
@@ -10,60 +10,67 @@ CANVAS
 │   ├── VISUAL_MOTIF_SYSTEM
 │   └── FOOTER_REGION
 └── CONTENT_BOX
-    ├── HERO_SECTION              [DEFAULT ENABLED]
-    └── MASONRY_CONTENT_SECTION
-        └── IMAGE_PANEL[1..N]
+    ├── HERO_SECTION                 [DEFAULT ENABLED]
+    └── CONTENT_LAYOUT
+        ├── MASONRY_CONTENT          [DEFAULT]
+        └── BEFORE_AFTER_COMPARISON  [WHEN REQUESTED]
 ```
 
 ## Editorial Shell
 
-The shell is a coordinated page identity system. Background, Header, Footer, motifs, typography, and color language must feel intentionally related.
-
-The shell is designed even when content slots are empty.
+Background, Header, Footer, typography, color language, and motif form a coordinated publication-style shell.
 
 ## Hero
 
-Hero Section is enabled by default and may be disabled only through explicit user instruction.
+Hero is enabled by default and disabled only through explicit user instruction.
 
 Stable IDs:
 - R01..RNN
 
 ## Masonry Content
 
-The standard image-content layout is Balanced Masonry.
+Default multi-image content architecture.
 
 Stable IDs:
 - M01..MNN
 
-When image_panel_count is explicit, create exactly that many panels.
+## Before / After Comparison
 
-Panels remain empty placeholders unless explicit binding is requested.
+Alternative content architecture when explicitly requested.
+
+Default spatial contract:
+- Before = left
+- After = right
+- visually equivalent comparison zones
+
+Stable IDs:
+- BA01-B / BA01-A
+- BA02-B / BA02-A
+- etc.
+
+Each comparison panel remains an empty reusable image placeholder unless explicitly bound.
 
 ## Panel frames
 
 Default:
-- panel_frame_mode = THEMED_FRAME
+- THEMED_FRAME
 
-THEMED_FRAME creates a reusable decorative photo frame whose visual language matches the shell.
+Optional:
+- PLAIN_GUIDE
 
-Alternative:
-- panel_frame_mode = PLAIN_GUIDE
-
-PLAIN_GUIDE retains only a thin visible panel boundary for image placement.
-
-Neither mode populates the panel with a reference image automatically.
+Both Masonry and Before/After panels follow the selected frame mode.
 
 ## Region references
 
-Header/Footer/Background may each use different user-designated reference image sets.
+Header/Footer/Background/Hero/Content may use separate user-designated reference sets.
 
-Reference role and literal image placement are separate concepts.
+Reference influence and literal placement are separate concepts.
 
 ## Reusability
 
 A valid template:
 - has a visually finished shell
-- has a default Hero unless disabled
-- has clear empty image-placement panels
-- has balanced masonry geometry
-- allows photos to be replaced without redesigning the shell
+- retains Hero by default
+- provides a clear content layout
+- keeps image areas empty and reusable
+- remains visually balanced without inserted photos
