@@ -1,99 +1,94 @@
-# Template Prompt Compiler Specification v0.8
+# Template Prompt Compiler Specification v0.9
+
+## Purpose
+
+Compile the blackbox design decisions into a production-ready prompt/spec that expresses one coherent visual system.
+
+Do not emit a pile of disconnected styling instructions.
 
 ## Required output order
 
-1. USER MODE RESOLUTION
-2. COMMUNICATION OBJECTIVE
-3. CREATIVE CONCEPT
-4. ART DIRECTION
-5. TEMPLATE TYPE + PRESET
-6. CANVAS
-7. REFERENCE IMAGE ROLE MAP
-8. REGION SOURCE MAP
-9. LOGO / BRAND HARMONY PLAN
-10. EDITORIAL SHELL STYLE
-11. BACKGROUND DESIGN
-12. HEADER DESIGN
-13. HERO SECTION
-14. CONTENT LAYOUT
-15. PANEL / COMPARISON FRAME SYSTEM
-16. FOOTER DESIGN
-17. GRID / SPACING / NEGATIVE SPACE
-18. VISUAL HIERARCHY / OPTICAL BALANCE / RHYTHM
-19. TYPOGRAPHY
-20. COLOR
-21. MOTIF / GRAPHIC LANGUAGE
-22. ASSET BINDINGS
-23. PRESERVATION
-24. NEGATIVE CONSTRAINTS
-25. FINAL DESIGN QA
+1. USER MODE
+2. DESIGN BRIEF INTERPRETATION
+3. COMMUNICATION GOAL
+4. CREATIVE CONCEPT
+5. ART DIRECTION
+6. TEMPLATE TYPE + PRESET
+7. CANVAS
+8. REFERENCE IMAGE ROLE MAP
+9. REGION SOURCE MAP
+10. LOGO / BRAND HARMONY PLAN
+11. EDITORIAL SHELL
+12. BACKGROUND
+13. HEADER
+14. HERO
+15. CONTENT LAYOUT
+16. PANEL / COMPARISON FRAME SYSTEM
+17. FOOTER
+18. GRID / SPACING / NEGATIVE SPACE
+19. HIERARCHY / FLOW / BALANCE / RHYTHM
+20. TYPOGRAPHY
+21. COLOR
+22. MOTIF / GRAPHIC LANGUAGE
+23. ASSET BINDINGS
+24. PRESERVATION
+25. NEGATIVE CONSTRAINTS
+26. FINAL QA
 
-## Compiler principle
+## Translation principle
 
-The final prompt must communicate a coherent art direction, not a checklist of unrelated decorations.
+Translate design reasoning into concrete visual instructions.
 
-Every major visual instruction should support at least one:
-- communication objective
-- hierarchy
-- identity
-- navigation
-- emotional tone
-- editorial coherence
+Bad:
+- "Make it beautiful and world-class."
+
+Good:
+- define focal hierarchy
+- define relative scale
+- define shell behavior
+- define image aperture geometry
+- define spacing rhythm
+- define typography character
+- define color roles
+- define motif restraint
+- define brand/logo integration
+- define what must not happen
 
 ## EASY mode
 
-Do not expose internal complexity.
-Compile the full intelligence internally, but present only essential user-facing interpretation plus the production prompt/spec.
+Hide the complexity.
+Present:
+- a concise interpretation
+- a short visual-direction summary
+- the final production-ready prompt/spec
 
 ## ADVANCED mode
 
-May expose:
-- concept statement
-- art-direction plan
-- reference role map
-- logo harmony plan
-- content map
-- QA summary
+May expose full normalized controls and rationale summary.
 
-## Logo / Brand Harmony section
+## Coherence requirement
 
-When a logo is present, explicitly state:
+Every generated prompt must read as if one art director authored it.
 
-- use the original logo unchanged
-- preserve original geometry, colors, aspect ratio, internal text/symbols
-- no redraw, recolor, warp, crop, texture treatment, or stylistic reinterpretation
-- maintain protected clear space
-- select placement and surrounding contrast deliberately
-- adapt shell color/motif/typography/geometry around the logo
-- logo should feel integrated, not pasted on
-- if exact rendering is unreliable, reserve placement for compositing the original asset
+If instructions conflict stylistically, resolve them before output.
 
-Principle:
-"Preserve the logo. Harmonize the environment."
+## Logo principle
 
-## Content layouts
+Always include when a logo exists:
 
-If BALANCED_MASONRY:
-- declare exact panel count
-- define optical rhythm
-- define frame family
+**Preserve the logo. Harmonize the environment.**
 
-If BEFORE_AFTER:
-- Before left / After right by default
-- matched comparison weight
-- synchronized frame family
-- clear comparison cue
+Do not change logo identity. Adapt shell around it.
 
 ## Negative constraints
 
-Include as relevant:
+Include:
+- no generic template look
 - no arbitrary decoration
-- no generic empty header/footer
-- no unrelated background
-- no chaotic masonry
+- no conflicting styles
 - no weak hierarchy
-- no inconsistent visual languages
-- no pasted-on logo appearance
+- no crowded composition
+- no chaotic masonry
 - no logo alteration
 - no automatic reference insertion
-- no fabricated factual copy
+- no fabricated factual content
