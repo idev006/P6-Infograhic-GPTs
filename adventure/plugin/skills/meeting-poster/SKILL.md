@@ -36,3 +36,5 @@ Read [approved presets](references/presets.md) when user requests P01/แสง�
 
 ## Adventure coordination
 For non-schedule posters, infographics and other print artifacts, use companion adventure-publication skill. For schedule work retain this skill, but apply its independent QA and police-context checks from ../adventure-publication/references/production.md. Original source accuracy remains authoritative; no global preset imports old meeting data.
+
+
