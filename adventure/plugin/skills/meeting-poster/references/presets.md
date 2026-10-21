@@ -23,3 +23,4 @@ Avoid: weapons, flames, aggressive symbolism, invented emblems or rescue statues
 Approved visual reference in originating conversation: exec-ce70bc10-5020-4cb7-aaf2-ed7f2af65f5d.png. Provenance only, not a bundled reusable photo.
 Invocation: ใช้พรีเซ็ต P02 พลังแห่งผู้นำ.
 
+
