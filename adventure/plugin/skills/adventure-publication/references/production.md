@@ -27,3 +27,5 @@ Record PASS / FAIL / NOT CHECKED with evidence and artifact version. NOT CHECKED
 
 ## Measured maturity
 Current release supplies instructions, references, date formatter and schedule validator; it is not a deployed standalone OCR/layout application. Automated text-format checks do not prove image fidelity. Track clean, ambiguous and dense end-to-end fixtures separately; do not mark them passed without actual rendered evidence. Target international professional quality through evidence, not claimed accreditation.
+
+
