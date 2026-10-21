@@ -6,3 +6,4 @@ Exact-text production in an executor: use Pillow with RAQM or browser HTML/CSS s
 If host imagegen is the only image route, give precise locked data/asset roles, request full framing, then inspect actual output. Retry only targeted errors. Do not guarantee100% portrait or text fidelity. Never output an unverified correction claim.
 
 QC matrix: source rowID → rendered row → date/time/title/owner/chair/room/operator/phone → pass/fail/unverified. Check actual final image at enlarged table crops. Keep matrix internal unless requested. Missing source records, unreadable fields or output mismatch block an unqualified ready-to-send claim. No prior QC status carries forward after edits.
+
