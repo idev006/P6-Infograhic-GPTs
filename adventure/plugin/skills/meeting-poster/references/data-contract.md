@@ -13,3 +13,4 @@ Regression scenarios:
 ## Visible date and numeral defaults
 Use D MMM YY in every per-day date cell: ๑ พ.ย.๖๙, ๓๑ ต.ค.๖๙. No leading zero; Buddhist year last two digits. Thai month abbreviations: ม.ค., ก.พ., มี.ค., เม.ย., พ.ค., มิ.ย., ก.ค., ส.ค., ก.ย., ต.ค., พ.ย., ธ.ค. Explicit user request for Arabic numerals overrides digit default only (1 พ.ย.69); retain Thai month abbreviations unless separately requested. Apply numeral policy to all visible fields, preserving values, Latin names and abbreviations. ISO/internal numbers need not use Thai digits.
 
+
