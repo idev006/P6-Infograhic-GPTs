@@ -10,7 +10,7 @@
     "shortDescription": "โปสเตอร์ตารางประชุม"
   },
   "name": "p6-meeting-poster",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Create accurate Thai daily and weekly meeting posters from schedules, amendments and up to five reference images.",
   "author": {
     "name": "THPPRVI",
