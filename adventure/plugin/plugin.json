@@ -1,0 +1,31 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "thaipoliceregion6@gmail.com",
+    "name": "THPPRVI"
+  },
+  "description": "Create accurate Thai daily and weekly meeting posters from schedules, amendments and up to five reference images.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "brandColor": "#073069",
+        "capabilities": [],
+        "category": "Productivity",
+        "defaultPrompt": "สร้างโปสเตอร์การประชุม A4 แนวตั้งจากตารางที่แนบ ใช้เลขไทย ตรวจข้อมูล และใช้ภาพประกอบที่ส่งให้",
+        "developerName": "THPPRVI",
+        "displayName": "P6 Meeting Poster",
+        "longDescription": "รับตารางเวร ข้อความ และภาพประกอบไม่เกิน 5 ภาพ สร้างโปสเตอร์ A4 แนวตั้ง พร้อมตรวจข้อมูลและรักษาภาพบุคคลต้นฉบับ ใช้ความสามารถสร้างภาพและไฟล์ของแชทที่เปิดใช้งาน",
+        "shortDescription": "โปสเตอร์ตารางประชุม"
+      }
+    }
+  },
+  "keywords": [
+    "meeting",
+    "poster",
+    "Thai",
+    "conference",
+    "schedule"
+  ],
+  "name": "p6-meeting-poster",
+  "version": "0.2.0"
+}
