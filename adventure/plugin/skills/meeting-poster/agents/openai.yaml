@@ -2,3 +2,4 @@ interface:
   display_name: "P6 Meeting Poster"
   short_description: "Create accurate Thai meeting schedule posters"
   default_prompt: "Use $meeting-poster to create an A4 portrait meeting poster from my schedule and reference images."
+
