@@ -13,3 +13,4 @@ def table_date(iso_date,style='thai'):
  label=f'{d.day} {MONTHS[d.month-1]}{(d.year+543)%100:02d}'
  return digits(label,style)
 
+
